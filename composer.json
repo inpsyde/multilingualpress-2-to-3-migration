@@ -13,9 +13,21 @@
     "require": {
         "php": "^7.0.33"
     },
-    "config": {
-        "platform": {
-            "php": "7.0.33"
+    "require-dev": {
+        "inpsyde/php-coding-standards": "^0.13"
+    },
+    "autoload": {
+        "psr-4": {
+            "Inpsyde\\MultilingualPress2to3\\": "src/"
+        }
+    },
+    "scripts": {
+        "cscheck": "phpcs -s -n",
+        "csfix": "phpcbf --standard=phpcs.xml.dist"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.1-alpha1"
         }
     }
 }
