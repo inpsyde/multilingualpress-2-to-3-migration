@@ -75,6 +75,8 @@ trait HandlerTrait {
 	 * Adds handler hooks.
 	 *
 	 * @return void
+     *
+     * @throws Exception If problem hooking.
 	 */
 	abstract protected function _hook();
 
