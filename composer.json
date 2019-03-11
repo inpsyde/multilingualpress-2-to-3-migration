@@ -11,7 +11,12 @@
     ],
     "minimum-stability": "dev",
     "require": {
-        "php": "^7.0.33"
+        "php": "^7.0.33",
+        "psr/container": "^1.0",
+        "dhii/di": "^0.2-alpha1",
+        "dhii/memoize-memory": "^0.2-alpha1",
+        "dhii/i18n-interface": "^0.2",
+        "dhii/wp-i18n": "dev-develop"
     },
     "require-dev": {
         "inpsyde/php-coding-standards": "^0.13"
