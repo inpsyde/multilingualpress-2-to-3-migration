@@ -19,7 +19,8 @@
         "dhii/wp-i18n": "dev-develop"
     },
     "require-dev": {
-        "inpsyde/php-coding-standards": "^0.13"
+        "inpsyde/php-coding-standards": "^0.13",
+        "wp-cli/wp-cli": "^2"
     },
     "autoload": {
         "psr-4": {
