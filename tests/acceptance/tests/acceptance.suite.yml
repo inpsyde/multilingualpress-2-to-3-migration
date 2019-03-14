@@ -1,0 +1,17 @@
+actor: AcceptanceTester
+modules:
+    enabled:
+        - PhpBrowser:
+            url: http://192.168.1.2:8081
+        - \Helper\Acceptance
+        - Cli
+        - Db
+    config:
+        Db:
+            dsn: 'mysql:host=localhost:8082;dbname=wordpress'
+            user: 'wordpress'
+            password: 'wordpress'
+            dump: 'tests/_data/dump.sql'
+            populate: true
+            cleanup: true
+            reconnect: true
