@@ -6,6 +6,7 @@
  */
 
 use Dhii\Wp\I18n\FormatTranslator;
+use Inpsyde\MultilingualPress2to3\IntegrationHandler;
 use Inpsyde\MultilingualPress2to3\MainHandler;
 use Psr\Container\ContainerInterface;
 
@@ -22,6 +23,8 @@ return function ( $base_path, $base_url ) {
 		'translations_dir'        => '/languages',
 		'text_domain'             => 'mlp2to3',
 
+        'filter_is_check_legacy'  => 'multilingualpress.is_check_legacy',
+
         /* The main handler */
 		'handler_main'                  => function ( ContainerInterface $c ) {
 			return new MainHandler( $c );
@@ -32,11 +35,18 @@ return function ( $base_path, $base_url ) {
 		 */
 		'handlers'                => function ( ContainerInterface $c ) {
 			return [
+                $c->get('handler_integration'),
 			];
 		},
 
         'translator'              => function ( ContainerInterface $c ) {
 		    return new FormatTranslator( $c->get('text_domain') );
-        }
+        },
+
+        'handler_integration'               => function ( ContainerInterface $c ) {
+		    return new IntegrationHandler(
+		        $c
+            );
+        },
 	];
 };
