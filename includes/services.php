@@ -48,7 +48,13 @@ return function ( $base_path, $base_url ) {
             return new MigrateCliCommandHandler($c);
         },
 
-        'handler_integration'  => function (ContainerInterface $c) {
+        'wpdb' => function (ContainerInterface $c) {
+            global $wpdb;
+
+            return $wpdb;
+        },
+
+        'handler_integration' => function (ContainerInterface $c) {
             return new IntegrationHandler(
                 $c
             );
