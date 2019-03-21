@@ -30,22 +30,27 @@ return function ( $base_path, $base_url ) {
 			return new MainHandler( $c );
 		},
 
-		/*
-		 * List of handlers to run
-		 */
-		'handlers'                => function ( ContainerInterface $c ) {
-			return [
+        /*
+         * List of handlers to run
+         */
+        'handlers' => function (ContainerInterface $c) {
+            return [
+                $c->get('handler_migrate_cli_command'),
                 $c->get('handler_integration'),
-			];
-		},
+            ];
+        },
 
         'translator'              => function ( ContainerInterface $c ) {
 		    return new FormatTranslator( $c->get('text_domain') );
         },
 
-        'handler_integration'               => function ( ContainerInterface $c ) {
-		    return new IntegrationHandler(
-		        $c
+        'handler_migrate_cli_command' => function (ContainerInterface $c) {
+            return new MigrateCliCommandHandler($c);
+        },
+
+        'handler_integration'  => function (ContainerInterface $c) {
+            return new IntegrationHandler(
+                $c
             );
         },
 	];
