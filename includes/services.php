@@ -6,6 +6,7 @@
  */
 
 use Dhii\Wp\I18n\FormatTranslator;
+use Inpsyde\MultilingualPress2to3\ContentRelationshipMigrator;
 use Inpsyde\MultilingualPress2to3\IntegrationHandler;
 use Inpsyde\MultilingualPress2to3\MainHandler;
 use Psr\Container\ContainerInterface;
@@ -46,6 +47,13 @@ return function ( $base_path, $base_url ) {
 
         'handler_migrate_cli_command' => function (ContainerInterface $c) {
             return new MigrateCliCommandHandler($c);
+        },
+
+        'migrator_relationships' => function (ContainerInterface $c) {
+            return new ContentRelationshipMigrator(
+                $c->get('wpdb'),
+                $c->get('translator')
+            );
         },
 
         'wpdb' => function (ContainerInterface $c) {
