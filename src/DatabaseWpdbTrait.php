@@ -24,7 +24,8 @@ trait DatabaseWpdbTrait
      *
      * @throws Throwable If problem inserting.
      */
-    protected function _insert($name, $data) {
+    protected function _insert($name, $data)
+    {
         $data = (array) $data;
         $db = $this->_getDb();
 
@@ -55,7 +56,8 @@ trait DatabaseWpdbTrait
      *
      * @throws Throwable If problem selecting.
      */
-    protected function _select($query, $values = []) {
+    protected function _select($query, $values = [])
+    {
         $db = $this->_getDb();
 
         if (!empty($values)) {
@@ -82,7 +84,8 @@ trait DatabaseWpdbTrait
      *
      * @throws Throwable If problem prefixing.
      */
-    protected function _getPrefixedTableName($name) {
+    protected function _getPrefixedTableName($name)
+    {
         $prefix = $this->_getDb()->prefix;
 
         return "{$prefix}$name";

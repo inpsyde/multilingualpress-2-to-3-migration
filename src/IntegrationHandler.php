@@ -23,8 +23,9 @@ class IntegrationHandler implements HandlerInterface
      *
      * @param ContainerInterface $config The configuration of this handler.
      */
-    public function __construct( ContainerInterface $config ) {
-        $this->_setConfigContainer( $config );
+    public function __construct(ContainerInterface $config)
+    {
+        $this->_setConfigContainer($config);
     }
 
     /**

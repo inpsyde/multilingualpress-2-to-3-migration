@@ -22,7 +22,7 @@ trait RunHandlersCapableTrait
      */
     protected function _runHandlers($handlers)
     {
-        foreach ( $handlers as $handler ) {
+        foreach ($handlers as $handler) {
             assert($handler instanceof HandlerInterface);
             $handler->run();
         }
