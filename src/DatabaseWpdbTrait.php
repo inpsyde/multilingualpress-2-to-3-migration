@@ -57,7 +57,10 @@ trait DatabaseWpdbTrait
      */
     protected function _select($query, $values = []) {
         $db = $this->_getDb();
-        $query = $db->prepare($query, $values);
+
+        if (!empty($values)) {
+            $query = $db->prepare($query, $values);
+        }
 
         $result = $db->get_results($query, 'OBJECT');
         $error = $db->last_error;
