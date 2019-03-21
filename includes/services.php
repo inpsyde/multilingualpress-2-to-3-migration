@@ -9,6 +9,8 @@ use Dhii\Wp\I18n\FormatTranslator;
 use Inpsyde\MultilingualPress2to3\ContentRelationshipMigrator;
 use Inpsyde\MultilingualPress2to3\IntegrationHandler;
 use Inpsyde\MultilingualPress2to3\MainHandler;
+use Inpsyde\MultilingualPress2to3\MigrateRelationshipsCliCommand;
+use Inpsyde\MultilingualPress2to3\MigrateCliCommandHandler;
 use Psr\Container\ContainerInterface;
 
 return function ( $base_path, $base_url ) {
@@ -24,6 +26,7 @@ return function ( $base_path, $base_url ) {
 		'translations_dir'        => '/languages',
 		'text_domain'             => 'mlp2to3',
 
+        'wpcli_command_key_mlp2to3_migrate' => 'mlp2to3 relationships',
         'filter_is_check_legacy'  => 'multilingualpress.is_check_legacy',
 
         /* The main handler */
@@ -47,6 +50,13 @@ return function ( $base_path, $base_url ) {
 
         'handler_migrate_cli_command' => function (ContainerInterface $c) {
             return new MigrateCliCommandHandler($c);
+        },
+
+        'wpcli_command_migrate_relationships' => function (ContainerInterface $c) {
+            return new MigrateRelationshipsCliCommand(
+                $c->get('migrator_relationships'),
+                $c->get('wpdb')
+            );
         },
 
         'migrator_relationships' => function (ContainerInterface $c) {

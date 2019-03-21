@@ -52,5 +52,15 @@ class MigrateCliCommandHandler implements HandlerInterface
         if (!class_exists('WP_CLI')) {
             return;
         }
+
+        $key = $this->_getConfig('wpcli_command_key_mlp2to3_migrate');
+
+        // This allows the command to be lazy-loaded
+        $this->_addCliCommand($key, function ($positionalArgs, $associativeArgs) {
+            $handler = $this->_getConfig('wpcli_command_migrate_relationships');
+            assert(is_callable($handler));
+
+            $handler($positionalArgs, $associativeArgs);
+        });
     }
 }
