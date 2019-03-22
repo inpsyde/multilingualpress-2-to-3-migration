@@ -55,7 +55,8 @@ return function ( $base_path, $base_url ) {
         'wpcli_command_migrate_relationships' => function (ContainerInterface $c) {
             return new MigrateRelationshipsCliCommand(
                 $c->get('migrator_relationships'),
-                $c->get('wpdb')
+                $c->get('wpdb'),
+                $c->get('translator')
             );
         },
 

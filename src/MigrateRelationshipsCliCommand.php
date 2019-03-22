@@ -3,6 +3,9 @@ declare(strict_types=1);
 
 namespace Inpsyde\MultilingualPress2to3;
 
+use Dhii\I18n\FormatTranslatorInterface;
+use Dhii\I18n\StringTranslatorConsumingTrait;
+use Exception;
 use Throwable;
 use wpdb as Wpdb;
 
@@ -15,8 +18,13 @@ class MigrateRelationshipsCliCommand
 {
     use DatabaseWpdbTrait;
 
+    use CliUtilsTrait;
+
+    use StringTranslatorConsumingTrait;
+
     protected $migrator;
     protected $db;
+    protected $translator;
 
     /**
      * @param ContentRelationshipMigrator $migrator The relationship migrator to be used by this instance.
@@ -25,7 +33,8 @@ class MigrateRelationshipsCliCommand
      */
     public function __construct(
         ContentRelationshipMigrator $migrator,
-        Wpdb $db
+        Wpdb $db,
+        FormatTranslatorInterface $translator
     ) {
 
         $this->migrator = $migrator;
@@ -40,10 +49,23 @@ class MigrateRelationshipsCliCommand
     public function __invoke()
     {
         $relationships = $this->_getRelationshipsToMigrate();
+        $count = count ($relationships);
+        $progress = $this->_createProgress($this->__('Migrating relationships'), $count);
 
         foreach ($relationships as $relationship) {
-            $this->migrator->migrate($relationship);
+            try {
+                $this->migrator->migrate($relationship);
+                $progress->tick();
+            } catch (Exception $e) {
+                var_dump($e->getMessage());
+                $this->_outputError($e->getMessage());
+                $this->_outputDebug($e->getTraceAsString());
+                $this->_exit(1);
+            }
         }
+
+        $progress->finish();
+        $this->_outputSuccess($this->__('Migrated %1$s relationships', [$count]));
     }
 
     /**
@@ -88,5 +110,10 @@ class MigrateRelationshipsCliCommand
     protected function _getTableName(string $name)
     {
         return $this->_getPrefixedTableName($name);
+    }
+
+    protected function _getTranslator()
+    {
+        return $this->translator;
     }
 }
