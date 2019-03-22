@@ -57,7 +57,6 @@ class ContentRelationshipMigrator
         $destBlogId = (int) $mlp2Relationship['ml_blogid'];
         $destElementId = (int) $mlp2Relationship['ml_elementid'];
         $relationshipType = $mlp2Relationship['ml_type'];
-
         $groupId = $this->_getGroupId(
             $sourceBlogId,
             $sourceElementId,
@@ -95,8 +94,8 @@ class ContentRelationshipMigrator
         $typeCode
     ): int {
 
-        if (!($groupId = $this->_retrieveGroupId($sourceBlogId, $sourceContentId))) {
-            $groupId = $this->_retrieveGroupId($destBlogId, $destContentId);
+        if (!($groupId = $this->_retrieveGroupId($sourceBlogId, $sourceContentId, $typeCode))) {
+            $groupId = $this->_retrieveGroupId($destBlogId, $destContentId, $typeCode);
         }
 
         if (!$groupId) {
@@ -112,19 +111,29 @@ class ContentRelationshipMigrator
      *
      * @param int $blogId Blog ID of the entity.
      * @param int $contentId Content ID of the entity (usually post or term ID).
+     * @param string $relationshipType The type of the relationship to retrieve group ID for.
      *
      * @return int|null The relationship ID if found; null otherwise.
      *
      * @throws Throwable If problem retrieving.
      */
-    protected function _retrieveGroupId($blogId, $contentId)
+    protected function _retrieveGroupId($blogId, $contentId, $relationshipType)
     {
         // SELECT `relationship_id` FROM `mlp_content_relations` WHERE `site_id` = :blogId AND `content_id` = :contentId
-        $table = $this->_getTableName('mlp_content_relations');
+        $relationshipsTable = $this->_getTableName('mlp_content_relations');
+        $groupsTable = $this->_getTableName('mlp_relationships');
         $field = 'relationship_id';
+        $query = <<<EOF
+SELECT `r`.`{$field}`
+FROM `{$relationshipsTable}` `r`
+JOIN `{$groupsTable}` AS `g` ON `g`.`id` = `r`.`relationship_id`
+WHERE `r`.`site_id` = %d AND `r`.`content_id` = %d AND `g`.`type` = %s
+LIMIT 1
+EOF;
+
         $results = $this->_select(
-            "SELECT `{$field}` FROM `{$table}` WHERE `site_id` = %d AND `content_id` = %d",
-            [$blogId, $contentId]
+            $query,
+            [$blogId, $contentId, $relationshipType]
         );
 
         if (!count($results)) {
