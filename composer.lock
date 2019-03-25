@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "c9833e6696b1e3964200f1a8b12c1f2f",
+    "content-hash": "bf97e2d8217e0e3a9e86d0736630c214",
     "packages": [
         {
             "name": "dhii/args-list-validation",
@@ -52,7 +52,7 @@
                 }
             ],
             "description": "Validation of an arguments list",
-            "time": "2018-03-12T04:34:54+00:00"
+            "time": "2018-03-12 04:34:54"
         },
         {
             "name": "dhii/cache-abstract",
@@ -108,7 +108,7 @@
                 }
             ],
             "description": "Abstract functionality for caching.",
-            "time": "2018-03-22T21:23:37+00:00"
+            "time": "2018-03-22 21:23:37"
         },
         {
             "name": "dhii/callback-abstract",
@@ -163,7 +163,7 @@
                 }
             ],
             "description": "Abstract functionality for working with callbacks.",
-            "time": "2018-04-04T14:57:27+00:00"
+            "time": "2018-04-04 14:57:27"
         },
         {
             "name": "dhii/collections-interface",
@@ -212,7 +212,7 @@
                 }
             ],
             "description": "A highly ISP-compliant collection of interfaces that represent maps and lists.",
-            "time": "2018-04-26T13:04:16+00:00"
+            "time": "2018-04-26 13:04:16"
         },
         {
             "name": "dhii/container-helper-base",
@@ -261,7 +261,7 @@
                 }
             ],
             "description": "Helper functionality for working with container.",
-            "time": "2018-11-06T18:03:24+00:00"
+            "time": "2018-11-06 18:03:24"
         },
         {
             "name": "dhii/data-container-abstract",
@@ -314,7 +314,7 @@
                 }
             ],
             "description": "Abstract functionality for working with data containers.",
-            "time": "2018-04-01T15:13:22+00:00"
+            "time": "2018-04-01 15:13:22"
         },
         {
             "name": "dhii/data-container-base",
@@ -366,7 +366,7 @@
                 }
             ],
             "description": "Base functionality for container implementations",
-            "time": "2018-03-16T18:58:30+00:00"
+            "time": "2018-03-16 18:58:30"
         },
         {
             "name": "dhii/data-container-interface",
@@ -420,7 +420,7 @@
                 }
             ],
             "description": "Interfaces for working with data containers",
-            "time": "2018-04-26T09:50:30+00:00"
+            "time": "2018-04-26 09:50:30"
         },
         {
             "name": "dhii/data-hierarchy-interface",
@@ -510,7 +510,7 @@
                 }
             ],
             "description": "Traits for objects that are aware of a key, a value, or both.",
-            "time": "2018-02-11T15:58:23+00:00"
+            "time": "2018-02-11 15:58:23"
         },
         {
             "name": "dhii/data-key-value-aware-interface",
@@ -605,7 +605,7 @@
                 }
             ],
             "description": "Abstract common functionality for data objects",
-            "time": "2018-03-15T12:29:35+00:00"
+            "time": "2018-03-15 12:29:35"
         },
         {
             "name": "dhii/data-path-aware-interface",
@@ -722,7 +722,7 @@
                 "dependency injection",
                 "di"
             ],
-            "time": "2018-04-11T12:44:04+00:00"
+            "time": "2018-04-11 12:44:04"
         },
         {
             "name": "dhii/di-abstract",
@@ -775,7 +775,7 @@
                 }
             ],
             "description": "Base abstract classes for DI container implementations",
-            "time": "2018-04-01T15:17:25+00:00"
+            "time": "2018-04-01 15:17:25"
         },
         {
             "name": "dhii/exception",
@@ -829,7 +829,7 @@
                 }
             ],
             "description": "Standards-compliant exception classes",
-            "time": "2018-05-28T08:47:18+00:00"
+            "time": "2018-05-28 08:47:18"
         },
         {
             "name": "dhii/exception-interface",
@@ -937,7 +937,7 @@
                 }
             ],
             "description": "Base functionality for factories.",
-            "time": "2018-04-09T16:03:15+00:00"
+            "time": "2018-04-09 16:03:15"
         },
         {
             "name": "dhii/factory-interface",
@@ -1126,7 +1126,7 @@
                 }
             ],
             "description": "A base for internationalization consumers",
-            "time": "2018-03-07T22:38:07+00:00"
+            "time": "2018-03-07 22:38:07"
         },
         {
             "name": "dhii/i18n-interface",
@@ -1266,7 +1266,7 @@
                 }
             ],
             "description": "Interface for objects that can be invoked.",
-            "time": "2018-02-12T16:56:45+00:00"
+            "time": "2018-02-12 16:56:45"
         },
         {
             "name": "dhii/iterator-abstract",
@@ -1321,7 +1321,7 @@
                 "iterator",
                 "trait"
             ],
-            "time": "2018-04-25T12:20:32+00:00"
+            "time": "2018-04-25 12:20:32"
         },
         {
             "name": "dhii/iterator-base",
@@ -1376,7 +1376,7 @@
                 }
             ],
             "description": "Base concrete functionality for iterators",
-            "time": "2018-03-22T11:45:19+00:00"
+            "time": "2018-03-22 11:45:19"
         },
         {
             "name": "dhii/iterator-helper-base",
@@ -1429,7 +1429,7 @@
                 }
             ],
             "description": "Common functionality for working with iterables",
-            "time": "2018-03-22T11:25:07+00:00"
+            "time": "2018-03-22 11:25:07"
         },
         {
             "name": "dhii/iterator-interface",
@@ -1480,7 +1480,7 @@
                 }
             ],
             "description": "Interfaces for standard iterators",
-            "time": "2018-04-24T19:38:13+00:00"
+            "time": "2018-04-24 19:38:13"
         },
         {
             "name": "dhii/map",
@@ -1543,7 +1543,7 @@
                 "iterable",
                 "map"
             ],
-            "time": "2018-07-30T10:48:11+00:00"
+            "time": "2018-07-30 10:48:11"
         },
         {
             "name": "dhii/memoize-memory",
@@ -1603,7 +1603,7 @@
                 }
             ],
             "description": "An in-memory memoizer implementation.",
-            "time": "2018-04-03T13:41:36+00:00"
+            "time": "2018-04-03 13:41:36"
         },
         {
             "name": "dhii/normalization-helper-base",
@@ -1651,7 +1651,7 @@
                 }
             ],
             "description": "Functionality for normalizing values.",
-            "time": "2018-06-04T08:55:31+00:00"
+            "time": "2018-06-04 08:55:31"
         },
         {
             "name": "dhii/simple-cache-interface",
@@ -1701,7 +1701,7 @@
                 }
             ],
             "description": "A simple cache standard inspired by PSR-16.",
-            "time": "2018-05-21T16:19:27+00:00"
+            "time": "2018-05-21 16:19:27"
         },
         {
             "name": "dhii/stringable-interface",
@@ -1799,7 +1799,7 @@
                 }
             ],
             "description": "Common abstract functionality for validation.",
-            "time": "2018-03-07T21:05:39+00:00"
+            "time": "2018-03-07 21:05:39"
         },
         {
             "name": "dhii/validation-base",
@@ -1852,7 +1852,7 @@
                 }
             ],
             "description": "Base concrete functionality for validation.",
-            "time": "2018-04-02T13:31:36+00:00"
+            "time": "2018-04-02 13:31:36"
         },
         {
             "name": "dhii/validation-interface",
@@ -1950,7 +1950,7 @@
                 }
             ],
             "description": "Internationalization for WP",
-            "time": "2018-11-23T16:47:22+00:00"
+            "time": "2018-11-23 16:47:22"
         },
         {
             "name": "psr/container",
@@ -1999,10 +1999,51 @@
                 "container-interop",
                 "psr"
             ],
-            "time": "2018-12-29T15:36:03+00:00"
+            "time": "2018-12-29 15:36:03"
         }
     ],
     "packages-dev": [
+        {
+            "name": "antecedent/patchwork",
+            "version": "2.1.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/antecedent/patchwork.git",
+                "reference": "3bb81ace3914c220aa273d1c0603d5e1b454c0d7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/antecedent/patchwork/zipball/3bb81ace3914c220aa273d1c0603d5e1b454c0d7",
+                "reference": "3bb81ace3914c220aa273d1c0603d5e1b454c0d7",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ignas Rudaitis",
+                    "email": "ignas.rudaitis@gmail.com"
+                }
+            ],
+            "description": "Method redefinition (monkey-patching) functionality for PHP.",
+            "homepage": "http://patchwork2.org/",
+            "keywords": [
+                "aop",
+                "aspect",
+                "interception",
+                "monkeypatching",
+                "redefinition",
+                "runkit",
+                "testing"
+            ],
+            "time": "2018-02-19T18:52:50+00:00"
+        },
         {
             "name": "automattic/phpcs-neutron-standard",
             "version": "v1.5.3",
@@ -2045,6 +2086,70 @@
             ],
             "description": "A set of phpcs sniffs for modern php development.",
             "time": "2018-09-11T19:08:15+00:00"
+        },
+        {
+            "name": "brain/monkey",
+            "version": "2.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Brain-WP/BrainMonkey.git",
+                "reference": "326a537bf518edd61bc57ab275e8b075ebb8a1a9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Brain-WP/BrainMonkey/zipball/326a537bf518edd61bc57ab275e8b075ebb8a1a9",
+                "reference": "326a537bf518edd61bc57ab275e8b075ebb8a1a9",
+                "shasum": ""
+            },
+            "require": {
+                "antecedent/patchwork": "^2.0",
+                "mockery/mockery": ">=0.9 <2",
+                "php": ">=5.6.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~5.7.9"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-version/1": "1.x-dev",
+                    "dev-master": "2.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Brain\\Monkey\\": "src/"
+                },
+                "files": [
+                    "inc/api.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Giuseppe Mazzapica",
+                    "email": "giuseppe.mazzapica@gmail.com",
+                    "homepage": "https://gmazzap.me",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Mocking utility for PHP functions and WordPress plugin API",
+            "keywords": [
+                "Monkey Patching",
+                "interception",
+                "mock",
+                "mock functions",
+                "mockery",
+                "patchwork",
+                "redefinition",
+                "runkit",
+                "test",
+                "testing"
+            ],
+            "time": "2019-03-15T13:42:24+00:00"
         },
         {
             "name": "dealerdirect/phpcodesniffer-composer-installer",
@@ -2115,6 +2220,54 @@
             "time": "2017-12-06T16:27:17+00:00"
         },
         {
+            "name": "hamcrest/hamcrest-php",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/hamcrest/hamcrest-php.git",
+                "reference": "a8c1c7b982c989ad16c8f17f1834fa5df744b689"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/hamcrest/hamcrest-php/zipball/a8c1c7b982c989ad16c8f17f1834fa5df744b689",
+                "reference": "a8c1c7b982c989ad16c8f17f1834fa5df744b689",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.3|^7.0"
+            },
+            "replace": {
+                "cordoval/hamcrest-php": "*",
+                "davedevelopment/hamcrest-php": "*",
+                "kodova/hamcrest-php": "*"
+            },
+            "require-dev": {
+                "phpunit/php-file-iterator": "^1.4",
+                "phpunit/phpunit": ">=4.8.35 <5|>=5.4.3 <6",
+                "satooshi/php-coveralls": "^1.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0-dev"
+                }
+            },
+            "autoload": {
+                "classmap": [
+                    "hamcrest"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": "This is the PHP port of Hamcrest Matchers",
+            "keywords": [
+                "test"
+            ],
+            "time": "2018-11-01T08:19:18+00:00"
+        },
+        {
             "name": "inpsyde/php-coding-standards",
             "version": "dev-master",
             "source": {
@@ -2173,6 +2326,71 @@
                 "wordpress"
             ],
             "time": "2019-02-19T10:23:48+00:00"
+        },
+        {
+            "name": "mockery/mockery",
+            "version": "1.2.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mockery/mockery.git",
+                "reference": "0eb0b48c3f07b3b89f5169ce005b7d05b18cf1d2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mockery/mockery/zipball/0eb0b48c3f07b3b89f5169ce005b7d05b18cf1d2",
+                "reference": "0eb0b48c3f07b3b89f5169ce005b7d05b18cf1d2",
+                "shasum": ""
+            },
+            "require": {
+                "hamcrest/hamcrest-php": "~2.0",
+                "lib-pcre": ">=7.0",
+                "php": ">=5.6.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~5.7.10|~6.5|~7.0|~8.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Mockery": "library/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Pádraic Brady",
+                    "email": "padraic.brady@gmail.com",
+                    "homepage": "http://blog.astrumfutura.com"
+                },
+                {
+                    "name": "Dave Marshall",
+                    "email": "dave.marshall@atstsolutions.co.uk",
+                    "homepage": "http://davedevelopment.co.uk"
+                }
+            ],
+            "description": "Mockery is a simple yet flexible PHP mock object framework",
+            "homepage": "https://github.com/mockery/mockery",
+            "keywords": [
+                "BDD",
+                "TDD",
+                "library",
+                "mock",
+                "mock objects",
+                "mockery",
+                "stub",
+                "test",
+                "test double",
+                "testing"
+            ],
+            "time": "2019-02-13T09:37:52+00:00"
         },
         {
             "name": "mustache/mustache",
@@ -2379,12 +2597,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/squizlabs/PHP_CodeSniffer.git",
-                "reference": "8c8c4ff2566630e79c52278ceb6e383795c9f443"
+                "reference": "880d257c38982752ec3ff9a9f94b6ad0772a6439"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/8c8c4ff2566630e79c52278ceb6e383795c9f443",
-                "reference": "8c8c4ff2566630e79c52278ceb6e383795c9f443",
+                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/880d257c38982752ec3ff9a9f94b6ad0772a6439",
+                "reference": "880d257c38982752ec3ff9a9f94b6ad0772a6439",
                 "shasum": ""
             },
             "require": {
@@ -2422,29 +2640,29 @@
                 "phpcs",
                 "standards"
             ],
-            "time": "2019-02-28T06:01:50+00:00"
+            "time": "2019-03-22T02:38:48+00:00"
         },
         {
             "name": "symfony/finder",
-            "version": "dev-master",
+            "version": "3.4.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/finder.git",
-                "reference": "c2a5a99744e881c987e22faf443b74b661cada3c"
+                "reference": "fcdde4aa38f48190ce70d782c166f23930084f9b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/finder/zipball/c2a5a99744e881c987e22faf443b74b661cada3c",
-                "reference": "c2a5a99744e881c987e22faf443b74b661cada3c",
+                "url": "https://api.github.com/repos/symfony/finder/zipball/fcdde4aa38f48190ce70d782c166f23930084f9b",
+                "reference": "fcdde4aa38f48190ce70d782c166f23930084f9b",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.1.3"
+                "php": "^5.5.9|>=7.0.8"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "4.3-dev"
+                    "dev-master": "3.4-dev"
                 }
             },
             "autoload": {
@@ -2471,7 +2689,7 @@
             ],
             "description": "Symfony Finder Component",
             "homepage": "https://symfony.com",
-            "time": "2019-02-23T15:42:19+00:00"
+            "time": "2019-02-22T14:44:53+00:00"
         },
         {
             "name": "wp-cli/mustangostang-spyc",
@@ -2577,17 +2795,16 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/wp-cli/wp-cli.git",
-                "reference": "197509bc465f0bc575d832bbde9431077eafa2ad"
+                "reference": "22c6c2917d54b144a879383895a71b2eb67144c6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wp-cli/wp-cli/zipball/197509bc465f0bc575d832bbde9431077eafa2ad",
-                "reference": "197509bc465f0bc575d832bbde9431077eafa2ad",
+                "url": "https://api.github.com/repos/wp-cli/wp-cli/zipball/22c6c2917d54b144a879383895a71b2eb67144c6",
+                "reference": "22c6c2917d54b144a879383895a71b2eb67144c6",
                 "shasum": ""
             },
             "require": {
                 "ext-curl": "*",
-                "ext-readline": "*",
                 "mustache/mustache": "~2.4",
                 "php": ">=5.4",
                 "ramsey/array_column": "~1.1",
@@ -2605,6 +2822,7 @@
                 "wp-cli/wp-cli-tests": "^2.0.8"
             },
             "suggest": {
+                "ext-readline": "Include for a better --prompt implementation",
                 "ext-zip": "Needed to support extraction of ZIP archives when doing downloads or updates"
             },
             "bin": [
@@ -2632,7 +2850,7 @@
                 "cli",
                 "wordpress"
             ],
-            "time": "2019-03-12T13:30:46+00:00"
+            "time": "2019-03-24T17:46:25+00:00"
         },
         {
             "name": "wp-coding-standards/wpcs",
@@ -2685,5 +2903,8 @@
     "platform": {
         "php": "^7.0.33"
     },
-    "platform-dev": []
+    "platform-dev": [],
+    "platform-overrides": {
+        "php": "7.0.33"
+    }
 }

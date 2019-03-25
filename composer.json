@@ -20,7 +20,8 @@
     },
     "require-dev": {
         "inpsyde/php-coding-standards": "^0.13",
-        "wp-cli/wp-cli": "^2"
+        "wp-cli/wp-cli": "^2",
+        "brain/monkey": "^2"
     },
     "autoload": {
         "psr-4": {
