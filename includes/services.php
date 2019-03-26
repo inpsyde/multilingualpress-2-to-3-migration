@@ -6,7 +6,7 @@
  */
 
 use Dhii\Wp\I18n\FormatTranslator;
-use Inpsyde\MultilingualPress2to3\ContentRelationshipMigrator;
+use Inpsyde\MultilingualPress2to3\Migration\ContentRelationshipMigrator;
 use Inpsyde\MultilingualPress2to3\IntegrationHandler;
 use Inpsyde\MultilingualPress2to3\MainHandler;
 use Inpsyde\MultilingualPress2to3\MigrateRelationshipsCliCommand;

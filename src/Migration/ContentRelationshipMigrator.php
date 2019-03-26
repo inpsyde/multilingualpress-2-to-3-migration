@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Inpsyde\MultilingualPress2to3;
+namespace Inpsyde\MultilingualPress2to3\Migration;
 
 use Dhii\I18n\FormatTranslatorInterface;
 use Dhii\I18n\StringTranslatingTrait;
