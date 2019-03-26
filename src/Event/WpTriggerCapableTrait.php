@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Inpsyde\MultilingualPress2to3;
+namespace Inpsyde\MultilingualPress2to3\Event;
 
 /**
  * Functionality for dispatching events in WP.

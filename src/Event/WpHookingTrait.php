@@ -1,6 +1,6 @@
 <?php
 
-namespace Inpsyde\MultilingualPress2to3;
+namespace Inpsyde\MultilingualPress2to3\Event;
 
 /**
  * Functionality for adding actions and hooks to WP.
