@@ -1,8 +1,9 @@
 <?php
 
-namespace Inpsyde\MultilingualPress2to3;
+namespace Inpsyde\MultilingualPress2to3\Handler;
 
 use Exception;
+use Inpsyde\MultilingualPress2to3\Handler\HandlerInterface;
 use Traversable;
 
 /**

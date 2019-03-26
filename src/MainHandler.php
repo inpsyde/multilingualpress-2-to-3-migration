@@ -3,6 +3,9 @@
 namespace Inpsyde\MultilingualPress2to3;
 
 use Exception;
+use Inpsyde\MultilingualPress2to3\Handler\HandlerInterface;
+use Inpsyde\MultilingualPress2to3\Handler\HandlerTrait;
+use Inpsyde\MultilingualPress2to3\Handler\RunHandlersCapableTrait;
 use Psr\Container\ContainerInterface;
 
 /**

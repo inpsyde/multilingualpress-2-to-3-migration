@@ -4,6 +4,8 @@ declare(strict_types=1);
 namespace Inpsyde\MultilingualPress2to3;
 
 use Dhii\I18n\StringTranslatingTrait;
+use Inpsyde\MultilingualPress2to3\Handler\HandlerInterface;
+use Inpsyde\MultilingualPress2to3\Handler\HandlerTrait;
 use Psr\Container\ContainerInterface;
 use Throwable;
 

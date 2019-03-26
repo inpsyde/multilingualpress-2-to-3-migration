@@ -5,7 +5,7 @@
  * @package MultilingualPress2to3
  */
 
-namespace Inpsyde\MultilingualPress2to3;
+namespace Inpsyde\MultilingualPress2to3\Handler;
 
 use Dhii\I18n\FormatTranslatorInterface;
 use Exception;
