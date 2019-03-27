@@ -28,14 +28,26 @@ class ContentRelationshipsCest
         $I->click('.button-primary');
         $I->see('Category updated.');
 
-        // deactivate MLP2 and activate MLP3
-        $I->amOnPage('/wp-admin/network/plugins.php');
-        $I->click('[data-plugin="multilingual-press/multilingual-press.php"] .deactivate a');
-        $I->click('[data-plugin="multilingualpress/multilingualpress.php"] .activate a');
-
         // run the tool
-        $I->runShellCommand('wp mlp2to3 relationships --path=wordpress-site');
-        $I->seeInShellOutput('Success: Migrated');
+        $this->runTheTool($I);
+
+        // check mlp3 wp_mlp_relationships table
+        $I->seeInDatabase('wp_mlp_relationships', [
+            'id' => '1',
+            'type' => 'post',
+        ]);
+        $I->seeInDatabase('wp_mlp_relationships', [
+            'id' => '2',
+            'type' => 'post',
+        ]);
+        $I->seeInDatabase('wp_mlp_relationships', [
+            'id' => '3',
+            'type' => 'post',
+        ]);
+        $I->seeInDatabase('wp_mlp_relationships', [
+            'id' => '4',
+            'type' => 'term',
+        ]);
 
         // check mlp3 wp_mlp_content_relations table
         $I->seeInDatabase('wp_mlp_content_relations', [
@@ -78,23 +90,60 @@ class ContentRelationshipsCest
             'site_id' => '4',
             'content_id' => '1',
         ]);
+    }
+
+    public function postConnectedIn3SitesInATwoSiteRelationship(AcceptanceTester $I)
+    {
+        // 3 sites connected in this way: A -> B and C -> A
+        $I->amOnPage('/wp-admin/network/site-settings.php?id=1&extra=mlp-site-settings');
+        $I->checkOption('#related_blog_2');
+        $I->click('Save Changes');
+        $I->amOnPage('/wp-admin/network/site-settings.php?id=3&extra=mlp-site-settings');
+        $I->checkOption('#related_blog_1');
+        $I->click('Save Changes');
+
+        // Go to post in site A and connect it to sites B and C
+        $I->amOnPage('/wp-admin/post.php?post=1&action=edit');
+        $I->fillField('#mlp-translation-data-2-title', 'Post Site B');
+        $I->fillField('#mlp-translation-data-3-title', 'Post Site C');
+        $I->click('#publish');
+
+        // run the tool
+        $this->runTheTool($I);
+
+        // check mlp3 wp_mlp_content_relations table
+        $I->seeInDatabase('wp_mlp_content_relations', [
+            'relationship_id' => '1',
+            'site_id' => '1',
+            'content_id' => '1',
+        ]);
+        $I->seeInDatabase('wp_mlp_content_relations', [
+            'relationship_id' => '1',
+            'site_id' => '2',
+            'content_id' => '3',
+        ]);
+        $I->seeInDatabase('wp_mlp_content_relations', [
+            'relationship_id' => '1',
+            'site_id' => '3',
+            'content_id' => '3',
+        ]);
 
         // check mlp3 wp_mlp_relationships table
         $I->seeInDatabase('wp_mlp_relationships', [
             'id' => '1',
             'type' => 'post',
         ]);
-        $I->seeInDatabase('wp_mlp_relationships', [
-            'id' => '2',
-            'type' => 'post',
-        ]);
-        $I->seeInDatabase('wp_mlp_relationships', [
-            'id' => '3',
-            'type' => 'post',
-        ]);
-        $I->seeInDatabase('wp_mlp_relationships', [
-            'id' => '4',
-            'type' => 'term',
-        ]);
+    }
+
+    private function runTheTool(AcceptanceTester $I)
+    {
+        // deactivate MLP2 and activate MLP3
+        $I->amOnPage('/wp-admin/network/plugins.php');
+        $I->click('[data-plugin="multilingual-press/multilingual-press.php"] .deactivate a');
+        $I->click('[data-plugin="multilingualpress/multilingualpress.php"] .activate a');
+
+        // run the tool
+        $I->runShellCommand('wp mlp2to3 relationships --path=wordpress-site');
+        $I->seeInShellOutput('Success: Migrated');
     }
 }
