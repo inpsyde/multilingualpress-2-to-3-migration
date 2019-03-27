@@ -25,17 +25,18 @@ class MainHandler implements HandlerInterface
      *
      * @param ContainerInterface $config The configuration of this handler.
      */
-    public function __construct( ContainerInterface $config ) {
-        $this->_setConfigContainer( $config );
+    public function __construct(ContainerInterface $config)
+    {
+        $this->_setConfigContainer($config);
     }
 
     /**
      * {@inheritdoc}
      */
-    public function run() {
-
-        $result   = $this->_run();
-        $handlers = (array) $this->_getConfig( 'handlers' );
+    public function run()
+    {
+        $result = $this->_run();
+        $handlers = (array) $this->_getConfig('handlers');
         $this->_runHandlers($handlers);
 
         return $result;
@@ -46,7 +47,8 @@ class MainHandler implements HandlerInterface
      *
      * @since [*next-version*]
      */
-    protected function _hook() {
+    protected function _hook()
+    {
         add_action(
             'plugins_loaded',
             function () {
@@ -60,11 +62,12 @@ class MainHandler implements HandlerInterface
      *
      * @throws Exception If problem loading.
      */
-    protected function loadTranslations() {
-        $base_dir         = $this->_getConfig( 'base_dir' );
-        $translations_dir = trim( $this->_getConfig( 'translations_dir' ), '/' );
-        $rel_path         = basename( $base_dir );
+    protected function loadTranslations()
+    {
+        $base_dir = $this->_getConfig('base_dir');
+        $translations_dir = trim($this->_getConfig('translations_dir'), '/');
+        $rel_path = basename($base_dir);
 
-        load_plugin_textdomain( 'product-code-for-woocommerce', false, "$rel_path/$translations_dir" );
+        load_plugin_textdomain('product-code-for-woocommerce', false, "$rel_path/$translations_dir");
     }
 }

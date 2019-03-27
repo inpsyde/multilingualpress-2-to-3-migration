@@ -19,7 +19,8 @@ trait WpHookingTrait
      *
      * @return void
      */
-    protected function _addAction($key, $handler, $priority = 10, $acceptedArgs = 1) {
+    protected function _addAction($key, $handler, $priority = 10, $acceptedArgs = 1)
+    {
         add_action($key, $handler, $priority, $acceptedArgs);
     }
 
@@ -33,7 +34,8 @@ trait WpHookingTrait
      *
      * @return void
      */
-    protected function _addFilter($key, $handler, $priority = 10, $acceptedArgs = 1) {
+    protected function _addFilter($key, $handler, $priority = 10, $acceptedArgs = 1)
+    {
         add_filter($key, $handler, $priority, $acceptedArgs);
     }
 }

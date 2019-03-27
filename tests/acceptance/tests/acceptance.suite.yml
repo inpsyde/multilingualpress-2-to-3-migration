@@ -2,7 +2,7 @@ actor: AcceptanceTester
 modules:
     enabled:
         - PhpBrowser:
-            url: http://192.168.1.2:8081
+            url: http://localhost
         - \Helper\Acceptance
         - Cli
         - Db

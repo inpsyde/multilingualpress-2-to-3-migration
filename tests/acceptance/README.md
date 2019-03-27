@@ -1,3 +1,9 @@
+### (Optional) Remove previously generated local volumes
+```
+$ docker volume rm acceptance_mysql-data
+$ docker volume rm acceptance_wordpress
+```
+### Start containers
 ```
 $ docker-compose up -d
 ```
