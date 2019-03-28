@@ -11,7 +11,7 @@ use Traversable;
  *
  * @package MultilingualPress2to3
  */
-trait RunHandlersCapableTrait
+trait RunHandlerListCapableTrait
 {
     /**
      * Runs a given list of handlers.
@@ -21,11 +21,22 @@ trait RunHandlersCapableTrait
      * @return void
      * @throws Exception If problem running.
      */
-    protected function _runHandlers($handlers)
+    protected function _runHandlerList($handlers)
     {
         foreach ($handlers as $handler) {
             assert($handler instanceof HandlerInterface);
             $handler->run();
+            $this->_afterRun($handler);
         }
+    }
+
+    /**
+     * Invokes after a handler is run.
+     *
+     * @param HandlerInterface $handler THe handler that was run.
+     */
+    protected function _afterRun(HandlerInterface $handler)
+    {
+        // Override this method to do stuff after every handler is run
     }
 }

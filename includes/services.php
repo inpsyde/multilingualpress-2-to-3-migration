@@ -30,9 +30,9 @@ return function ( $base_path, $base_url ) {
         'filter_is_check_legacy'  => 'multilingualpress.is_check_legacy',
 
         /* The main handler */
-		'handler_main'                  => function ( ContainerInterface $c ) {
-			return new MainHandler( $c );
-		},
+        'handler_main' => function (ContainerInterface $c) {
+            return new MainHandler($c, $c->get('handlers'));
+        },
 
         /*
          * List of handlers to run

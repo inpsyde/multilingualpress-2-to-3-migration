@@ -2,21 +2,18 @@
 
 namespace Inpsyde\MultilingualPress2to3\Test\Unit\Handler;
 
-use Dhii\I18n\FormatTranslatorInterface;
 use Inpsyde\MultilingualPress2to3\Handler\HandlerInterface;
-use Inpsyde\MultilingualPress2to3\Handler\RunHandlersCapableTrait as TestSubject;
-use Mockery\Container;
+use Inpsyde\MultilingualPress2to3\Handler\RunHandlerListCapableTrait as TestSubject;
 use PHPUnit\Framework\MockObject\MockObject;
 use Andrew\Proxy;
 use PHPUnit\Framework\TestCase;
-use Psr\Container\ContainerInterface;
 
 /**
- * Tests `RunHandlersCapableTrait`.
+ * Tests `RunHandlerListCapableTrait`.
  *
  * @package MultilingualPress2to3
  */
-class RunHandlersCapableTraitTest extends TestCase
+class RunHandlerListCapableTraitTest extends TestCase
 {
     /**
      * Creates a new instance of the test subject.
@@ -59,7 +56,7 @@ class RunHandlersCapableTraitTest extends TestCase
                 ->method('run');
         }
 
-        $proxy->_runHandlers($handlers);
+        $proxy->_runHandlerList($handlers);
     }
 
     /**

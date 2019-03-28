@@ -3,7 +3,7 @@
 namespace Inpsyde\MultilingualPress2to3\Test\Unit\Handler;
 
 use Dhii\I18n\FormatTranslatorInterface;
-use Inpsyde\MultilingualPress2to3\Handler\HandlerTrait as TestSubject;
+use Inpsyde\MultilingualPress2to3\Handler\ControllerTrait as TestSubject;
 use Mockery\Container;
 use PHPUnit\Framework\MockObject\MockObject;
 use Andrew\Proxy;
@@ -15,7 +15,7 @@ use Psr\Container\ContainerInterface;
  *
  * @package MultilingualPress2to3
  */
-class HandlerTraitTest extends TestCase
+class ControllerTraitTest extends TestCase
 {
     /**
      * Creates a new instance of the test subject.
@@ -38,44 +38,6 @@ class HandlerTraitTest extends TestCase
     {
         $subject = $this->_createSubject();
         $this->assertInternalType('object', $subject, 'A valid instance of the test subject could not be created');
-    }
-
-    public function testInvoke()
-    {
-        $subject = $this->_createSubject(['_run']);
-        $expected = uniqid('result');
-
-        $subject->expects($this->exactly(1))
-            ->method('_run')
-            ->with()
-            ->will($this->returnValue($expected));
-        $proxy = $this->_getProxy($subject);
-        /* @var $proxy TestSubject */
-
-        $result = $proxy(uniqid('arg1'));
-
-        $this->assertSame($expected, $result, 'Wrong result returned from subject invocation');
-    }
-
-    /**
-     * Tests the `_run()` method.
-     *
-     * It must run the `_hook()` method.
-     * It returns nothing, so the return value does not matter.
-     */
-    public function testRun()
-    {
-        $subject = $this->_createSubject(['_hook']);
-        $expected = null;
-
-        $subject->expects($this->exactly(1))
-            ->method('_hook');
-        $proxy = $this->_getProxy($subject);
-        /* @var $proxy TestSubject */
-
-        $result = $proxy->_run(uniqid('arg1'));
-
-        $this->assertSame($expected, $result, 'Wrong result returned');
     }
 
     /**

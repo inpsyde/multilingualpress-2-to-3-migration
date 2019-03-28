@@ -5,9 +5,10 @@ namespace Inpsyde\MultilingualPress2to3;
 use Exception;
 use Inpsyde\MultilingualPress2to3\Config\ConfigAwareTrait;
 use Inpsyde\MultilingualPress2to3\Handler\HandlerInterface;
-use Inpsyde\MultilingualPress2to3\Handler\HandlerTrait;
-use Inpsyde\MultilingualPress2to3\Handler\RunHandlersCapableTrait;
+use Inpsyde\MultilingualPress2to3\Handler\ControllerTrait;
+use Inpsyde\MultilingualPress2to3\Handler\RunHandlerListCapableTrait;
 use Psr\Container\ContainerInterface;
+use Traversable;
 
 /**
  * A composite handler that runs sub-handlers.
@@ -18,20 +19,23 @@ use Psr\Container\ContainerInterface;
  */
 class MainHandler implements HandlerInterface
 {
-    use HandlerTrait;
+    use ControllerTrait;
 
     use ConfigAwareTrait;
 
-    use RunHandlersCapableTrait;
+    use RunHandlerListCapableTrait;
+
+    protected $handlers;
 
     /**
      * Handler constructor.
      *
      * @param ContainerInterface $config The configuration of this handler.
      */
-    public function __construct(ContainerInterface $config)
+    public function __construct(ContainerInterface $config, $handlers)
     {
         $this->_setConfigContainer($config);
+        $this->handlers = $handlers;
     }
 
     /**
@@ -39,11 +43,10 @@ class MainHandler implements HandlerInterface
      */
     public function run()
     {
-        $result = $this->_run();
-        $handlers = (array) $this->_getConfig('handlers');
-        $this->_runHandlers($handlers);
+        $this->_hook();
 
-        return $result;
+        $handlers = $this->_getHandlers();
+        $this->_runHandlerList($handlers);
     }
 
     /**
@@ -73,5 +76,15 @@ class MainHandler implements HandlerInterface
         $rel_path = basename($base_dir);
 
         load_plugin_textdomain('product-code-for-woocommerce', false, "$rel_path/$translations_dir");
+    }
+
+    /**
+     * Retrieves the list of handlers associated with this instance.
+     *
+     * @return HandlerInterface[]|Traversable A list of handlers.
+     */
+    protected function _getHandlers()
+    {
+        return $this->handlers;
     }
 }

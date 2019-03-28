@@ -6,7 +6,7 @@ use Dhii\I18n\StringTranslatingTrait;
 use Inpsyde\MultilingualPress2to3\Config\ConfigAwareTrait;
 use Inpsyde\MultilingualPress2to3\Event\WpHookingTrait;
 use Inpsyde\MultilingualPress2to3\Handler\HandlerInterface;
-use Inpsyde\MultilingualPress2to3\Handler\HandlerTrait;
+use Inpsyde\MultilingualPress2to3\Handler\ControllerTrait;
 use Psr\Container\ContainerInterface;
 
 /**
@@ -16,7 +16,7 @@ use Psr\Container\ContainerInterface;
  */
 class IntegrationHandler implements HandlerInterface
 {
-    use HandlerTrait;
+    use ControllerTrait;
 
     use ConfigAwareTrait;
 
@@ -37,7 +37,7 @@ class IntegrationHandler implements HandlerInterface
      */
     public function run()
     {
-        return $this->_run();
+        return $this->_hook();
     }
 
     /**
