@@ -8,13 +8,11 @@ $ docker volume rm acceptance_wordpress
 $ docker-compose up -d
 ```
 
-### Configure site on http://<HOST_IP>:8081
-Create a Network with two sites, install plugins if needed.
-
-### Copy testing plugin `hello-cli.php` file to plugins folder and activate it.
+### Configure site on http://localhost
+Create a Network with 3 sites, install and activate MLP2 then install MLP3. Current status for tests is MLP2 active, 3 sites with a language assigned (en, es and it) and sites not connected to each other.
 
 ### Add database `dump.sql` to `tests/_data` folder
-You can use phpMyAdmin at `http://<HOST_IP>:1234` user/pass is `wordpress` 
+You can use phpMyAdmin at `http://localhost:1234` user/pass is `wordpress` 
 
 ### Edit `wp-config.php` in `wordpress-site`
 Replace `<HOST_IP>` for your host ip.

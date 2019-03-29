@@ -94,7 +94,7 @@ class ContentRelationshipsCest
 
     public function postConnectedIn3SitesInATwoSiteRelationship(AcceptanceTester $I)
     {
-        // 3 sites connected in this way: A -> B and C -> A
+        // 3 sites connected in this way: 1 -> 2 and 3 -> 1
         $I->amOnPage('/wp-admin/network/site-settings.php?id=1&extra=mlp-site-settings');
         $I->checkOption('#related_blog_2');
         $I->click('Save Changes');
@@ -133,6 +133,96 @@ class ContentRelationshipsCest
             'id' => '1',
             'type' => 'post',
         ]);
+    }
+
+    public function multiplePostAndTermRelationships(AcceptanceTester $I)
+    {
+        // connect 3 sites together
+        $I->amOnPage('/wp-admin/network/site-settings.php?id=1&extra=mlp-site-settings');
+        $I->checkOption('#related_blog_2');
+        $I->checkOption('#related_blog_3');
+        $I->click('Save Changes');
+        $I->amOnPage('/wp-admin/network/site-settings.php?id=2&extra=mlp-site-settings');
+        $I->checkOption('#related_blog_3');
+        $I->click('Save Changes');
+
+        // create category terms
+        $I->amOnPage('/wp-admin/edit-tags.php?taxonomy=category');
+        $I->fillField('#tag-name', 'A');
+        $I->click('#submit');
+        $I->fillField('#tag-name', 'B');
+        $I->click('#submit');
+        $I->fillField('#tag-name', 'C');
+        $I->click('#submit');
+        $I->amOnPage('/es/wp-admin/edit-tags.php?taxonomy=category');
+        $I->fillField('#tag-name', 'D');
+        $I->click('#submit');
+        $I->fillField('#tag-name', 'E');
+        $I->click('#submit');
+        $I->fillField('#tag-name', 'F');
+        $I->click('#submit');
+        $I->amOnPage('/it/wp-admin/edit-tags.php?taxonomy=category');
+        $I->fillField('#tag-name', 'G');
+        $I->click('#submit');
+        $I->fillField('#tag-name', 'H');
+        $I->click('#submit');
+        $I->fillField('#tag-name', 'I');
+        $I->click('#submit');
+
+        // create relations like so:
+        // A -> D -> G
+        // B -> E -> H
+        // C -> F -> I
+        $I->amOnPage('/wp-admin/edit-tags.php?taxonomy=category');
+        $I->click('A');
+        $I->selectOption('#mlpterm_translation2', 'D');
+        $I->selectOption('#mlpterm_translation3', 'G');
+        $I->click('.button-primary');
+
+        $I->amOnPage('/wp-admin/post-new.php');
+        $I->fillField('#title', 'A');
+        $I->fillField('#mlp-translation-data-2-title', 'D');
+        $I->click('#publish');
+        $I->amOnPage('/wp-admin/post-new.php');
+        $I->fillField('#title', 'B');
+        $I->fillField('#mlp-translation-data-2-title', 'E');
+        $I->click('#publish');
+
+        $I->amOnPage('/wp-admin/edit-tags.php?taxonomy=category');
+        $I->click('B');
+        $I->selectOption('#mlpterm_translation3', 'H');
+        $I->click('.button-primary');
+
+        $I->amOnPage('/wp-admin/post-new.php');
+        $I->fillField('#title', 'C');
+        $I->fillField('#mlp-translation-data-2-title', 'F');
+        $I->click('#publish');
+
+        $I->amOnPage('/wp-admin/edit-tags.php?taxonomy=category');
+        $I->click('B');
+        $I->selectOption('#mlpterm_translation2', 'E');
+        $I->click('.button-primary');
+
+        $I->amOnPage('/es/wp-admin/edit.php');
+        $I->click('D');
+        $I->fillField('#mlp-translation-data-3-title', 'G');
+        $I->click('#publish');
+        $I->amOnPage('/es/wp-admin/edit.php');
+        $I->click('E');
+        $I->fillField('#mlp-translation-data-3-title', 'H');
+        $I->click('#publish');
+
+        $I->amOnPage('/wp-admin/edit-tags.php?taxonomy=category');
+        $I->click('C');
+        $I->selectOption('#mlpterm_translation2', 'F');
+        $I->selectOption('#mlpterm_translation3', 'I');
+        $I->click('.button-primary');
+
+        $I->amOnPage('/es/wp-admin/edit.php');
+        $I->click('F');
+        $I->fillField('#mlp-translation-data-3-title', 'I');
+        $I->click('#publish');
+
     }
 
     private function runTheTool(AcceptanceTester $I)
