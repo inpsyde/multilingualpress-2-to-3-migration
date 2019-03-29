@@ -1,11 +1,13 @@
 <?php
 declare(strict_types=1);
 
-namespace Inpsyde\MultilingualPress2to3;
+namespace Inpsyde\MultilingualPress2to3\Migration;
 
 use Dhii\I18n\FormatTranslatorInterface;
 use Dhii\I18n\StringTranslatingTrait;
 use Dhii\I18n\StringTranslatorAwareTrait;
+use Inpsyde\MultilingualPress2to3\Db\DatabaseWpdbTrait;
+use Inpsyde\MultilingualPress2to3\Event\WpTriggerCapableTrait;
 use Throwable;
 use UnexpectedValueException;
 use wpdb as Wpdb;

@@ -1,7 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module type="WEB_MODULE" version="4">
   <component name="NewModuleRootManager">
-    <content url="file://$MODULE_DIR$" />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" packagePrefix="Inpsyde\MultilingualPress2to3\" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/antecedent/patchwork" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/brain/monkey" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/gmazzap/andrew" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/hamcrest/hamcrest-php" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/hoa/consistency" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/hoa/console" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/hoa/event" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/hoa/exception" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/hoa/file" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/hoa/iterator" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/hoa/protocol" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/hoa/stream" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/hoa/ustring" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/mockery/mockery" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/phpunit/phpunit-mock-objects" />
+    </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>

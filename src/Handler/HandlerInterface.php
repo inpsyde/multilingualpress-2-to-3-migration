@@ -1,6 +1,6 @@
 <?php
 
-namespace Inpsyde\MultilingualPress2to3;
+namespace Inpsyde\MultilingualPress2to3\Handler;
 
 use Exception;
 
@@ -10,7 +10,7 @@ use Exception;
  * Typically, this is the "controller" layer, and is used to integrate
  * de-coupled functionality into a framework.
  *
- * @package Inpsyde\MultilingualPress2to3
+ * @package MultilingualPress2to3
  */
 interface HandlerInterface
 {

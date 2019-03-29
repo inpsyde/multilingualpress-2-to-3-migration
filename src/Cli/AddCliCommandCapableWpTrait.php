@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Inpsyde\MultilingualPress2to3;
+namespace Inpsyde\MultilingualPress2to3\Cli;
 
 use Exception;
 use Throwable;

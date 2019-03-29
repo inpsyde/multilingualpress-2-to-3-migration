@@ -21,6 +21,9 @@
     "require-dev": {
         "inpsyde/php-coding-standards": "^0.13",
         "wp-cli/wp-cli": "^2",
+        "phpunit/phpunit": "^6",
+        "brain/monkey": "^2",
+        "gmazzap/andrew": "^2",
         "codeception/codeception": "^2.5",
         "symfony/browser-kit": ">=2.7 <=4.2.4"
     },

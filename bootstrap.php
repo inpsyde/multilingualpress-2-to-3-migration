@@ -2,7 +2,7 @@
 
 use Dhii\Di\ContainerAwareCachingContainer;
 use Dhii\Cache\MemoryMemoizer;
-use Inpsyde\MultilingualPress2to3\HandlerInterface;
+use Inpsyde\MultilingualPress2to3\Handler\HandlerInterface;
 
 /**
  * The function that bootstraps the application.

@@ -2,5 +2,7 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/test/acceptance/wordpress-site/wp-content/plugins/multilingualpress" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/tests/acceptance/wordpress-site/wp-content/plugins/multilingualpress" vcs="Git" />
   </component>
 </project>

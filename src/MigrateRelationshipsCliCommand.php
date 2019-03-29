@@ -6,6 +6,9 @@ namespace Inpsyde\MultilingualPress2to3;
 use Dhii\I18n\FormatTranslatorInterface;
 use Dhii\I18n\StringTranslatorConsumingTrait;
 use Exception;
+use Inpsyde\MultilingualPress2to3\Cli\CliUtilsTrait;
+use Inpsyde\MultilingualPress2to3\Db\DatabaseWpdbTrait;
+use Inpsyde\MultilingualPress2to3\Migration\ContentRelationshipMigrator;
 use Throwable;
 use wpdb as Wpdb;
 
