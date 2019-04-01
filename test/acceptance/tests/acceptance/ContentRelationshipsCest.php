@@ -223,6 +223,126 @@ class ContentRelationshipsCest
         $I->fillField('#mlp-translation-data-3-title', 'I');
         $I->click('#publish');
 
+        // run the tool
+        $this->runTheTool($I);
+
+        // check mlp3 wp_mlp_relationships table
+        $I->seeInDatabase('wp_mlp_relationships', [
+            'id' => '1',
+            'type' => 'term',
+        ]);
+        $I->seeInDatabase('wp_mlp_relationships', [
+            'id' => '2',
+            'type' => 'post',
+        ]);
+        $I->seeInDatabase('wp_mlp_relationships', [
+            'id' => '3',
+            'type' => 'post',
+        ]);
+        $I->seeInDatabase('wp_mlp_relationships', [
+            'id' => '4',
+            'type' => 'term',
+        ]);
+        $I->seeInDatabase('wp_mlp_relationships', [
+            'id' => '5',
+            'type' => 'post',
+        ]);
+        $I->seeInDatabase('wp_mlp_relationships', [
+            'id' => '6',
+            'type' => 'term',
+        ]);
+
+        // check mlp3 wp_mlp_content_relations table
+        $I->seeInDatabase('wp_mlp_content_relations', [
+            'relationship_id' => '1',
+            'site_id' => '1',
+            'content_id' => '2',
+        ]);
+        $I->seeInDatabase('wp_mlp_content_relations', [
+            'relationship_id' => '1',
+            'site_id' => '2',
+            'content_id' => '2',
+        ]);
+        $I->seeInDatabase('wp_mlp_content_relations', [
+            'relationship_id' => '1',
+            'site_id' => '3',
+            'content_id' => '2',
+        ]);
+        $I->seeInDatabase('wp_mlp_content_relations', [
+            'relationship_id' => '2',
+            'site_id' => '1',
+            'content_id' => '5',
+        ]);
+        $I->seeInDatabase('wp_mlp_content_relations', [
+            'relationship_id' => '2',
+            'site_id' => '2',
+            'content_id' => '3',
+        ]);
+        $I->seeInDatabase('wp_mlp_content_relations', [
+            'relationship_id' => '2',
+            'site_id' => '3',
+            'content_id' => '3',
+        ]);
+        $I->seeInDatabase('wp_mlp_content_relations', [
+            'relationship_id' => '3',
+            'site_id' => '1',
+            'content_id' => '7',
+        ]);
+        $I->seeInDatabase('wp_mlp_content_relations', [
+            'relationship_id' => '3',
+            'site_id' => '2',
+            'content_id' => '4',
+        ]);
+        $I->seeInDatabase('wp_mlp_content_relations', [
+            'relationship_id' => '3',
+            'site_id' => '3',
+            'content_id' => '4',
+        ]);
+        $I->seeInDatabase('wp_mlp_content_relations', [
+            'relationship_id' => '4',
+            'site_id' => '1',
+            'content_id' => '3',
+        ]);
+        $I->seeInDatabase('wp_mlp_content_relations', [
+            'relationship_id' => '4',
+            'site_id' => '2',
+            'content_id' => '3',
+        ]);
+        $I->seeInDatabase('wp_mlp_content_relations', [
+            'relationship_id' => '4',
+            'site_id' => '3',
+            'content_id' => '3',
+        ]);
+        $I->seeInDatabase('wp_mlp_content_relations', [
+            'relationship_id' => '5',
+            'site_id' => '1',
+            'content_id' => '9',
+        ]);
+        $I->seeInDatabase('wp_mlp_content_relations', [
+            'relationship_id' => '5',
+            'site_id' => '2',
+            'content_id' => '5',
+        ]);
+        $I->seeInDatabase('wp_mlp_content_relations', [
+            'relationship_id' => '5',
+            'site_id' => '3',
+            'content_id' => '5',
+        ]);
+        $I->seeInDatabase('wp_mlp_content_relations', [
+            'relationship_id' => '6',
+            'site_id' => '1',
+            'content_id' => '4',
+        ]);
+        $I->seeInDatabase('wp_mlp_content_relations', [
+            'relationship_id' => '6',
+            'site_id' => '2',
+            'content_id' => '4',
+        ]);
+        $I->seeInDatabase('wp_mlp_content_relations', [
+            'relationship_id' => '6',
+            'site_id' => '3',
+            'content_id' => '4',
+        ]);
     }
 
     private function runTheTool(AcceptanceTester $I)
