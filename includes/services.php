@@ -6,6 +6,7 @@
  */
 
 use Dhii\Wp\I18n\FormatTranslator;
+use Inpsyde\MultilingualPress2to3\Handler\CompositeHandler;
 use Inpsyde\MultilingualPress2to3\Migration\ContentRelationshipMigrator;
 use Inpsyde\MultilingualPress2to3\IntegrationHandler;
 use Inpsyde\MultilingualPress2to3\MainHandler;
@@ -46,6 +47,17 @@ return function ( $base_path, $base_url ) {
 
         'translator'              => function ( ContainerInterface $c ) {
 		    return new FormatTranslator( $c->get('text_domain') );
+        'composite_handler_factory' => function (ContainerInterface $c): callable {
+            return function (array $handlers) {
+                return new CompositeHandler($handlers);
+            };
+        },
+
+        'composite_progress_handler_factory' => function (ContainerInterface $c): callable {
+            return function (array $handlers, Progress $progress) {
+                return new CompositeProgressHandler($handlers, $progress);
+            };
+        },
         },
 
         'handler_migrate_cli_command' => function (ContainerInterface $c) {

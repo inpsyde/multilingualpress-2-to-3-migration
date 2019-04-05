@@ -6,7 +6,7 @@ use Exception;
 use Inpsyde\MultilingualPress2to3\Config\ConfigAwareTrait;
 use Inpsyde\MultilingualPress2to3\Handler\HandlerInterface;
 use Inpsyde\MultilingualPress2to3\Handler\ControllerTrait;
-use Inpsyde\MultilingualPress2to3\Handler\RunHandlerListCapableTrait;
+use Inpsyde\MultilingualPress2to3\Handler\CompositeHandlerTrait;
 use Psr\Container\ContainerInterface;
 use Traversable;
 
@@ -23,7 +23,7 @@ class MainHandler implements HandlerInterface
 
     use ConfigAwareTrait;
 
-    use RunHandlerListCapableTrait;
+    use CompositeHandlerTrait;
 
     protected $handlers;
 
@@ -44,9 +44,7 @@ class MainHandler implements HandlerInterface
     public function run()
     {
         $this->_hook();
-
-        $handlers = $this->_getHandlers();
-        $this->_runHandlerList($handlers);
+        $this->_run();
     }
 
     /**
