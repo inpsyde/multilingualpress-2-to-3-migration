@@ -5,6 +5,9 @@
  * @package MultilingualPress2to3
  */
 
+use Dhii\Cache\MemoryMemoizer;
+use Dhii\Cache\SimpleCacheInterface;
+use Dhii\Di\ContainerAwareCachingContainer;
 use Dhii\I18n\FormatTranslatorInterface;
 use Dhii\Wp\I18n\FormatTranslator;
 use Inpsyde\MultilingualPress2to3\Handler\CompositeHandler;
@@ -71,6 +74,36 @@ return function ( $base_path, $base_url ) {
             return function (array $handlers) {
                 return new CompositeHandler($handlers);
             };
+        },
+
+        'progress_bar_factory' => function (ContainerInterface $c) {
+            return function (int $total = 1, string $message = '' ): Bar {
+                return new Bar($message, $total);
+            };
+        },
+
+        /*
+         * Tracks total progress of migration.
+         */
+        'migration_progress' => function (ContainerInterface $c): Progress {
+            $f = $c->get('progress_bar_factory');
+            assert(is_callable($f));
+            $t = $c->get('translator');
+            assert($t instanceof FormatTranslatorInterface);
+
+            return $f(1, $t->translate('Modules'));
+        },
+
+        /*
+         * Tracks the progress of an individual migration module.
+         */
+        'migration_modules_progress' => function (ContainerInterface $c): Progress {
+            $f = $c->get('progress_bar_factory');
+            assert(is_callable($f));
+            $t = $c->get('translator');
+            assert($t instanceof FormatTranslatorInterface);
+
+            return $f(1, $t->translate('Tasks'));
         },
 
         'handler_migrate_cli_command' => function (ContainerInterface $c) {
