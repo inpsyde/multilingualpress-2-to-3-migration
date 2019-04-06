@@ -2321,7 +2321,7 @@
                 "proxy objects",
                 "unit tests"
             ],
-            "time": "2017-03-12T15:28:38+00:00"
+            "time": "2017-03-12 15:28:38"
         },
         {
             "name": "hamcrest/hamcrest-php",
@@ -4015,12 +4015,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/squizlabs/PHP_CodeSniffer.git",
-                "reference": "880d257c38982752ec3ff9a9f94b6ad0772a6439"
+                "reference": "dd3f6e0813e0c67a2a30c53abc724377cb6db2f2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/880d257c38982752ec3ff9a9f94b6ad0772a6439",
-                "reference": "880d257c38982752ec3ff9a9f94b6ad0772a6439",
+                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/dd3f6e0813e0c67a2a30c53abc724377cb6db2f2",
+                "reference": "dd3f6e0813e0c67a2a30c53abc724377cb6db2f2",
                 "shasum": ""
             },
             "require": {
@@ -4058,7 +4058,7 @@
                 "phpcs",
                 "standards"
             ],
-            "time": "2019-03-22 02:38:48"
+            "time": "2019-04-03T04:26:52+00:00"
         },
         {
             "name": "symfony/finder",
@@ -4066,12 +4066,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/finder.git",
-                "reference": "fcdde4aa38f48190ce70d782c166f23930084f9b"
+                "reference": "61af5ce0b34b942d414fe8f1b11950d0e9a90e98"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/finder/zipball/fcdde4aa38f48190ce70d782c166f23930084f9b",
-                "reference": "fcdde4aa38f48190ce70d782c166f23930084f9b",
+                "url": "https://api.github.com/repos/symfony/finder/zipball/61af5ce0b34b942d414fe8f1b11950d0e9a90e98",
+                "reference": "61af5ce0b34b942d414fe8f1b11950d0e9a90e98",
                 "shasum": ""
             },
             "require": {
@@ -4107,7 +4107,7 @@
             ],
             "description": "Symfony Finder Component",
             "homepage": "https://symfony.com",
-            "time": "2019-02-22 14:44:53"
+            "time": "2019-04-02T19:54:57+00:00"
         },
         {
             "name": "symfony/polyfill-ctype",
@@ -4169,16 +4169,16 @@
         },
         {
             "name": "theseer/tokenizer",
-            "version": "1.1.0",
+            "version": "1.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/theseer/tokenizer.git",
-                "reference": "cb2f008f3f05af2893a87208fe6a6c4985483f8b"
+                "reference": "1c42705be2b6c1de5904f8afacef5895cab44bf8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/theseer/tokenizer/zipball/cb2f008f3f05af2893a87208fe6a6c4985483f8b",
-                "reference": "cb2f008f3f05af2893a87208fe6a6c4985483f8b",
+                "url": "https://api.github.com/repos/theseer/tokenizer/zipball/1c42705be2b6c1de5904f8afacef5895cab44bf8",
+                "reference": "1c42705be2b6c1de5904f8afacef5895cab44bf8",
                 "shasum": ""
             },
             "require": {
@@ -4205,7 +4205,7 @@
                 }
             ],
             "description": "A small library for converting tokenized PHP source code into XML and potentially other formats",
-            "time": "2017-04-07T12:08:54+00:00"
+            "time": "2019-04-04T09:56:43+00:00"
         },
         {
             "name": "webmozart/assert",
@@ -4362,19 +4362,18 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/wp-cli/wp-cli.git",
-                "reference": "3a2c2312255460724b1d30032afa45f399b73d0a"
+                "reference": "8fccdd264ff347a7d878c9bc0c1e814035396e13"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wp-cli/wp-cli/zipball/3a2c2312255460724b1d30032afa45f399b73d0a",
-                "reference": "3a2c2312255460724b1d30032afa45f399b73d0a",
+                "url": "https://api.github.com/repos/wp-cli/wp-cli/zipball/8fccdd264ff347a7d878c9bc0c1e814035396e13",
+                "reference": "8fccdd264ff347a7d878c9bc0c1e814035396e13",
                 "shasum": ""
             },
             "require": {
                 "ext-curl": "*",
                 "mustache/mustache": "~2.4",
                 "php": ">=5.4",
-                "ramsey/array_column": "~1.1",
                 "rmccue/requests": "~1.6",
                 "symfony/finder": ">2.7",
                 "wp-cli/mustangostang-spyc": "^0.6.3",
@@ -4417,7 +4416,7 @@
                 "cli",
                 "wordpress"
             ],
-            "time": "2019-03-25 16:33:49"
+            "time": "2019-04-06T09:09:20+00:00"
         },
         {
             "name": "wp-coding-standards/wpcs",
