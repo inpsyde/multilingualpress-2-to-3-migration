@@ -1,0 +1,201 @@
+<?php
+declare(strict_types=1);
+
+namespace Inpsyde\MultilingualPress2to3\Migration;
+
+use Dhii\I18n\FormatTranslatorInterface;
+use Dhii\I18n\StringTranslatingTrait;
+use Dhii\I18n\StringTranslatorAwareTrait;
+use Inpsyde\MultilingualPress2to3\Db\DatabaseWpdbTrait;
+use Inpsyde\MultilingualPress2to3\Event\WpTriggerCapableTrait;
+use Throwable;
+use UnexpectedValueException;
+use WP_CLI;
+use wpdb as Wpdb;
+
+/**
+ * Migrates a single MLP2 module to MLP3.
+ *
+ * @package MultilingualPress2to3
+ */
+class ModulesMigrator
+{
+    use WpTriggerCapableTrait;
+
+    use DatabaseWpdbTrait;
+
+    use StringTranslatingTrait;
+
+    use StringTranslatorAwareTrait;
+
+    protected $db;
+    protected $translator;
+
+    /**
+     * @param Wpdb $wpdb The database driver to use for DB operations.
+     * @param FormatTranslatorInterface $translator The translator to use for i18n.
+     */
+    public function __construct(
+        Wpdb $wpdb,
+        FormatTranslatorInterface $translator
+    )
+    {
+
+        $this->db = $wpdb;
+        $this->translator = $translator;
+    }
+
+    /**
+     * Migrates an MLP2 module to MLP3.
+     *
+     * @param object $mlp2Module Data of an MLP2 module. 2 properties required:
+     * - `name` - The module name.
+     * - `status` - The status of the module, 'on' or 'off' for on or off respectively.
+     *
+     * @throws Throwable If problem migrating.
+     */
+    public function migrate($mlp2Module)
+    {
+        $optionName = 'multilingualpress_modules';
+        $obsoleteModules = $this->_getObsoleteModuleNames();
+        $moduleName = $this->_transformModuleName($mlp2Module->name);
+        $moduleStatus = $this->_transformModuleStatus($mlp2Module->status);
+
+        WP_CLI::debug(sprintf('Migrating status of module "%1$s"', $mlp2Module->name));
+
+        // If obsolete, ignore
+        if (in_array($moduleName, $obsoleteModules)) {
+            WP_CLI::debug(sprintf('Module "%1$s" is obsolete', $mlp2Module->name));
+            return;
+        }
+
+        $modules = $this->_getNetworkOption($optionName, []);
+
+        // If already exists and same value, nothing to migrate
+        if (array_key_exists($moduleName, $modules) && $modules[$moduleName] === $moduleStatus) {
+            WP_CLI::debug(sprintf('Module "%1$s" already synchronized', $mlp2Module->name));
+            return;
+        }
+
+        $modules[$moduleName] = $moduleStatus;
+
+        $result = update_site_option($optionName, $modules);
+
+        if (!$result) {
+            throw new UnexpectedValueException(
+                $this->__(
+                    'Network option "%1$s" could not be updated',
+                    [$optionName]
+                )
+            );
+        }
+    }
+
+    protected function _getObsoleteModuleNames()
+    {
+        return [
+            'cpt_translator',
+            'advanced_translator',
+            'quicklink',
+        ];
+    }
+
+    /**
+     * Retrieves the value of a network option with the specified name.
+     *
+     * @param string $optionName The name of the option.
+     * @param mixed $default The value to retrieve if the option does not exist.
+     * @return mixed The value of the option.
+     *
+     * @throws Throwable If problem retrieving.
+     */
+    protected function _getNetworkOption(string $optionName, $default)
+    {
+        return get_site_option($optionName, $default);
+    }
+
+    protected function _transformModuleName(string $name): string
+    {
+        $prefix = 'class-mlp_';
+        $suffix = '_module';
+
+        $name = strtolower($name);
+        $name = $this->_removePrefix($name, $prefix);
+        $name = $this->_removeSuffix($name, $suffix);
+
+        return $name;
+    }
+
+    protected function _transformModuleStatus(string $status): bool
+    {
+        $status = strtolower($status);
+
+        if ($status === 'on') {
+            return true;
+        }
+
+        if ($status === 'off') {
+            return false;
+        }
+
+        throw new UnexpectedValueException(
+            $this->__(
+                'Invalid module status "%1$s"',
+                [$status]
+            )
+        );
+    }
+
+    protected function _removePrefix(string $string, string $prefix): string
+    {
+        $length = strlen($prefix);
+        $currentPrefix = substr($string, 0, $length);
+
+        if ($currentPrefix !== $prefix) {
+            return $string;
+        }
+
+        return substr($string, $length);
+    }
+
+    protected function _removeSuffix(string $string, string $suffix): string
+    {
+        $length = strlen($suffix);
+        $currentSuffix = substr($string, $length * -1);
+
+        if ($currentSuffix !== $suffix) {
+            return $string;
+        }
+
+        return substr($string, 0, $length * -1);
+    }
+
+    /**
+     * Retrieves a table name for a key.
+     *
+     * @param string $key The key to get the table name for.
+     * @return string The table name.
+     *
+     * @throws Throwable If problem retrieving.
+     */
+    protected function _getTableName($key)
+    {
+        return $this->_getPrefixedTableName($key);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function _getDb()
+    {
+        return $this->db;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function _getTranslator()
+    {
+        return $this->translator;
+    }
+}

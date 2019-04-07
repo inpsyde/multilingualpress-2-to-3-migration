@@ -19,7 +19,9 @@ use Inpsyde\MultilingualPress2to3\IntegrationHandler;
 use Inpsyde\MultilingualPress2to3\MainHandler;
 use Inpsyde\MultilingualPress2to3\MigrateCliCommand;
 use Inpsyde\MultilingualPress2to3\MigrateCliCommandHandler;
+use Inpsyde\MultilingualPress2to3\Migration\ModulesMigrator;
 use Inpsyde\MultilingualPress2to3\Migration\RedirectMigrator;
+use Inpsyde\MultilingualPress2to3\ModulesMigrationHandler;
 use Inpsyde\MultilingualPress2to3\RedirectMigrationHandler;
 use Inpsyde\MultilingualPress2to3\RelationshipsMigrationHandler;
 use Psr\Container\ContainerInterface;
@@ -121,8 +123,11 @@ return function ( $base_path, $base_url ) {
                 'relationships'         => function (ContainerInterface $c) {
                     return $c->get('handler_relationships_migration');
                 },
-                'redirects'         => function (ContainerInterface $c) {
+                'redirects'             => function (ContainerInterface $c) {
                     return $c->get('handler_redirect_migration');
+                },
+                'modules'               => function (ContainerInterface $c) {
+                    return $c->get('handler_modules_migration');
                 },
             ];
         },
@@ -151,6 +156,21 @@ return function ( $base_path, $base_url ) {
 
             return new RedirectMigrationHandler(
                 $c->get('migrator_redirects'),
+                $c->get('wpdb'),
+                $progress,
+                0 // Everything
+            );
+        },
+
+        'handler_modules_migration' => function (ContainerInterface $c): HandlerInterface {
+            $progress = $c->get('migration_modules_progress');
+            assert($progress instanceof Progress);
+
+            $t = $c->get('translator');
+            assert($t instanceof FormatTranslatorInterface);
+
+            return new ModulesMigrationHandler(
+                $c->get('migrator_modules'),
                 $c->get('wpdb'),
                 $progress,
                 0 // Everything
@@ -209,6 +229,13 @@ return function ( $base_path, $base_url ) {
 
         'migrator_redirects' => function (ContainerInterface $c) {
             return new RedirectMigrator(
+                $c->get('wpdb'),
+                $c->get('translator')
+            );
+        },
+
+        'migrator_modules' => function (ContainerInterface $c) {
+            return new ModulesMigrator(
                 $c->get('wpdb'),
                 $c->get('translator')
             );
