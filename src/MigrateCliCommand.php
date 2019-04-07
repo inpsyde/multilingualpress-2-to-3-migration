@@ -119,7 +119,7 @@ class MigrateCliCommand
     {
         foreach ($moduleNames as $name) {
             if (!$modules->has($name)) {
-                throw new UnexpectedValueException($this->__('Module "%1$s" does not exist'));
+                throw new UnexpectedValueException($this->__('Module "%1$s" does not exist', [$name]));
             }
         }
     }
