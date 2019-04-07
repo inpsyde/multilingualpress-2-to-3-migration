@@ -70,7 +70,7 @@ class MigrateCliCommand
      *
      * @throws Throwable If problem executing.
      */
-    public function __invoke($args, $values)
+    public function __invoke($values, $args)
     {
         try {
             $moduleNames = $this->_normalizeModuleNames($values[0] ?? static::MODULE_NAMES_ALL);
