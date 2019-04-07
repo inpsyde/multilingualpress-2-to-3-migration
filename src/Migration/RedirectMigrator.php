@@ -63,7 +63,7 @@ class RedirectMigrator
             throw new UnexpectedValueException(
                 $this->__(
                     'Blog option "%1$s" in site "%2$s" could not be updated to value "%3$s"',
-                    [$optionName, $$siteId, $value]
+                    [$optionName, $siteId, $value]
                 )
             );
         }
