@@ -19,6 +19,8 @@ use Inpsyde\MultilingualPress2to3\IntegrationHandler;
 use Inpsyde\MultilingualPress2to3\MainHandler;
 use Inpsyde\MultilingualPress2to3\MigrateCliCommand;
 use Inpsyde\MultilingualPress2to3\MigrateCliCommandHandler;
+use Inpsyde\MultilingualPress2to3\Migration\RedirectMigrator;
+use Inpsyde\MultilingualPress2to3\RedirectMigrationHandler;
 use Inpsyde\MultilingualPress2to3\RelationshipsMigrationHandler;
 use Psr\Container\ContainerInterface;
 use cli\progress\Bar;
@@ -119,6 +121,9 @@ return function ( $base_path, $base_url ) {
                 'relationships'         => function (ContainerInterface $c) {
                     return $c->get('handler_relationships_migration');
                 },
+                'redirects'         => function (ContainerInterface $c) {
+                    return $c->get('handler_redirect_migration');
+                },
             ];
         },
 
@@ -131,6 +136,21 @@ return function ( $base_path, $base_url ) {
 
             return new RelationshipsMigrationHandler(
                 $c->get('migrator_relationships'),
+                $c->get('wpdb'),
+                $progress,
+                0 // Everything
+            );
+        },
+
+        'handler_redirect_migration' => function (ContainerInterface $c): HandlerInterface {
+            $progress = $c->get('migration_modules_progress');
+            assert($progress instanceof Progress);
+
+            $t = $c->get('translator');
+            assert($t instanceof FormatTranslatorInterface);
+
+            return new RedirectMigrationHandler(
+                $c->get('migrator_redirects'),
                 $c->get('wpdb'),
                 $progress,
                 0 // Everything
@@ -182,6 +202,13 @@ return function ( $base_path, $base_url ) {
 
         'migrator_relationships' => function (ContainerInterface $c) {
             return new ContentRelationshipMigrator(
+                $c->get('wpdb'),
+                $c->get('translator')
+            );
+        },
+
+        'migrator_redirects' => function (ContainerInterface $c) {
+            return new RedirectMigrator(
                 $c->get('wpdb'),
                 $c->get('translator')
             );
