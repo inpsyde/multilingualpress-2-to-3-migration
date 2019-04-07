@@ -62,7 +62,7 @@ class MigrateCliCommandHandler implements HandlerInterface
 
         // This allows the command to be lazy-loaded
         $this->_addCliCommand($key, function ($positionalArgs, $associativeArgs) {
-            $handler = $this->_getConfig('wpcli_command_migrate_relationships');
+            $handler = $this->_getConfig('wpcli_command_migrate');
             assert(is_callable($handler));
 
             $handler($positionalArgs, $associativeArgs);
