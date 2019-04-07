@@ -98,6 +98,7 @@ class RedirectMigrationHandler implements HandlerInterface
      */
     protected function _getSitesOption(string $optionName)
     {
+        $limit = $this->_getLimit();
         $selects = [];
         $siteOptionTables = $this->_getSiteOptionsTables();
 
@@ -106,6 +107,11 @@ class RedirectMigrationHandler implements HandlerInterface
         });
 
         $query = implode("\nUNION\n", $selects);
+
+        if ($limit) {
+            $query .= "\nLIMIT {$limit}";
+        }
+
         $result = $this->_select($query);
 
         return $result;
@@ -192,7 +198,7 @@ class RedirectMigrationHandler implements HandlerInterface
     /**
      * Retrieves the list of handlers associated with this instance.
      *
-     * @return ContentRelationshipMigrator A list of handlers.
+     * @return RedirectMigrator A list of handlers.
      */
     protected function _getMigrator()
     {
