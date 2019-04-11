@@ -9,7 +9,10 @@ $ docker-compose up -d
 ```
 
 ### Configure site on http://localhost
-Create a Network with 3 sites, activate migration plugin, install and activate MLP2 then install MLP3. Current status for tests is MLP2 active, 3 sites with a language assigned (en, es and it) and sites not connected to each other.
+- Convert single site to Multisite, install and activate MLP2 (from wp.org), activate migration plugin, then install MLP3.
+- With MLP2 active create 2 sites more, language assigned should be: `en`, `es` and `it`. Sites are not connected to each other.
+- Copy migration plugin to `wordpress-site` plugins folder (better use a version without dev dependencies)
+- Install and activate Classic Editor
 
 ### Add database `dump.sql` to `tests/_data` folder
 You can use phpMyAdmin at `http://localhost:1234` user/pass is `wordpress` 

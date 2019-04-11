@@ -271,7 +271,7 @@ class ContentRelationshipsCest
         $I->seeInDatabase('wp_mlp_content_relations', [
             'relationship_id' => '2',
             'site_id' => '1',
-            'content_id' => '5',
+            'content_id' => '6',
         ]);
         $I->seeInDatabase('wp_mlp_content_relations', [
             'relationship_id' => '2',
@@ -286,7 +286,7 @@ class ContentRelationshipsCest
         $I->seeInDatabase('wp_mlp_content_relations', [
             'relationship_id' => '3',
             'site_id' => '1',
-            'content_id' => '7',
+            'content_id' => '8',
         ]);
         $I->seeInDatabase('wp_mlp_content_relations', [
             'relationship_id' => '3',
@@ -316,7 +316,7 @@ class ContentRelationshipsCest
         $I->seeInDatabase('wp_mlp_content_relations', [
             'relationship_id' => '5',
             'site_id' => '1',
-            'content_id' => '9',
+            'content_id' => '10',
         ]);
         $I->seeInDatabase('wp_mlp_content_relations', [
             'relationship_id' => '5',
@@ -354,6 +354,6 @@ class ContentRelationshipsCest
 
         // run the tool
         $I->runShellCommand('wp mlp2to3 relationships --path=wordpress-site');
-        $I->seeInShellOutput('Success: Migrated');
+        $I->seeInShellOutput('Success: Migration complete');
     }
 }
