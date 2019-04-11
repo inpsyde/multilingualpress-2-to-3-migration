@@ -11,39 +11,12 @@ use Dhii\I18n\FormatTranslatorInterface;
 use Exception;
 
 /**
- * Base functionality for handlers.
+ * Base functionality for controllers.
  *
  * @package MultilingualPress2to3
  */
-trait HandlerTrait
+trait ControllerTrait
 {
-
-    /**
-     * Runs the handler.
-     *
-     * @throws Exception If problem running.
-     *
-     * @return mixed The result of running the handler.
-     */
-    protected function _run()
-    {
-        $this->_hook();
-
-        return null;
-    }
-
-    /**
-     * Procedural way to run the handler.
-     *
-     * @throws Exception If problem during invoking.
-     *
-     * @return mixed The result of handling.
-     */
-    public function __invoke()
-    {
-        return $this->_run();
-    }
-
     /**
      * Retrieves a URL to the JS directory of the handler.
      *
@@ -75,15 +48,6 @@ trait HandlerTrait
 
         return "$baseUrl/assets/css/$path";
     }
-
-    /**
-     * Adds handler hooks.
-     *
-     * @return void
-     *
-     * @throws Exception If problem hooking.
-     */
-    abstract protected function _hook();
 
     /**
      * Retrieves the translator from configuration.

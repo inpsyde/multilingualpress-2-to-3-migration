@@ -25,7 +25,8 @@
         "brain/monkey": "^2",
         "gmazzap/andrew": "^2",
         "codeception/codeception": "^2.5",
-        "symfony/browser-kit": ">=2.7 <=4.2.4"
+        "symfony/browser-kit": ">=2.7 <=4.2.4",
+        "hoa/consistency": "^1.17.05.02"
     },
     "autoload": {
         "psr-4": {

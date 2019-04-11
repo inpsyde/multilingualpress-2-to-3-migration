@@ -8,7 +8,7 @@ use Inpsyde\MultilingualPress2to3\Cli\AddCliCommandCapableWpTrait;
 use Inpsyde\MultilingualPress2to3\Config\ConfigAwareTrait;
 use Inpsyde\MultilingualPress2to3\Event\WpHookingTrait;
 use Inpsyde\MultilingualPress2to3\Handler\HandlerInterface;
-use Inpsyde\MultilingualPress2to3\Handler\HandlerTrait;
+use Inpsyde\MultilingualPress2to3\Handler\ControllerTrait;
 use Psr\Container\ContainerInterface;
 use Throwable;
 
@@ -19,7 +19,7 @@ use Throwable;
  */
 class MigrateCliCommandHandler implements HandlerInterface
 {
-    use HandlerTrait;
+    use ControllerTrait;
 
     use ConfigAwareTrait;
 
@@ -44,7 +44,7 @@ class MigrateCliCommandHandler implements HandlerInterface
      */
     public function run()
     {
-        return $this->_run();
+        return $this->_hook();
     }
 
     /**
@@ -62,7 +62,7 @@ class MigrateCliCommandHandler implements HandlerInterface
 
         // This allows the command to be lazy-loaded
         $this->_addCliCommand($key, function ($positionalArgs, $associativeArgs) {
-            $handler = $this->_getConfig('wpcli_command_migrate_relationships');
+            $handler = $this->_getConfig('wpcli_command_migrate');
             assert(is_callable($handler));
 
             $handler($positionalArgs, $associativeArgs);
