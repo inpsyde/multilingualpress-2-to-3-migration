@@ -75,16 +75,7 @@ class ModulesMigrator
 
         $modules[$moduleName] = $moduleStatus;
 
-        $result = update_site_option($optionName, $modules);
-
-        if (!$result) {
-            throw new UnexpectedValueException(
-                $this->__(
-                    'Network option "%1$s" could not be updated',
-                    [$optionName]
-                )
-            );
-        }
+        $this->_setNetworkOption($optionName, $modules);
     }
 
     /**
@@ -115,6 +106,23 @@ class ModulesMigrator
     protected function _getNetworkOption(string $optionName, $default)
     {
         return get_site_option($optionName, $default);
+    }
+
+    /**
+     * Assigns a value to a network option with the specified name.
+     *
+     * @param string $optionName Name of the option to set.
+     * @param mixed $value The option value.
+     *
+     * @throws UnexpectedValueException If option could not be set.
+     */
+    protected function _setNetworkOption(string $optionName, $value)
+    {
+        $result = update_site_option($optionName, $value);
+
+        if (!$result) {
+            throw new UnexpectedValueException($this->__('Could not update network option "%1$s"', [$optionName]));
+        }
     }
 
     /**
