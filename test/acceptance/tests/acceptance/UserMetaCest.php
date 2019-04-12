@@ -18,7 +18,6 @@ class UserMetaCest
         $I->checkOption('#mlp_redirect_id');
         $I->click('#submit');
         $I->see('Profile updated.');
-        $I->seeCheckboxIsChecked('#mlp_redirect_id');
 
         // run the tool
         $this->runTheTool($I);
@@ -41,7 +40,7 @@ class UserMetaCest
         $I->click('[data-plugin="multilingualpress/multilingualpress.php"] .activate a');
 
         // run the tool
-//        $I->runShellCommand('wp mlp2to3 unknown --path=wordpress-site');
-//        $I->seeInShellOutput('Success: Migration complete');
+        $I->runShellCommand('wp mlp2to3 lang_redirects --path=wordpress-site');
+        $I->seeInShellOutput('Success:');
     }
 }

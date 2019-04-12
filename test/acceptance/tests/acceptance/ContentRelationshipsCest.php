@@ -354,6 +354,6 @@ class ContentRelationshipsCest
 
         // run the tool
         $I->runShellCommand('wp mlp2to3 relationships --path=wordpress-site');
-        $I->seeInShellOutput('Success: Migration complete');
+        $I->seeInShellOutput('Success:');
     }
 }
