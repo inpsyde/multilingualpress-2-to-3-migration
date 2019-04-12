@@ -86,7 +86,7 @@ class MigrateCliCommand
             $this->_exit(1);
         }
 
-        $this->_outputSuccess($this->__('Migration complete'));
+        $this->_outputSuccess($this->__('Migrated %1$d modules', [count($moduleNames)]));
     }
 
     protected function _normalizeModuleNames(string $names): array

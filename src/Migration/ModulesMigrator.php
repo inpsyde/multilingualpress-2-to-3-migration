@@ -61,11 +61,8 @@ class ModulesMigrator
         $moduleName = $this->_transformModuleName($mlp2Module->name);
         $moduleStatus = $this->_transformModuleStatus($mlp2Module->status);
 
-        WP_CLI::debug(sprintf('Migrating status of module "%1$s"', $mlp2Module->name));
-
         // If obsolete, ignore
         if (in_array($moduleName, $obsoleteModules)) {
-            WP_CLI::debug(sprintf('Module "%1$s" is obsolete', $mlp2Module->name));
             return;
         }
 
@@ -73,25 +70,22 @@ class ModulesMigrator
 
         // If already exists and same value, nothing to migrate
         if (array_key_exists($moduleName, $modules) && $modules[$moduleName] === $moduleStatus) {
-            WP_CLI::debug(sprintf('Module "%1$s" already synchronized', $mlp2Module->name));
             return;
         }
 
         $modules[$moduleName] = $moduleStatus;
 
-        $result = update_site_option($optionName, $modules);
-
-        if (!$result) {
-            throw new UnexpectedValueException(
-                $this->__(
-                    'Network option "%1$s" could not be updated',
-                    [$optionName]
-                )
-            );
-        }
+        $this->_setNetworkOption($optionName, $modules);
     }
 
-    protected function _getObsoleteModuleNames()
+    /**
+     * Retrieves module names that are obsolete in MLP3.
+     *
+     * @return string[] A list of module names.
+     *
+     * @throws Throwable If problem retrieving.
+     */
+    protected function _getObsoleteModuleNames(): array
     {
         return [
             'cpt_translator',
@@ -114,6 +108,32 @@ class ModulesMigrator
         return get_site_option($optionName, $default);
     }
 
+    /**
+     * Assigns a value to a network option with the specified name.
+     *
+     * @param string $optionName Name of the option to set.
+     * @param mixed $value The option value.
+     *
+     * @throws UnexpectedValueException If option could not be set.
+     */
+    protected function _setNetworkOption(string $optionName, $value)
+    {
+        $result = update_site_option($optionName, $value);
+
+        if (!$result) {
+            throw new UnexpectedValueException($this->__('Could not update network option "%1$s"', [$optionName]));
+        }
+    }
+
+    /**
+     * Transforms an MLP2 module name to MLP3 format.
+     *
+     * @param string $name The module name to transform.
+     *
+     * @return string The transformed name.
+     *
+     * @throws Throwable If problem transforming.
+     */
     protected function _transformModuleName(string $name): string
     {
         $prefix = 'class-mlp_';
@@ -126,6 +146,16 @@ class ModulesMigrator
         return $name;
     }
 
+
+    /**
+     * Transforms an MLP2 module status to MLP3 format.
+     *
+     * @param string $status The module status to transform.
+     *
+     * @return bool The transformed status.
+     *
+     * @throws Throwable If problem transforming.
+     */
     protected function _transformModuleStatus(string $status): bool
     {
         $status = strtolower($status);
@@ -146,6 +176,16 @@ class ModulesMigrator
         );
     }
 
+    /**
+     * Removes a prefix from the specified string, if it is found.
+     *
+     * @param string $string The string to remove the prefix from.
+     * @param string $prefix The prefix to remove.
+     *
+     * @return string The string without the prefix.
+     *
+     * @throws Throwable If problem removing.
+     */
     protected function _removePrefix(string $string, string $prefix): string
     {
         $length = strlen($prefix);
@@ -158,6 +198,17 @@ class ModulesMigrator
         return substr($string, $length);
     }
 
+
+    /**
+     * Removes a suffix from the specified string, if it is found.
+     *
+     * @param string $string The string to remove the suffix from.
+     * @param string $suffix The suffix to remove.
+     *
+     * @return string The string without the suffix.
+     *
+     * @throws Throwable If problem removing.
+     */
     protected function _removeSuffix(string $string, string $suffix): string
     {
         $length = strlen($suffix);

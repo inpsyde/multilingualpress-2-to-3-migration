@@ -7,11 +7,14 @@ use Dhii\I18n\StringTranslatorAwareTrait;
 use Dhii\I18n\StringTranslatorConsumingTrait;
 use Inpsyde\MultilingualPress2to3\Db\DatabaseWpdbTrait;
 use Inpsyde\MultilingualPress2to3\Handler\HandlerInterface;
-use Inpsyde\MultilingualPress2to3\Migration\ModulesMigrator;
+use Inpsyde\MultilingualPress2to3\Migration\ContentRelationshipMigrator;
+use Inpsyde\MultilingualPress2to3\Migration\LanguageRedirectMigrator;
+use Inpsyde\MultilingualPress2to3\Migration\RedirectMigrator;
 use Throwable;
+use WP_Site;
 use wpdb as Wpdb;
 
-class ModulesMigrationHandler implements HandlerInterface
+class LanguageRedirectMigrationHandler implements HandlerInterface
 {
     use DatabaseWpdbTrait;
 
@@ -33,13 +36,13 @@ class ModulesMigrationHandler implements HandlerInterface
     /**
      * Handler constructor.
      *
-     * @param ModulesMigrator $migrator The migrator that migrates modules.
+     * @param LanguageRedirectMigrator $migrator The migrator that migrates language redirects.
      * @param Wpdb $db The DB adapter.
      * @param Progress $progress The progress that tracks migration... progress.
      * @param int $limit How many records to migrate. 0 means no limit.
      */
     public function __construct(
-        ModulesMigrator $migrator,
+        LanguageRedirectMigrator $migrator,
         Wpdb $db,
         Progress $progress,
         int $limit
@@ -51,17 +54,17 @@ class ModulesMigrationHandler implements HandlerInterface
     }
 
     /**
-     * Migrates a number of modules.
+     * Migrates a number of language redirects.
      *
      * @throws Throwable If problem running.
      */
     public function run()
     {
-        $modules = $this->_getModulesToMigrate();
-        $count = count ($modules);
+        $redirects = $this->_getRedirectsToMigrate();
+        $count = count ($redirects);
         $progress = $this->_getProgress($count);
 
-        foreach ($modules as $redirect) {
+        foreach ($redirects as $redirect) {
             $this->_getMigrator()->migrate($redirect);
             $progress->tick();
         }
@@ -70,67 +73,45 @@ class ModulesMigrationHandler implements HandlerInterface
     }
 
     /**
-     * Retrieves MLP2 links to migrate to MLP3.
+     * Retrieves MLP2 language redirects to migrate to MLP3.
      *
-     * @return object[] A list of objects, each representing an MLP2 redirect.
+     * @return object[] A list of objects, each representing an MLP2 language redirect.
+     * Each object has the following properties:
+     * - `user_id` - The ID of the user.
+     * - `is_redirect` - Whether or not the redirection is enabled, 1 or 0 respectively.
      *
      * @throws Throwable If problem retrieving.
      */
-    protected function _getModulesToMigrate()
+    protected function _getRedirectsToMigrate()
     {
         $limit = $this->_getLimit();
-        $modulesMap = $this->_getNetworkOption('state_modules', []);
+        $optionName = 'mlp_redirect';
+        $userOptionsTable = $this->_getTableName('usermeta');
 
-        if ($this->_isWooCommerceActive()) {
-            $modulesMap['class-Mlp_WooCommerce_Module'] = 'on';
-        }
-
-        $modules = [];
-
-        foreach ($modulesMap as $key => $value) {
-            $modules[] = (object) [
-                'name'      => $key,
-                'status'    => $value,
-            ];
-        }
+        $query = 'SELECT `user_id`, `meta_value` AS `is_redirect` FROM `%1$s` WHERE `meta_key` = "%2$s"';
+        $params = [$userOptionsTable, $optionName];
 
         if ($limit) {
-            $modules = array_slice($modules, 0, $limit);
+            $query .= ' LIMIT %3$d';
+            $params[] = $limit;
         }
 
-        return $modules;
+        $result = $this->_select($query, $params);
+
+        return $result;
     }
 
     /**
-     * Retrieves the value of a network option with the specified name.
+     * Retrieves the value of a specified option, for the user with the specified ID.
      *
-     * @param string $optionName The name of the option.
-     * @param mixed $default The value to retrieve if the option does not exist.
-     * @return mixed The value of the option.
+     * @param string $optionName The name of the option to retrieve.
+     * @param int $userId The ID of the user to retrieve the option for.
      *
-     * @throws Throwable If problem retrieving.
+     * @return mixed The option value.
      */
-    protected function _getNetworkOption(string $optionName, $default)
+    protected function _getUserOption(string $optionName, int $userId)
     {
-        return get_site_option($optionName, $default);
-    }
-
-    /**
-     * Determines whether the WooCommerce plugin is active.
-     *
-     * @return bool True if the plugin is active; false otherwise.
-     *
-     * @throws Throwable If problem determining.
-     */
-    protected function _isWooCommerceActive()
-    {
-        if (!defined('WC_PLUGIN_FILE')) {
-            return false;
-        }
-
-        $basename = plugin_basename(WC_PLUGIN_FILE);
-
-        return is_plugin_active($basename);
+        return get_user_option($optionName, $userId);
     }
 
     /**
@@ -161,7 +142,7 @@ class ModulesMigrationHandler implements HandlerInterface
     /**
      * Retrieves the list of handlers associated with this instance.
      *
-     * @return ModulesMigrator A list of handlers.
+     * @return LanguageRedirectMigrator A list of handlers.
      */
     protected function _getMigrator()
     {

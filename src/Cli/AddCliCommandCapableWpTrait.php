@@ -23,13 +23,13 @@ trait AddCliCommandCapableWpTrait
      *
      * @throws Throwable If problems adding command.
      */
-    protected function _addCliCommand(string $command, callable $handler)
+    protected function _addCliCommand(string $command, callable $handler, array $documentation = [])
     {
         if (!class_exists('WP_CLI')) {
             throw new Exception($this->__('Could not add command "%1$s": Not a CLI environment', [$command]));
         }
 
-        WP_CLI::add_command($command, $handler);
+        WP_CLI::add_command($command, $handler, $documentation);
     }
 
     /**

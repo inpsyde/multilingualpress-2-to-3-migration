@@ -7,11 +7,15 @@ use Dhii\I18n\StringTranslatorAwareTrait;
 use Dhii\I18n\StringTranslatorConsumingTrait;
 use Inpsyde\MultilingualPress2to3\Db\DatabaseWpdbTrait;
 use Inpsyde\MultilingualPress2to3\Handler\HandlerInterface;
+use Inpsyde\MultilingualPress2to3\Migration\ContentRelationshipMigrator;
 use Inpsyde\MultilingualPress2to3\Migration\ModulesMigrator;
+use Inpsyde\MultilingualPress2to3\Migration\RedirectMigrator;
+use Inpsyde\MultilingualPress2to3\Migration\TranslatablePostTypesMigrator;
 use Throwable;
+use WP_Site;
 use wpdb as Wpdb;
 
-class ModulesMigrationHandler implements HandlerInterface
+class TranslatablePostTypesMigrationHandler implements HandlerInterface
 {
     use DatabaseWpdbTrait;
 
@@ -33,13 +37,13 @@ class ModulesMigrationHandler implements HandlerInterface
     /**
      * Handler constructor.
      *
-     * @param ModulesMigrator $migrator The migrator that migrates modules.
+     * @param TranslatablePostTypesMigrator $migrator The migrator that migrates modules.
      * @param Wpdb $db The DB adapter.
      * @param Progress $progress The progress that tracks migration... progress.
      * @param int $limit How many records to migrate. 0 means no limit.
      */
     public function __construct(
-        ModulesMigrator $migrator,
+        TranslatablePostTypesMigrator $migrator,
         Wpdb $db,
         Progress $progress,
         int $limit
@@ -57,7 +61,7 @@ class ModulesMigrationHandler implements HandlerInterface
      */
     public function run()
     {
-        $modules = $this->_getModulesToMigrate();
+        $modules = $this->_getPostTypesToMigrate();
         $count = count ($modules);
         $progress = $this->_getProgress($count);
 
@@ -70,35 +74,45 @@ class ModulesMigrationHandler implements HandlerInterface
     }
 
     /**
-     * Retrieves MLP2 links to migrate to MLP3.
+     * Retrieves MLP2 translatable post types to migrate to MLP3.
      *
-     * @return object[] A list of objects, each representing an MLP2 redirect.
+     * @return object[] A list of objects, each representing a translatable post type.
+     * - `name` - The name of the post type, i.e. its code.
+     * - `is_active` - true or false, depending on whether the type should be translated.
+     * - `is_permalink` - true or false, indicating whether dynamic permalinks are used.
+     * This includes settings for all post types, whether WP native or custom added.
      *
      * @throws Throwable If problem retrieving.
      */
-    protected function _getModulesToMigrate()
+    protected function _getPostTypesToMigrate()
     {
         $limit = $this->_getLimit();
-        $modulesMap = $this->_getNetworkOption('state_modules', []);
+        $typeNames = $this->_getPostTypeNames();
+        $typeSettings = $this->_getNetworkOption('inpsyde_multilingual_cpt', []);
+        $typeSettings = isset($typeSettings['post_types'])
+            ? $typeSettings['post_types']
+            : [];
+        $postTypes = [];
 
-        if ($this->_isWooCommerceActive()) {
-            $modulesMap['class-Mlp_WooCommerce_Module'] = 'on';
-        }
-
-        $modules = [];
-
-        foreach ($modulesMap as $key => $value) {
-            $modules[] = (object) [
-                'name'      => $key,
-                'status'    => $value,
+        foreach ($typeNames as $name) {
+            $type = $typeSettings[$name] ?? 0;
+            $postTypes[] = (object) [
+                'name'          => $name,
+                'is_active'     => (bool) $type,
+                'is_permalink'  => intval($type) === 2,
             ];
         }
 
         if ($limit) {
-            $modules = array_slice($modules, 0, $limit);
+            $postTypes = array_slice($typeNames, 0, $limit);
         }
 
-        return $modules;
+        return $postTypes;
+    }
+
+    protected function _getPostTypeNames(): array
+    {
+        return get_post_types([], 'names');
     }
 
     /**
@@ -161,7 +175,7 @@ class ModulesMigrationHandler implements HandlerInterface
     /**
      * Retrieves the list of handlers associated with this instance.
      *
-     * @return ModulesMigrator A list of handlers.
+     * @return ContentRelationshipMigrator A list of handlers.
      */
     protected function _getMigrator()
     {
