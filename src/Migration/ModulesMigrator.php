@@ -61,11 +61,8 @@ class ModulesMigrator
         $moduleName = $this->_transformModuleName($mlp2Module->name);
         $moduleStatus = $this->_transformModuleStatus($mlp2Module->status);
 
-        WP_CLI::debug(sprintf('Migrating status of module "%1$s"', $mlp2Module->name));
-
         // If obsolete, ignore
         if (in_array($moduleName, $obsoleteModules)) {
-            WP_CLI::debug(sprintf('Module "%1$s" is obsolete', $mlp2Module->name));
             return;
         }
 
@@ -73,7 +70,6 @@ class ModulesMigrator
 
         // If already exists and same value, nothing to migrate
         if (array_key_exists($moduleName, $modules) && $modules[$moduleName] === $moduleStatus) {
-            WP_CLI::debug(sprintf('Module "%1$s" already synchronized', $mlp2Module->name));
             return;
         }
 
