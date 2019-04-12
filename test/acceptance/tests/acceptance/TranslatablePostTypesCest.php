@@ -1,7 +1,7 @@
 <?php # -*- coding: utf-8 -*-
 declare(strict_types=1);
 
-class UserMetaCest
+class TranslatablePostTypesCest
 {
     public function _before(AcceptanceTester $I)
     {
@@ -11,26 +11,28 @@ class UserMetaCest
         $I->click('#wp-submit');
     }
 
-    public function migrateUserLanguageRedirect(AcceptanceTester $I)
+    public function migrateCustomPostTypes(AcceptanceTester $I)
     {
-        // go to user and check Language redirect checkbox
-        $I->amOnPage('/wp-admin/network/profile.php?wp_http_referer=%2Fwp-admin%2Fnetwork%2Fusers.php');
-        $I->checkOption('#mlp_redirect_id');
+        // go to MLP2 settings page
+        $I->amOnPage('/wp-admin/network/settings.php?page=mlp');
+
+        // check both Fake Post Type and Use dynamic permalinks checkboxes in Custom Post Type Translator Settings
+        $I->checkOption('#mlp_cpt_fake');
+
+        // TODO is not currently possible to find this element name="mlp_cpts[fake|links]" or id="mlp_cpt_fake|links"
+        //$I->click('input[name=mlp_cpts[fake|links]]');
+
         $I->click('#submit');
-        $I->see('Profile updated.');
-        $I->seeCheckboxIsChecked('#mlp_redirect_id');
 
         // run the tool
         $this->runTheTool($I);
 
-        // MLP3 enable redirection module
-        $I->amOnPage('/wp-admin/network/admin.php?page=multilingualpress');
-        $I->checkOption('#multilingualpress-module-redirect');
-        $I->click('Save Changes');
+        // MLP3 check that post type is enabled in
+        $I->amOnPage('/wp-admin/network/admin.php?page=multilingualpress&tab=post-types');
+        $I->seeCheckboxIsChecked('#mlp-post-type-fake');
 
-        // MLP3 check user Language redirect checkbox
-        $I->amOnPage('/wp-admin/network/profile.php?wp_http_referer=%2Fwp-admin%2Fnetwork%2Fusers.php');
-        $I->seeCheckboxIsChecked('#multilingualpress_redirect');
+        // TODO current not testeable because of issue in MLP2 naming element (#mlp_cpt_fake|links)
+        //$I->seeCheckboxIsChecked('#mlp-post-type-fake-permalinks');
     }
 
     private function runTheTool(AcceptanceTester $I)
