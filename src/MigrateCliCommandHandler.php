@@ -59,6 +59,18 @@ class MigrateCliCommandHandler implements HandlerInterface
         }
 
         $key = $this->_getConfig('wpcli_command_key_mlp2to3_migrate');
+        $commandDoc = [
+            'shortdesc'             => $this->__('Migrates data from MLP2 to MLP3'),
+            'synopsis'              => [
+                [
+                    'type'                  => 'positional',
+                    'name'                  => 'module',
+                    'description'           => $this->__('Name of the module to migrate, or "all" to migrate all modules'),
+                    'optional'              => true,
+                    'repeating'             => true,
+                ]
+            ],
+        ];
 
         // This allows the command to be lazy-loaded
         $this->_addCliCommand($key, function ($positionalArgs, $associativeArgs) {
@@ -66,6 +78,6 @@ class MigrateCliCommandHandler implements HandlerInterface
             assert(is_callable($handler));
 
             $handler($positionalArgs, $associativeArgs);
-        });
+        }, $commandDoc);
     }
 }
