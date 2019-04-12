@@ -23,9 +23,11 @@ use Inpsyde\MultilingualPress2to3\MigrateCliCommandHandler;
 use Inpsyde\MultilingualPress2to3\Migration\LanguageRedirectMigrator;
 use Inpsyde\MultilingualPress2to3\Migration\ModulesMigrator;
 use Inpsyde\MultilingualPress2to3\Migration\RedirectMigrator;
+use Inpsyde\MultilingualPress2to3\Migration\TranslatablePostTypesMigrator;
 use Inpsyde\MultilingualPress2to3\ModulesMigrationHandler;
 use Inpsyde\MultilingualPress2to3\RedirectMigrationHandler;
 use Inpsyde\MultilingualPress2to3\RelationshipsMigrationHandler;
+use Inpsyde\MultilingualPress2to3\TranslatablePostTypesMigrationHandler;
 use Psr\Container\ContainerInterface;
 use cli\progress\Bar;
 
@@ -134,6 +136,9 @@ return function ( $base_path, $base_url ) {
                 'lang_redirects'               => function (ContainerInterface $c) {
                     return $c->get('handler_language_redirect_migration');
                 },
+                'translatable_post_types'      => function (ContainerInterface $c) {
+                    return $c->get('handler_translatable_post_types_migration');
+                },
             ];
         },
 
@@ -191,6 +196,21 @@ return function ( $base_path, $base_url ) {
 
             return new LanguageRedirectMigrationHandler(
                 $c->get('migrator_language_redirects'),
+                $c->get('wpdb'),
+                $progress,
+                0 // Everything
+            );
+        },
+
+        'handler_translatable_post_types_migration' => function (ContainerInterface $c): HandlerInterface {
+            $progress = $c->get('migration_modules_progress');
+            assert($progress instanceof Progress);
+
+            $t = $c->get('translator');
+            assert($t instanceof FormatTranslatorInterface);
+
+            return new TranslatablePostTypesMigrationHandler(
+                $c->get('migrator_translatable_post_types'),
                 $c->get('wpdb'),
                 $progress,
                 0 // Everything
@@ -263,6 +283,13 @@ return function ( $base_path, $base_url ) {
 
         'migrator_language_redirects' => function (ContainerInterface $c) {
             return new LanguageRedirectMigrator(
+                $c->get('wpdb'),
+                $c->get('translator')
+            );
+        },
+
+        'migrator_translatable_post_types' => function (ContainerInterface $c) {
+            return new TranslatablePostTypesMigrator(
                 $c->get('wpdb'),
                 $c->get('translator')
             );
