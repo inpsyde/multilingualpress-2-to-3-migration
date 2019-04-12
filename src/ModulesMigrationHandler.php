@@ -7,11 +7,8 @@ use Dhii\I18n\StringTranslatorAwareTrait;
 use Dhii\I18n\StringTranslatorConsumingTrait;
 use Inpsyde\MultilingualPress2to3\Db\DatabaseWpdbTrait;
 use Inpsyde\MultilingualPress2to3\Handler\HandlerInterface;
-use Inpsyde\MultilingualPress2to3\Migration\ContentRelationshipMigrator;
 use Inpsyde\MultilingualPress2to3\Migration\ModulesMigrator;
-use Inpsyde\MultilingualPress2to3\Migration\RedirectMigrator;
 use Throwable;
-use WP_Site;
 use wpdb as Wpdb;
 
 class ModulesMigrationHandler implements HandlerInterface
