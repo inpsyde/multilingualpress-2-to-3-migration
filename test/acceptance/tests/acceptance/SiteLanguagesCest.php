@@ -39,6 +39,31 @@ class SiteLanguagesCest
         $I->assertSame($language, 'it-IT');
     }
 
+    public function migrateAlternativeLanguageTitle(AcceptanceTester $I)
+    {
+        // add alternative language title in sites 1 and 3
+        $I->amOnPage('/wp-admin/network/site-settings.php?id=1&extra=mlp-site-settings');
+        $I->fillField('#inpsyde_multilingual_text', 'This is alternate title for site 1');
+        $I->click('#submit');
+        $I->amOnPage('/wp-admin/network/site-settings.php?id=3&extra=mlp-site-settings');
+        $I->fillField('#inpsyde_multilingual_text', 'This is alternate title for site 3');
+        $I->click('#submit');
+
+        // run the tool
+        $this->runTheTool($I);
+
+        // MLP3 enable alternative language title module
+        $I->amOnPage('/wp-admin/network/admin.php?page=multilingualpress');
+        $I->checkOption('#multilingualpress-module-alternative_language_title');
+        $I->click('#submit');
+
+        // MLP3 check alternative language title in sites 1 and 3
+        $I->amOnPage('/wp-admin/network/sites.php?page=multilingualpress-site-settings&id=1');
+        $I->seeInField('#multilingualpress_alt_language_title', 'This is alternate title for site 1');
+        $I->amOnPage('/wp-admin/network/sites.php?page=multilingualpress-site-settings&id=3');
+        $I->seeInField('#multilingualpress_alt_language_title', 'This is alternate title for site 3');
+    }
+
     private function runTheTool(AcceptanceTester $I)
     {
         // deactivate MLP2 and activate MLP3
