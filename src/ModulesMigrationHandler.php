@@ -164,7 +164,7 @@ class ModulesMigrationHandler implements HandlerInterface
     /**
      * Retrieves the list of handlers associated with this instance.
      *
-     * @return ContentRelationshipMigrator A list of handlers.
+     * @return ModulesMigrator A list of handlers.
      */
     protected function _getMigrator()
     {
