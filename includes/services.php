@@ -14,11 +14,13 @@ use Dhii\Wp\I18n\FormatTranslator;
 use Inpsyde\MultilingualPress2to3\Handler\CompositeHandler;
 use Inpsyde\MultilingualPress2to3\Handler\CompositeProgressHandler;
 use Inpsyde\MultilingualPress2to3\Handler\HandlerInterface;
+use Inpsyde\MultilingualPress2to3\LanguageRedirectMigrationHandler;
 use Inpsyde\MultilingualPress2to3\Migration\ContentRelationshipMigrator;
 use Inpsyde\MultilingualPress2to3\IntegrationHandler;
 use Inpsyde\MultilingualPress2to3\MainHandler;
 use Inpsyde\MultilingualPress2to3\MigrateCliCommand;
 use Inpsyde\MultilingualPress2to3\MigrateCliCommandHandler;
+use Inpsyde\MultilingualPress2to3\Migration\LanguageRedirectMigrator;
 use Inpsyde\MultilingualPress2to3\Migration\ModulesMigrator;
 use Inpsyde\MultilingualPress2to3\Migration\RedirectMigrator;
 use Inpsyde\MultilingualPress2to3\ModulesMigrationHandler;
@@ -129,6 +131,9 @@ return function ( $base_path, $base_url ) {
                 'modules'               => function (ContainerInterface $c) {
                     return $c->get('handler_modules_migration');
                 },
+                'lang_redirects'               => function (ContainerInterface $c) {
+                    return $c->get('handler_language_redirect_migration');
+                },
             ];
         },
 
@@ -171,6 +176,21 @@ return function ( $base_path, $base_url ) {
 
             return new ModulesMigrationHandler(
                 $c->get('migrator_modules'),
+                $c->get('wpdb'),
+                $progress,
+                0 // Everything
+            );
+        },
+
+        'handler_language_redirect_migration' => function (ContainerInterface $c): HandlerInterface {
+            $progress = $c->get('migration_modules_progress');
+            assert($progress instanceof Progress);
+
+            $t = $c->get('translator');
+            assert($t instanceof FormatTranslatorInterface);
+
+            return new LanguageRedirectMigrationHandler(
+                $c->get('migrator_language_redirects'),
                 $c->get('wpdb'),
                 $progress,
                 0 // Everything
@@ -236,6 +256,13 @@ return function ( $base_path, $base_url ) {
 
         'migrator_modules' => function (ContainerInterface $c) {
             return new ModulesMigrator(
+                $c->get('wpdb'),
+                $c->get('translator')
+            );
+        },
+
+        'migrator_language_redirects' => function (ContainerInterface $c) {
+            return new LanguageRedirectMigrator(
                 $c->get('wpdb'),
                 $c->get('translator')
             );
