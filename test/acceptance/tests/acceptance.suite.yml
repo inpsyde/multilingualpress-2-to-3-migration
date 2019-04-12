@@ -6,6 +6,7 @@ modules:
         - \Helper\Acceptance
         - Cli
         - Db
+        - Asserts
     config:
         Db:
             dsn: 'mysql:host=localhost:8082;dbname=wordpress'
