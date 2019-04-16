@@ -40,7 +40,6 @@ class ModulesMigrator
         FormatTranslatorInterface $translator
     )
     {
-
         $this->db = $wpdb;
         $this->translator = $translator;
     }
@@ -58,8 +57,8 @@ class ModulesMigrator
     {
         $optionName = 'multilingualpress_modules';
         $obsoleteModules = $this->_getObsoleteModuleNames();
-        $moduleName = $this->_transformModuleName($mlp2Module->name);
-        $moduleStatus = $this->_transformModuleStatus($mlp2Module->status);
+        $moduleName = $this->_getModuleName($mlp2Module->name);
+        $moduleStatus = $this->_getModuleStatus($mlp2Module->status);
 
         // If obsolete, ignore
         if (in_array($moduleName, $obsoleteModules)) {
@@ -126,26 +125,25 @@ class ModulesMigrator
     }
 
     /**
-     * Transforms an MLP2 module name to MLP3 format.
+     * Retrieves a module name for a key.
      *
-     * @param string $name The module name to transform.
+     * @param string $key The module key.
      *
-     * @return string The transformed name.
+     * @return string The module name.
      *
-     * @throws Throwable If problem transforming.
+     * @throws Throwable If problem retrieving.
      */
-    protected function _transformModuleName(string $name): string
+    protected function _getModuleName(string $key): string
     {
         $prefix = 'class-mlp_';
         $suffix = '_module';
 
-        $name = strtolower($name);
-        $name = $this->_removePrefix($name, $prefix);
-        $name = $this->_removeSuffix($name, $suffix);
+        $key = strtolower($key);
+        $key = $this->_removePrefix($key, $prefix);
+        $key = $this->_removeSuffix($key, $suffix);
 
-        return $name;
+        return $key;
     }
-
 
     /**
      * Transforms an MLP2 module status to MLP3 format.
@@ -156,7 +154,7 @@ class ModulesMigrator
      *
      * @throws Throwable If problem transforming.
      */
-    protected function _transformModuleStatus(string $status): bool
+    protected function _getModuleStatus(string $status): bool
     {
         $status = strtolower($status);
 
