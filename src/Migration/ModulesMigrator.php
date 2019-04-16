@@ -135,6 +135,12 @@ class ModulesMigrator
      */
     protected function _getModuleName(string $key): string
     {
+        // Mapping exceptional cases
+        $map = $this->_getModuleNameMap();
+        if (isset($map[$key])) {
+            return $map[$key];
+        }
+
         return $this->_transformModuleName($key);
     }
 
@@ -157,6 +163,19 @@ class ModulesMigrator
         $name = $this->_removeSuffix($name, $suffix);
 
         return $name;
+    }
+
+    /**
+     * Retrieves a map of MLP2 module names to MLP3 module names.
+     *
+     * @return array<string, string> The module name map.
+     *
+     * @throws Throwable If problem retrieving.
+     */
+    protected function _getModuleNameMap(): array
+    {
+        return [
+        ];
     }
 
     /**
