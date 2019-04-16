@@ -175,6 +175,7 @@ class ModulesMigrator
     protected function _getModuleNameMap(): array
     {
         return [
+            'class-Mlp_Redirect_Registration'       => 'redirect',
         ];
     }
 
