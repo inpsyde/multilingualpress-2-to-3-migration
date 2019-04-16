@@ -125,24 +125,38 @@ class ModulesMigrator
     }
 
     /**
-     * Retrieves a module name for a key.
+     * Retrieves an MLP3 module name for a key.
      *
-     * @param string $key The module key.
+     * @param string $key Module key.
      *
-     * @return string The module name.
+     * @return string Name of MLP3 module.
      *
      * @throws Throwable If problem retrieving.
      */
     protected function _getModuleName(string $key): string
     {
+        return $this->_transformModuleName($key);
+    }
+
+    /**
+     * Transforms an MLP2 module name to MLP3 format.
+     *
+     * @param string $name The module name to transform.
+     *
+     * @return string The transformed name.
+     *
+     * @throws Throwable If problem transforming.
+     */
+    protected function _transformModuleName(string $name): string
+    {
         $prefix = 'class-mlp_';
         $suffix = '_module';
 
-        $key = strtolower($key);
-        $key = $this->_removePrefix($key, $prefix);
-        $key = $this->_removeSuffix($key, $suffix);
+        $name = strtolower($name);
+        $name = $this->_removePrefix($name, $prefix);
+        $name = $this->_removeSuffix($name, $suffix);
 
-        return $key;
+        return $name;
     }
 
     /**
