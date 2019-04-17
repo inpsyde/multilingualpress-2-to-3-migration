@@ -40,7 +40,6 @@ class ModulesMigrator
         FormatTranslatorInterface $translator
     )
     {
-
         $this->db = $wpdb;
         $this->translator = $translator;
     }
@@ -58,8 +57,8 @@ class ModulesMigrator
     {
         $optionName = 'multilingualpress_modules';
         $obsoleteModules = $this->_getObsoleteModuleNames();
-        $moduleName = $this->_transformModuleName($mlp2Module->name);
-        $moduleStatus = $this->_transformModuleStatus($mlp2Module->status);
+        $moduleName = $this->_getModuleName($mlp2Module->name);
+        $moduleStatus = $this->_getModuleStatus($mlp2Module->status);
 
         // If obsolete, ignore
         if (in_array($moduleName, $obsoleteModules)) {
@@ -126,6 +125,26 @@ class ModulesMigrator
     }
 
     /**
+     * Retrieves an MLP3 module name for a key.
+     *
+     * @param string $key Module key.
+     *
+     * @return string Name of MLP3 module.
+     *
+     * @throws Throwable If problem retrieving.
+     */
+    protected function _getModuleName(string $key): string
+    {
+        // Mapping exceptional cases
+        $map = $this->_getModuleNameMap();
+        if (isset($map[$key])) {
+            return $map[$key];
+        }
+
+        return $this->_transformModuleName($key);
+    }
+
+    /**
      * Transforms an MLP2 module name to MLP3 format.
      *
      * @param string $name The module name to transform.
@@ -146,6 +165,19 @@ class ModulesMigrator
         return $name;
     }
 
+    /**
+     * Retrieves a map of MLP2 module names to MLP3 module names.
+     *
+     * @return array<string, string> The module name map.
+     *
+     * @throws Throwable If problem retrieving.
+     */
+    protected function _getModuleNameMap(): array
+    {
+        return [
+            'class-Mlp_Redirect_Registration'       => 'redirect',
+        ];
+    }
 
     /**
      * Transforms an MLP2 module status to MLP3 format.
@@ -156,7 +188,7 @@ class ModulesMigrator
      *
      * @throws Throwable If problem transforming.
      */
-    protected function _transformModuleStatus(string $status): bool
+    protected function _getModuleStatus(string $status): bool
     {
         $status = strtolower($status);
 
