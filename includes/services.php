@@ -11,6 +11,7 @@ use Dhii\Di\ContainerAwareCachingContainer;
 use Dhii\I18n\FormatTranslatorInterface;
 use cli\Progress;
 use Dhii\Wp\I18n\FormatTranslator;
+use Inpsyde\MultilingualPress\Database\Table\LanguagesTable;
 use Inpsyde\MultilingualPress2to3\Handler\CompositeHandler;
 use Inpsyde\MultilingualPress2to3\Handler\CompositeProgressHandler;
 use Inpsyde\MultilingualPress2to3\Handler\HandlerInterface;
@@ -46,6 +47,57 @@ return function ( $base_path, $base_url ) {
 
         'wpcli_command_key_mlp2to3_migrate' => 'mlp2to3',
         'filter_is_check_legacy'  => 'multilingualpress.is_check_legacy',
+
+        'table_fields_languages' => function ():array  {
+            return [
+                LanguagesTable::COLUMN_ID => [
+                    'type' => 'bigint',
+                    'typemod' => 'unsigned',
+                    'size' => 20,
+                    'null' => false,
+                    'autoincrement' => true,
+                ],
+                LanguagesTable::COLUMN_ENGLISH_NAME => [
+                    'type' => 'tinytext',
+                ],
+                LanguagesTable::COLUMN_NATIVE_NAME => [
+                    'type' => 'tinytext',
+                ],
+                LanguagesTable::COLUMN_CUSTOM_NAME => [
+                    'type' => 'tinytext',
+                ],
+                LanguagesTable::COLUMN_ISO_639_1_CODE => [
+                    'type' => 'varchar',
+                    'size' => 8,
+                ],
+                LanguagesTable::COLUMN_ISO_639_2_CODE => [
+                    'type' => 'varchar',
+                    'size' => 8,
+                ],
+                LanguagesTable::COLUMN_ISO_639_3_CODE => [
+                    'type' => 'varchar',
+                    'size' => 8,
+                ],
+                LanguagesTable::COLUMN_LOCALE => [
+                    'type' => 'varchar',
+                    'size' => 20,
+                ],
+                LanguagesTable::COLUMN_BCP_47_TAG => [
+                    'type' => 'varchar',
+                    'size' => 20,
+                ],
+                LanguagesTable::COLUMN_RTL => [
+                    'type' => 'tinyint',
+                    'typemod' => 'unsigned',
+                    'size' => 1,
+                    'default' => 0,
+                ],
+            ];
+        },
+
+        'table_keys_languages'           => function ():array {
+            return [LanguagesTable::COLUMN_ID];
+        },
 
         /* The main handler */
         'handler_main' => function (ContainerInterface $c) {
