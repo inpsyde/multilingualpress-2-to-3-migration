@@ -36,7 +36,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-task/mvp": "0.1-alpha1-dev"
+            "dev-task/mvp": "0.1.x-dev"
         }
     }
 }
