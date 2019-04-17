@@ -2,7 +2,7 @@
     "name": "inpsyde/multilingualpress2to3",
     "description": "A WP plugin that allows migrating data from MultilingualPress version 2 to version 3.",
     "type": "wordpress-plugin",
-    "license": "GPL-3.0",
+    "license": "GPL-2.0-or-later",
     "authors": [
         {
             "name": "Anton Ukhanev",
