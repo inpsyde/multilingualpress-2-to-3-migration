@@ -4,6 +4,6 @@ A WP plugin that allows migrating data from MultilingualPress version 2 to versi
 ## Usage
 In the root of your WP installation, run the following command to see all available arguments and flags:
 
-```bash
+```
 wp help mlp2to3
 ```
