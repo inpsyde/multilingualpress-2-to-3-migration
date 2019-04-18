@@ -191,6 +191,9 @@ return function ( $base_path, $base_url ) {
                 'translatable_post_types'      => function (ContainerInterface $c) {
                     return $c->get('handler_translatable_post_types_migration');
                 },
+                'languages'                 => function (ContainerInterface $c) {
+                    return $c->get('handler_languages_migration_steps');
+                },
             ];
         },
 
@@ -267,6 +270,11 @@ return function ( $base_path, $base_url ) {
                 $progress,
                 0 // Everything
             );
+        },
+
+        'handler_languages_migration_steps' => function (ContainerInterface $c): HandlerInterface {
+            return new CompositeHandler([
+            ]);
         },
 
         'progress_bar_factory' => function (ContainerInterface $c) {
