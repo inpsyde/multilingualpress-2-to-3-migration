@@ -12,6 +12,7 @@ use Dhii\I18n\FormatTranslatorInterface;
 use cli\Progress;
 use Dhii\Wp\I18n\FormatTranslator;
 use Inpsyde\MultilingualPress\Database\Table\LanguagesTable;
+use Inpsyde\MultilingualPress2to3\CreateTableHandler;
 use Inpsyde\MultilingualPress2to3\Handler\CompositeHandler;
 use Inpsyde\MultilingualPress2to3\Handler\CompositeProgressHandler;
 use Inpsyde\MultilingualPress2to3\Handler\HandlerInterface;
@@ -48,6 +49,7 @@ return function ( $base_path, $base_url ) {
         'wpcli_command_key_mlp2to3_migrate' => 'mlp2to3',
         'filter_is_check_legacy'  => 'multilingualpress.is_check_legacy',
 
+        'table_name_temp_languages' => 'mlp_languages_h7h2927fg2',
         'table_fields_languages' => function ():array  {
             return [
                 LanguagesTable::COLUMN_ID => [
@@ -274,7 +276,17 @@ return function ( $base_path, $base_url ) {
 
         'handler_languages_migration_steps' => function (ContainerInterface $c): HandlerInterface {
             return new CompositeHandler([
+                $c->get('handler_create_languages_temp_table'),
             ]);
+        },
+
+        'handler_create_languages_temp_table' => function (ContainerInterface $c): HandlerInterface {
+            return new CreateTableHandler(
+                $c->get('wpdb'),
+                $c->get('table_name_temp_languages'),
+                $c->get('table_fields_languages'),
+                $c->get('table_keys_languages')
+            );
         },
 
         'progress_bar_factory' => function (ContainerInterface $c) {
