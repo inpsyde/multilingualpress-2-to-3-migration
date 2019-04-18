@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "98c06869268b109fab367e9d130ba368",
+    "content-hash": "cd51d44f22a102ccf04d5aa1ce6e0033",
     "packages": [
         {
             "name": "dhii/args-list-validation",
@@ -2369,7 +2369,7 @@
             "keywords": [
                 "test"
             ],
-            "time": "2019-04-18T04:49:30+00:00"
+            "time": "2019-04-18 04:49:30"
         },
         {
             "name": "inpsyde/php-coding-standards",
@@ -4012,7 +4012,7 @@
                 "phpcs",
                 "standards"
             ],
-            "time": "2019-04-16T03:35:30+00:00"
+            "time": "2019-04-16 03:35:30"
         },
         {
             "name": "symfony/finder",
@@ -4316,12 +4316,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/wp-cli/wp-cli.git",
-                "reference": "2aed1c398f73a33e7126ea34491adb23e2f973e6"
+                "reference": "adce54265767aba054edbaa045d07c83610183b5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wp-cli/wp-cli/zipball/2aed1c398f73a33e7126ea34491adb23e2f973e6",
-                "reference": "2aed1c398f73a33e7126ea34491adb23e2f973e6",
+                "url": "https://api.github.com/repos/wp-cli/wp-cli/zipball/adce54265767aba054edbaa045d07c83610183b5",
+                "reference": "adce54265767aba054edbaa045d07c83610183b5",
                 "shasum": ""
             },
             "require": {
@@ -4370,7 +4370,7 @@
                 "cli",
                 "wordpress"
             ],
-            "time": "2019-04-17T18:07:56+00:00"
+            "time": "2019-04-18T10:22:16+00:00"
         },
         {
             "name": "wp-coding-standards/wpcs",
@@ -4421,7 +4421,8 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": "^7.0.33"
+        "php": "^7.0.33",
+        "ext-json": "*"
     },
     "platform-dev": [],
     "platform-overrides": {
