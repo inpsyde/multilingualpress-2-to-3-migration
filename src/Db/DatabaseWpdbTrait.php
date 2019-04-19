@@ -4,6 +4,7 @@ namespace Inpsyde\MultilingualPress2to3\Db;
 
 use Exception;
 use Throwable;
+use UnexpectedValueException;
 use wpdb as Wpdb;
 
 /**
@@ -56,12 +57,19 @@ trait DatabaseWpdbTrait
      *
      * @throws Throwable If problem selecting.
      */
-    protected function _select($query, $values = [])
+    protected function _select(string $query, $values = [])
     {
         $db = $this->_getDb();
 
+        // Preparing query
         if (!empty($values)) {
-            $query = $db->prepare($query, $values);
+            $prepared = $db->prepare($query, $values);
+
+            if (!empty($query) && empty($prepared)) {
+                throw new UnexpectedValueException($this->__('Could not prepare query "%1$s"', [$query]));
+            }
+
+            $query = $prepared;
         }
 
         $result = $db->get_results($query, 'OBJECT');
