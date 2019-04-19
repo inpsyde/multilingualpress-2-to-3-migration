@@ -77,7 +77,8 @@ trait DatabaseWpdbTrait
 
         // Error while selecting
         if (empty($result) && !empty($error)) {
-            throw new Exception($error);
+            throw new Exception($this->__('Error selecting with query "%1$s":
+            "%2$s"', [$query, $error]));
         }
 
         return $result;
