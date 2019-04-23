@@ -4,6 +4,7 @@ namespace Inpsyde\MultilingualPress2to3\Db;
 
 use Exception;
 use Throwable;
+use Traversable;
 use UnexpectedValueException;
 use wpdb as Wpdb;
 
@@ -169,6 +170,59 @@ trait DatabaseWpdbTrait
         $query .= ") $charset;";
 
         $this->_alterDb($query);
+    }
+
+    /**
+     * Retrieves a string that represents fields in an SQL statement.
+     *
+     * Automatically quotes identifiers.
+     * Allows an aliase for every field.
+     *
+     * @param array<int|string, string>|object|Traversable $fields A map of field positions to field names.
+     * If a key is an integer, the field will be included as is.
+     * If a key is a string, the key will be used as the field name, and value as alias.
+     * @param bool Whether to quote the source field name, or leave it as is, when aliasing.
+     *
+     * @return string A string of field names usable in a SELECT expression.
+     *
+     * @throws Throwable If problem retrieving.
+     */
+    protected function _getSelectFieldsString($fields, bool $quoteFields = true): string
+    {
+        $parts = [];
+        foreach ($fields as $key => $value) {
+            $parts[] = is_int($key)
+                ? $this->_quoteIdentifier($value)
+                : sprintf(
+                    '%1$s AS %2$s',
+                    $quoteFields ? $this->_quoteIdentifier($key) : $key,
+                    $this->_quoteIdentifier($value)
+                );
+        }
+
+        $string = implode(',', $parts);
+
+        return $string;
+    }
+
+    /**
+     * Quotes the specified identifier for use in an SQL statement.
+     *
+     * @param string $identifier The identifier to quote. A table or field name or alias.
+     * If it contains a period, such as a fully qualified field name e.g. "mytable.my_field",
+     * the two parts will be quoted separately.
+     *
+     * @return string The identifier, quoted.
+     *
+     * @throws Throwable If problem quoting.
+     */
+    protected function _quoteIdentifier(string $identifier): string
+    {
+        if (strpos($identifier, '.')) {
+            $parts = explode('.', $identifier, 2);
+            $identifier = "{$parts[0]}`.`{$parts[1]}";
+        }
+        return "`$identifier`";
     }
 
     /**

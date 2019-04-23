@@ -103,7 +103,19 @@ class RedirectMigrationHandler implements HandlerInterface
         $siteOptionTables = $this->_getSiteOptionsTables();
 
         array_walk($siteOptionTables, function ($value, $key) use (&$selects, $optionName) {
-            $selects[] = "(SELECT `option_value` AS `{$optionName}`, '{$key}' as `site_id` FROM `{$value}` WHERE `option_name` = '{$optionName}')";
+            $fields = (object) [
+                'option_value'  => $optionName,
+            ];
+            $fields->{(string) $key} = 'site_id'; // Otherwise numeric string keys are turned into integers
+            $fieldsString = $this->_getSelectFieldsString($fields, false);
+            $tableName = $value;
+            $selects[] = sprintf(
+                '(SELECT %1$s FROM %2$s WHERE %3$s = "%4$s")',
+                $fieldsString,
+                $this->_quoteIdentifier($tableName),
+                $this->_quoteIdentifier('option_name'),
+                $optionName
+            );
         });
 
         $query = implode("\nUNION\n", $selects);

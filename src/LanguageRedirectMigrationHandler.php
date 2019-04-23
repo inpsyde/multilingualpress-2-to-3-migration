@@ -88,11 +88,21 @@ class LanguageRedirectMigrationHandler implements HandlerInterface
         $optionName = 'mlp_redirect';
         $userOptionsTable = $this->_getTableName('usermeta');
 
-        $query = 'SELECT `user_id`, `meta_value` AS `is_redirect` FROM `%1$s` WHERE `meta_key` = "%2$s"';
-        $params = [$userOptionsTable, $optionName];
+        $fields = [
+            'user_id',
+            'meta_value'         => 'is_redirect',
+        ];
+        $fieldsString = $this->_getSelectFieldsString($fields);
+        $query = 'SELECT %1$s FROM %2$s WHERE %3$s = "%4$s"';
+        $params = [
+            $fieldsString,
+            $this->_quoteIdentifier($userOptionsTable),
+            $this->_quoteIdentifier('meta_key'),
+            $optionName
+        ];
 
         if ($limit) {
-            $query .= ' LIMIT %3$d';
+            $query .= ' LIMIT %5$d';
             $params[] = $limit;
         }
 
