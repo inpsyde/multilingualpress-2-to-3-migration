@@ -113,6 +113,23 @@ return function ( $base_path, $base_url, bool $isDebug ) {
             return [LanguagesTable::COLUMN_ID];
         },
 
+        'mlp3_base_name' => 'multilingualpress/multilingualpress.php',
+
+        'mlp3_base_path' => function (ContainerInterface $c): string {
+            $baseName = $c->get('mlp3_base_name');
+            $pluginsDir = $c->get('plugins_dir');
+            $basePath = "$pluginsDir/$baseName";
+
+            return $basePath;
+        },
+
+        'mlp3_base_dir' => function (ContainerInterface $c): string {
+            $basePath = $c->get('mlp3_base_path');
+            $baseDir = dirname($basePath);
+
+            return $baseDir;
+        },
+
         'index_factory' => function (ContainerInterface $c): callable {
 	        return function ($data, callable $field): ContainerInterface {
 	            return new Index($data, $field);
