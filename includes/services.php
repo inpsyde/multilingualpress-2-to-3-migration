@@ -18,6 +18,7 @@ use Inpsyde\MultilingualPress2to3\FileContents;
 use Inpsyde\MultilingualPress2to3\Handler\CompositeHandler;
 use Inpsyde\MultilingualPress2to3\Handler\CompositeProgressHandler;
 use Inpsyde\MultilingualPress2to3\Handler\HandlerInterface;
+use Inpsyde\MultilingualPress2to3\Index;
 use Inpsyde\MultilingualPress2to3\Json;
 use Inpsyde\MultilingualPress2to3\LanguageRedirectMigrationHandler;
 use Inpsyde\MultilingualPress2to3\Migration\ContentRelationshipMigrator;
@@ -110,6 +111,12 @@ return function ( $base_path, $base_url, bool $isDebug ) {
 
         'table_keys_languages'           => function ():array {
             return [LanguagesTable::COLUMN_ID];
+        },
+
+        'index_factory' => function (ContainerInterface $c): callable {
+	        return function ($data, callable $field): ContainerInterface {
+	            return new Index($data, $field);
+            };
         },
 
         'json_factory' => function (ContainerInterface $c): callable {
