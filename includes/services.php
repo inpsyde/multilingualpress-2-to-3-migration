@@ -145,6 +145,14 @@ return function ( $base_path, $base_url, bool $isDebug ) {
 	        return $string;
         },
 
+        'embedded_languages_json' => function (ContainerInterface $c) {
+	        $string = $c->get('embedded_languages_string');
+            $f = $c->get('json_factory');
+            $json = $f($string);
+
+            return $json;
+        },
+
         'index_factory' => function (ContainerInterface $c): callable {
 	        return function ($data, callable $field): ContainerInterface {
 	            return new Index($data, $field);
