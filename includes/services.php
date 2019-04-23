@@ -130,6 +130,21 @@ return function ( $base_path, $base_url, bool $isDebug ) {
             return $baseDir;
         },
 
+        'embedded_languages_file_path' => function (ContainerInterface $c): string {
+	        $baseDir = $c->get('mlp3_base_dir');
+	        $path = "$baseDir/resources/json/languages-wp.json";
+
+	        return $path;
+        },
+
+        'embedded_languages_string' => function (ContainerInterface $c) {
+	        $path = $c->get('embedded_languages_file_path');
+	        $f = $c->get('file_content_factory');
+	        $string = $f($path);
+
+	        return $string;
+        },
+
         'index_factory' => function (ContainerInterface $c): callable {
 	        return function ($data, callable $field): ContainerInterface {
 	            return new Index($data, $field);
