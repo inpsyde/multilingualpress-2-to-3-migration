@@ -10,9 +10,11 @@ use Dhii\Cache\SimpleCacheInterface;
 use Dhii\Di\ContainerAwareCachingContainer;
 use Dhii\I18n\FormatTranslatorInterface;
 use cli\Progress;
+use Dhii\Util\String\StringableInterface;
 use Dhii\Wp\I18n\FormatTranslator;
 use Inpsyde\MultilingualPress\Database\Table\LanguagesTable;
 use Inpsyde\MultilingualPress2to3\CreateTableHandler;
+use Inpsyde\MultilingualPress2to3\FileContents;
 use Inpsyde\MultilingualPress2to3\Handler\CompositeHandler;
 use Inpsyde\MultilingualPress2to3\Handler\CompositeProgressHandler;
 use Inpsyde\MultilingualPress2to3\Handler\HandlerInterface;
@@ -107,6 +109,13 @@ return function ( $base_path, $base_url, bool $isDebug ) {
 
         'table_keys_languages'           => function ():array {
             return [LanguagesTable::COLUMN_ID];
+        },
+
+        'file_content_factory' => function (ContainerInterface $c): callable {
+	        return function (string $filePath) use ($c):StringableInterface {
+                $isDebug = $c->get('is_debug');
+                return new FileContents($filePath, $isDebug);
+            };
         },
 
         /* The main handler */
