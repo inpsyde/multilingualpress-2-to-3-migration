@@ -153,6 +153,34 @@ return function ( $base_path, $base_url, bool $isDebug ) {
             return $json;
         },
 
+        'embedded_languages' => function (ContainerInterface $c) {
+            $list = $c->get('embedded_languages_json');
+            $key = 'bcp47';
+            $field = function ($item) use ($key) {
+                return $item->type === 'language'
+                    ? $item->{$key}
+                    : null;
+            };
+            $f = $c->get('index_factory');
+            $map = $f($list, $field);
+
+            return $map;
+        },
+
+        'embedded_locales' => function (ContainerInterface $c) {
+            $list = $c->get('embedded_languages_json');
+            $key = 'code';
+            $field = function ($item) use ($key) {
+                return $item->type === 'locale'
+                    ? $item->{$key}
+                    : null;
+            };
+            $f = $c->get('index_factory');
+            $map = $f($list, $field);
+
+            return $map;
+        },
+
         'index_factory' => function (ContainerInterface $c): callable {
 	        return function ($data, callable $field): ContainerInterface {
 	            return new Index($data, $field);
