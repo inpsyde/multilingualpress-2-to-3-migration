@@ -40,6 +40,13 @@ return function ( $base_path, $base_url ) {
 		'base_dir'                => function ( ContainerInterface $c ) {
 			return dirname( $c->get( 'base_path' ) );
 		},
+        'plugins_dir'             => function (ContainerInterface $c) {
+	        $basePath = $c->get('base_path');
+	        $basename = plugin_basename($basePath);
+	        $baseDir = str_replace($basename, '', $basePath);
+
+	        return $baseDir;
+        },
 		'base_url'                => $base_url,
 		'js_path'                 => '/assets/js',
 		'templates_dir'           => '/templates',
