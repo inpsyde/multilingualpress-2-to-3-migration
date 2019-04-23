@@ -68,7 +68,7 @@ class CreateTableHandler implements HandlerInterface
     public function run()
     {
         $this->_createTable(
-            $this->tableName,
+            $this->_getTableName($this->tableName),
             $this->fields,
             $this->primaryKeys
         );
@@ -84,5 +84,18 @@ class CreateTableHandler implements HandlerInterface
     protected function _getDb()
     {
         return $this->db;
+    }
+
+    /**
+     * Retrieves the table name corresponding to the given identifier.
+     *
+     * @param string $name The table identifier.
+     * @return string The table name.
+     *
+     * @throws Throwable If problem retrieving table name.
+     */
+    protected function _getTableName(string $name)
+    {
+        return $this->_getPrefixedTableName($name);
     }
 }
