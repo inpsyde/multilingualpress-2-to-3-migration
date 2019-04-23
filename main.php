@@ -32,7 +32,7 @@ function handler() {
 	if ( is_null( $instance ) ) {
 		$bootstrap = require MLP2TO3_BASE_DIR . '/bootstrap.php';
 
-		$instance = $bootstrap( MLP2TO3_BASE_PATH, plugins_url( '', MLP2TO3_BASE_PATH ) );
+        $instance = $bootstrap(MLP2TO3_BASE_PATH, plugins_url('', MLP2TO3_BASE_PATH), WP_DEBUG);
 	}
 
 	return $instance;

@@ -9,7 +9,7 @@ use Inpsyde\MultilingualPress2to3\Handler\HandlerInterface;
  *
  * @return HandlerInterface
  */
-return function ($appRootPath, $appRootUrl) {
+return function ($appRootPath, $appRootUrl, bool $isDebug) {
     $appRootDir = dirname($appRootPath);
 
     if (file_exists($autoload = "$appRootDir/vendor/autoload.php")) {
@@ -18,7 +18,7 @@ return function ($appRootPath, $appRootUrl) {
 
     $servicesFactory = require_once("$appRootDir/includes/services.php");
     $c = new ContainerAwareCachingContainer(
-        $servicesFactory($appRootPath, $appRootUrl),
+        $servicesFactory($appRootPath, $appRootUrl, $isDebug),
         new MemoryMemoizer()
     );
 

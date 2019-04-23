@@ -33,7 +33,7 @@ use Inpsyde\MultilingualPress2to3\TranslatablePostTypesMigrationHandler;
 use Psr\Container\ContainerInterface;
 use cli\progress\Bar;
 
-return function ( $base_path, $base_url ) {
+return function ( $base_path, $base_url, bool $isDebug ) {
 	return [
 		'version'                 => '[*next-version*]',
 		'base_path'               => $base_path,
@@ -52,6 +52,7 @@ return function ( $base_path, $base_url ) {
 		'templates_dir'           => '/templates',
 		'translations_dir'        => '/languages',
 		'text_domain'             => 'mlp2to3',
+        'is_debug'                => $isDebug,
 
         'wpcli_command_key_mlp2to3_migrate' => 'mlp2to3',
         'filter_is_check_legacy'  => 'multilingualpress.is_check_legacy',
