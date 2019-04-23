@@ -46,7 +46,7 @@ class CreateTableHandler implements HandlerInterface
      * @param Wpdb $db The DB adapter.
      * @param string $tableName The name of the table to create.
      * @param array $fields Fields for the new table. See {@see DatabaseWpdbTrait#_createTable()}.
-     * @param string $primaryKeys A list of field names that make the primary key.
+     * @param array $primaryKeys A list of field names that make the primary key.
      */
     public function __construct(
         Wpdb $db,
