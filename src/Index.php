@@ -142,11 +142,11 @@ class Index implements ContainerInterface, IteratorInterface, Countable
      *
      * @param mixed $item The item to get the ID for.
      *
-     * @return string The ID value.
+     * @return string|null The ID value, or null if ID not found.
      *
      * @throws Throwable If problem retrieving.
      */
-    protected function _getItemId($item): string
+    protected function _getItemId($item)
     {
         $retriever = $this->keyRetriever;
         if (!is_callable($retriever)) {
