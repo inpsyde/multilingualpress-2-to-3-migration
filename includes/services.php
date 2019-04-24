@@ -155,7 +155,7 @@ return function ( $base_path, $base_url, bool $isDebug ) {
 
         'embedded_languages' => function (ContainerInterface $c) {
             $list = $c->get('embedded_languages_json');
-            $key = 'bcp47';
+            $key = 'iso-639-3';
             $field = function ($item) use ($key) {
                 return $item->type === 'language'
                     ? $item->{$key}
@@ -169,7 +169,7 @@ return function ( $base_path, $base_url, bool $isDebug ) {
 
         'embedded_locales' => function (ContainerInterface $c) {
             $list = $c->get('embedded_languages_json');
-            $key = 'code';
+            $key = 'bcp47';
             $field = function ($item) use ($key) {
                 return $item->type === 'locale'
                     ? $item->{$key}
