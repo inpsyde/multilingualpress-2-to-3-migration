@@ -24,7 +24,8 @@ trait DatabaseWpdbTrait
      *
      * @return int|null The inserted row's ID, if applicable; otherwise null;
      *
-     * @throws Throwable If problem inserting.
+     * @throws Exception If problem inserting.
+     * @throws Throwable If problem running method.
      */
     protected function _insert($name, $data)
     {
