@@ -21,11 +21,13 @@ use Inpsyde\MultilingualPress2to3\Handler\HandlerInterface;
 use Inpsyde\MultilingualPress2to3\Index;
 use Inpsyde\MultilingualPress2to3\Json;
 use Inpsyde\MultilingualPress2to3\LanguageRedirectMigrationHandler;
+use Inpsyde\MultilingualPress2to3\LanguagesMigrationHandler;
 use Inpsyde\MultilingualPress2to3\Migration\ContentRelationshipMigrator;
 use Inpsyde\MultilingualPress2to3\IntegrationHandler;
 use Inpsyde\MultilingualPress2to3\MainHandler;
 use Inpsyde\MultilingualPress2to3\MigrateCliCommand;
 use Inpsyde\MultilingualPress2to3\MigrateCliCommandHandler;
+use Inpsyde\MultilingualPress2to3\Migration\LanguageMigrator;
 use Inpsyde\MultilingualPress2to3\Migration\LanguageRedirectMigrator;
 use Inpsyde\MultilingualPress2to3\Migration\ModulesMigrator;
 use Inpsyde\MultilingualPress2to3\Migration\RedirectMigrator;
@@ -385,6 +387,7 @@ return function ( $base_path, $base_url, bool $isDebug ) {
         'handler_languages_migration_steps' => function (ContainerInterface $c): HandlerInterface {
             return new CompositeHandler([
                 $c->get('handler_create_languages_temp_table'),
+                $c->get('handler_languages_migration'),
             ]);
         },
 
@@ -394,6 +397,31 @@ return function ( $base_path, $base_url, bool $isDebug ) {
                 $c->get('table_name_temp_languages'),
                 $c->get('table_fields_languages'),
                 $c->get('table_keys_languages')
+            );
+        },
+
+        'handler_languages_migration' => function (ContainerInterface $c): HandlerInterface {
+            $progress = $c->get('migration_modules_progress');
+            assert($progress instanceof Progress);
+
+            $t = $c->get('translator');
+            assert($t instanceof FormatTranslatorInterface);
+
+            return new LanguagesMigrationHandler(
+                $c->get('migrator_language'),
+                $c->get('wpdb'),
+                $progress,
+                10
+            );
+        },
+
+        'migrator_language' => function (ContainerInterface $c): LanguageMigrator {
+            return new LanguageMigrator(
+                $c->get('wpdb'),
+                $c->get('translator'),
+                $c->get('embedded_locales'),
+                $c->get('embedded_languages'),
+                $c->get('table_name_temp_languages')
             );
         },
 
@@ -486,5 +514,4 @@ return function ( $base_path, $base_url, bool $isDebug ) {
                 $c
             );
         },
-	];
 };
