@@ -174,6 +174,27 @@ trait DatabaseWpdbTrait
     }
 
     /**
+     * Renames a table.
+     *
+     * @param string $sourceName The name of the table to rename.
+     * @param string $targetName The new name.
+     *
+     * @throws Exception If problem renaming.
+     * @throws Throwable If problem running.
+     */
+    protected function _renameTable(string $sourceName, string $targetName)
+    {
+        $query = 'ALTER TABLE %1$s RENAME %2$s';
+        $query = sprintf(
+            $query,
+            $this->_quoteIdentifier($sourceName),
+            $this->_quoteIdentifier($targetName)
+        );
+
+        $this->_query($query);
+    }
+
+    /**
      * Drops a table.
      *
      * @param string $tableName The name of the table to drop.
