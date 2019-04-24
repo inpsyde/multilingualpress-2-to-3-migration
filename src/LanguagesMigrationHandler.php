@@ -115,7 +115,6 @@ class LanguagesMigrationHandler implements HandlerInterface
             'is_rtl',
             'iso_639_1',
             'iso_639_2',
-            'iso_639_3',
             'priority',
             'wp_locale'         => 'locale',
             'http_name'         => 'bcp47',
