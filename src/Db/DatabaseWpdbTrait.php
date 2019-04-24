@@ -174,6 +174,28 @@ trait DatabaseWpdbTrait
     }
 
     /**
+     * Runs a query on the database.
+     *
+     * @param string $query The query to run.
+     *
+     * @return int The number of affected or selected rows if query affects or selects rows;
+     * otherwise, `1`.
+     *
+     * @throws Throwable
+     */
+    protected function _query(string $query)
+    {
+        $db = $this->_getDb();
+        $result = $db->query($query);
+
+        if ($result === false) {
+            throw new Exception($db->last_error);
+        }
+
+        return $result;
+    }
+
+    /**
      * Retrieves a string that represents fields in an SQL statement.
      *
      * Automatically quotes identifiers.
