@@ -157,9 +157,12 @@ return function ( $base_path, $base_url, bool $isDebug ) {
             $list = $c->get('embedded_languages_json');
             $key = 'iso-639-3';
             $field = function ($item) use ($key) {
-                return $item->type === 'language'
-                    ? $item->{$key}
-                    : null;
+                if ($item->type !== 'language' || !property_exists($item, $key)) {
+                    // Item does not have the identifying key
+                    return null;
+                }
+
+                return $item->{$key};
             };
             $f = $c->get('index_factory');
             $map = $f($list, $field);
@@ -171,9 +174,12 @@ return function ( $base_path, $base_url, bool $isDebug ) {
             $list = $c->get('embedded_languages_json');
             $key = 'bcp47';
             $field = function ($item) use ($key) {
-                return $item->type === 'locale'
-                    ? $item->{$key}
-                    : null;
+                if ($item->type !== 'locale' || !property_exists($item, $key)) {
+                    // Item does not have the identifying key
+                    return null;
+                }
+
+                return $item->{$key};
             };
             $f = $c->get('index_factory');
             $map = $f($list, $field);
