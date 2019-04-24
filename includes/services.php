@@ -35,6 +35,8 @@ use Inpsyde\MultilingualPress2to3\Migration\TranslatablePostTypesMigrator;
 use Inpsyde\MultilingualPress2to3\ModulesMigrationHandler;
 use Inpsyde\MultilingualPress2to3\RedirectMigrationHandler;
 use Inpsyde\MultilingualPress2to3\RelationshipsMigrationHandler;
+use Inpsyde\MultilingualPress2to3\RemoveTableHandler;
+use Inpsyde\MultilingualPress2to3\RenameTableHandler;
 use Inpsyde\MultilingualPress2to3\TranslatablePostTypesMigrationHandler;
 use Psr\Container\ContainerInterface;
 use cli\progress\Bar;
@@ -64,6 +66,7 @@ return function ( $base_path, $base_url, bool $isDebug ) {
         'filter_is_check_legacy'  => 'multilingualpress.is_check_legacy',
 
         'table_name_temp_languages' => 'mlp_languages_h7h2927fg2',
+        'table_name_languages' => 'mlp_languages',
         'table_fields_languages' => function ():array  {
             return [
                 LanguagesTable::COLUMN_ID => [
@@ -388,6 +391,7 @@ return function ( $base_path, $base_url, bool $isDebug ) {
             return new CompositeHandler([
                 $c->get('handler_create_languages_temp_table'),
                 $c->get('handler_languages_migration'),
+                $c->get('handler_activate_languages_temp_table')
             ]);
         },
 
@@ -422,6 +426,28 @@ return function ( $base_path, $base_url, bool $isDebug ) {
                 $c->get('embedded_locales'),
                 $c->get('embedded_languages'),
                 $c->get('table_name_temp_languages')
+            );
+        },
+
+        'handler_activate_languages_temp_table' => function (ContainerInterface $c) {
+            return new CompositeHandler([
+                $c->get('handler_remove_languages_table'),
+                $c->get('handler_rename_languages_temp_table'),
+            ]);
+        },
+
+        'handler_remove_languages_table' => function (ContainerInterface $c) {
+            return new RemoveTableHandler(
+                $c->get('wpdb'),
+                $c->get('table_name_languages')
+            );
+        },
+
+        'handler_rename_languages_temp_table' => function (ContainerInterface $c) {
+            return new RenameTableHandler(
+                $c->get('wpdb'),
+                $c->get('table_name_temp_languages'),
+                $c->get('table_name_languages')
             );
         },
 
