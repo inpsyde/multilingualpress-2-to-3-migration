@@ -131,7 +131,7 @@ class Index implements ContainerInterface, IteratorInterface, Countable
                 continue;
             }
 
-            $index[$key] = $items;
+            $index[$key] = $element;
         }
 
         return $index;
