@@ -174,6 +174,25 @@ trait DatabaseWpdbTrait
     }
 
     /**
+     * Drops a table.
+     *
+     * @param string $tableName The name of the table to drop.
+     *
+     * @throws Exception If problem dropping.
+     * @throws Throwable If problem running.
+     */
+    protected function _dropTable(string $tableName)
+    {
+        $query = 'DROP TABLE %1$s';
+        $query = sprintf(
+            $query,
+            $this->_quoteIdentifier($tableName)
+        );
+
+        $this->_query($query);
+    }
+
+    /**
      * Runs a query on the database.
      *
      * @param string $query The query to run.
