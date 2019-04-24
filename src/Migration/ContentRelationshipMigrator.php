@@ -54,11 +54,11 @@ class ContentRelationshipMigrator
     {
         $mlp2Relationship = (array) $mlp2Relationship;
 
-        $sourceBlogId = (int) $mlp2Relationship['ml_source_blogid'];
-        $sourceElementId = (int) $mlp2Relationship['ml_source_elementid'];
-        $destBlogId = (int) $mlp2Relationship['ml_blogid'];
-        $destElementId = (int) $mlp2Relationship['ml_elementid'];
-        $relationshipType = $mlp2Relationship['ml_type'];
+        $sourceBlogId = (int) $mlp2Relationship['source_blog_id'];
+        $sourceElementId = (int) $mlp2Relationship['source_element_id'];
+        $destBlogId = (int) $mlp2Relationship['target_blog_id'];
+        $destElementId = (int) $mlp2Relationship['target_element_id'];
+        $relationshipType = $mlp2Relationship['type'];
         $groupId = $this->_getGroupId(
             $sourceBlogId,
             $sourceElementId,

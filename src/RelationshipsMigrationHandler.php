@@ -82,12 +82,12 @@ class RelationshipsMigrationHandler implements HandlerInterface
         $table = $this->_getTableName('multilingual_linked');
         $limit = $this->_getLimit();
         $fields = $this->_getSelectFieldsString([
-            'ml_id',
-            'ml_source_blogid',
-            'ml_source_elementid',
-            'ml_blogid',
-            'ml_elementid',
-            'ml_type',
+            'ml_id'                 => 'id',
+            'ml_source_blogid'      => 'source_blog_id',
+            'ml_source_elementid'   => 'source_element_id',
+            'ml_blogid'             => 'target_blog_id',
+            'ml_elementid'          => 'target_element_id',
+            'ml_type'               => 'type',
         ]);
         $query = "SELECT {$fields} FROM {$table}";
         $query .= ($limit > 0 ? sprintf(' LIMIT %1$d', abs($limit)) : '');
