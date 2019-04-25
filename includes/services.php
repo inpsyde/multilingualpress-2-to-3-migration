@@ -41,10 +41,20 @@ use Inpsyde\MultilingualPress2to3\TranslatablePostTypesMigrationHandler;
 use Psr\Container\ContainerInterface;
 use cli\progress\Bar;
 
-return function ( $base_path, $base_url, bool $isDebug ) {
-	return [
-		'version'                 => '[*next-version*]',
-		'base_path'               => $base_path,
+/**
+ * @param array $defaults Default values for services.
+ * Expecting the following defaults to be passed from outside
+ *
+ * - 'version'      - The module version number.
+ * - 'root_path'    - Path to the root of the application.
+ * - 'base_path'    - Path to the root of the module.
+ * - 'root_url'     - URL of the application.
+ * - 'base_url'     - URL of the module.
+ * - 'admin_url'    - URL of the admin panel.
+ * - 'is_debug'     - Whether or not in debug mode.
+ */
+return function ( array $defaults ) {
+	return array_merge($defaults, [
 		'base_dir'                => function ( ContainerInterface $c ) {
 			return dirname( $c->get( 'base_path' ) );
 		},
@@ -55,12 +65,17 @@ return function ( $base_path, $base_url, bool $isDebug ) {
 
 	        return $baseDir;
         },
-		'base_url'                => $base_url,
+        'admin_dir'               => function (ContainerInterface $c) {
+            return str_replace(
+                $c->get('root_url') . '/',
+                $c->get('root_path'),
+                $c->get('admin_url')
+            );
+        },
 		'js_path'                 => '/assets/js',
 		'templates_dir'           => '/templates',
 		'translations_dir'        => '/languages',
 		'text_domain'             => 'mlp2to3',
-        'is_debug'                => $isDebug,
 
         'wpcli_command_key_mlp2to3_migrate' => 'mlp2to3',
         'filter_is_check_legacy'  => 'multilingualpress.is_check_legacy',

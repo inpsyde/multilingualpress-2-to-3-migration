@@ -7,10 +7,13 @@ use Inpsyde\MultilingualPress2to3\Handler\HandlerInterface;
 /**
  * The function that bootstraps the application.
  *
+ * @param array $defaults Default configuration for the app.
+ * See services factory definition for required data.
+ *
  * @return HandlerInterface
  */
-return function ($appRootPath, $appRootUrl, bool $isDebug) {
-    $appRootDir = dirname($appRootPath);
+return function (array $defaults) {
+    $appRootDir = dirname($defaults['base_path']);
 
     if (file_exists($autoload = "$appRootDir/vendor/autoload.php")) {
         require_once($autoload);
@@ -18,7 +21,7 @@ return function ($appRootPath, $appRootUrl, bool $isDebug) {
 
     $servicesFactory = require_once("$appRootDir/includes/services.php");
     $c = new ContainerAwareCachingContainer(
-        $servicesFactory($appRootPath, $appRootUrl, $isDebug),
+        $servicesFactory($defaults),
         new MemoryMemoizer()
     );
 

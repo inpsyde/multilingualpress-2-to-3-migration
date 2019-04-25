@@ -32,8 +32,16 @@ function handler() {
 	if ( is_null( $instance ) ) {
 		$bootstrap = require MLP2TO3_BASE_DIR . '/bootstrap.php';
 
-        $instance = $bootstrap(MLP2TO3_BASE_PATH, plugins_url('', MLP2TO3_BASE_PATH), WP_DEBUG);
-	}
+        $instance = $bootstrap([
+            'version'           => '[*next-version*]',
+            'root_path'         => ABSPATH,
+            'base_path'         => MLP2TO3_BASE_PATH,
+            'root_url'          => get_bloginfo('url'),
+            'base_url'          => plugins_url('', MLP2TO3_BASE_PATH),
+            'admin_url'         => get_admin_url(),
+            'is_debug'          => WP_DEBUG,
+        ]);
+    }
 
 	return $instance;
 }
