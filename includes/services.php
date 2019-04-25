@@ -556,4 +556,5 @@ return function ( array $defaults ) {
             );
         },
     ];
+    ]);
 };
