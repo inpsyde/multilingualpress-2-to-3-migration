@@ -540,4 +540,5 @@ return function ( $base_path, $base_url, bool $isDebug ) {
                 $c
             );
         },
+    ];
 };
