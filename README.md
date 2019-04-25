@@ -7,3 +7,9 @@ In the root of your WP installation, run the following command to see all availa
 ```
 wp help mlp2to3
 ```
+
+It is a *requirement* that MLP3 is active during migration:
+
+- It assumes that the tables to migrate the data into have already been created.
+- It uses some info exposed by MLP3 classes:
+    * Languages table structure, to create the temporary table.
