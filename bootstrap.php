@@ -25,6 +25,9 @@ return function (array $defaults) {
         new MemoryMemoizer()
     );
 
+    $adminDir = $c->get('admin_dir');
+    require_once "$adminDir/includes/upgrade.php";
+
     $handler = $c->get('handler_main');
     assert($handler instanceof HandlerInterface);
 
