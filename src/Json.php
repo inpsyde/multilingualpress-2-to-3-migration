@@ -123,13 +123,13 @@ class Json implements
     /**
      * Retrieves a value for the specified key.
      *
-     * @param string $key The key to retrieve the value for.
+     * @param string|int $key The key to retrieve the value for.
      *
      * @return mixed The key's value.
      *
      * @throws Throwable If problem retrieving.
      */
-    protected function _getKey(string $key)
+    protected function _getKey($key)
     {
         $this->_ensureDecoded();
 
@@ -139,13 +139,13 @@ class Json implements
     /**
      * Determines whether a value exists for a specified key.
      *
-     * @param string $key The key to check for.
+     * @param string|int $key The key to check for.
      *
      * @return bool True if a value for the specified key exists; false otherwise.
      *
      * @throws Throwable If problem checking.
      */
-    protected function _hasKey(string $key): bool
+    protected function _hasKey($key): bool
     {
         $this->_ensureDecoded();
 
@@ -171,11 +171,11 @@ class Json implements
     /**
      * Removes the specified key.
      *
-     * @param string $key The key to remove.
+     * @param string|int $key The key to remove.
      *
      * @throws Throwable If problem removing.
      */
-    protected function _unsetKey(string $key)
+    protected function _unsetKey($key)
     {
         $this->_ensureDecoded();
 
