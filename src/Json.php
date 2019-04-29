@@ -43,7 +43,8 @@ use Throwable;
 class Json implements
     ArrayAccess,
     BaseContainerInterface,
-    IteratorInterface
+    IteratorInterface,
+    Stringable
 {
     use IteratorTrait;
 
