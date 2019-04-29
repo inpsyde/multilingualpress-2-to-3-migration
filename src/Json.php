@@ -263,6 +263,16 @@ class Json implements
         }
     }
 
+    public function __get($name)
+    {
+        return $this->_getKey($name);
+    }
+
+    public function __set($name, $value)
+    {
+        $this->_setKey($name, $value);
+    }
+
     /**
      * {@inheritdoc}
      */
