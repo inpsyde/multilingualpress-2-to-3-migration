@@ -246,7 +246,9 @@ class Json implements
             $this->string = json_encode($this->object);
         }
 
-        return $this->string;
+        $string = $this->_normalizeString($this->string);
+
+        return $string;
     }
 
     /**
