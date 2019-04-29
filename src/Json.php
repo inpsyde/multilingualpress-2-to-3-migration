@@ -192,7 +192,7 @@ class Json implements
      */
     protected function _setString($string)
     {
-        if (!is_string($string) || !is_null($string)) {
+        if (!is_string($string) && !is_null($string)) {
             throw $this->_createInvalidArgumentException($this->__('String must be a valid string or null'), null, null, $string);
         }
 
