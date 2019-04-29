@@ -199,11 +199,11 @@ class LanguageMigrator
             $lang = $this->_getLanguageForSource($sourceLang->bcp47);
 
             foreach ($sourceLang as $key => $value) {
-                if (!property_exists($lang, '$key')) {
+                if (!property_exists($lang, $key)) {
                     continue;
                 }
 
-                if (!$lang->{$key} === $value) {
+                if ($lang->{$key} !== $value) {
                     return false;
                 }
             }
