@@ -430,7 +430,7 @@ return function ( array $defaults ) {
                 $c->get('migrator_language'),
                 $c->get('wpdb'),
                 $progress,
-                10
+                0
             );
         },
 
