@@ -185,6 +185,25 @@ class LanguageMigrator
     }
 
     /**
+     * Retrieve a destination language key for a source language key.
+     *
+     * @param string $sourceLangKey The source language key.
+     * @return string The destination language key.
+     */
+    protected function _getDestinationLangKey(string $sourceLangKey): string
+    {
+        $map = [
+            'bcp47'             => 'http_code',
+        ];
+
+        if (array_key_exists($sourceLangKey, $map)) {
+            return $map[$sourceLangKey];
+        }
+
+        return $sourceLangKey;
+    }
+
+    /**
      * Determines whether there is a target entry that corresponds to the given source entry.
      *
      * @param object $sourceLang An object representing a source language entry.
@@ -199,11 +218,13 @@ class LanguageMigrator
             $lang = $this->_getLanguageForSource($sourceLang->bcp47);
 
             foreach ($sourceLang as $key => $value) {
-                if (!property_exists($lang, $key)) {
+                $destKey = $this->_getDestinationLangKey($key);
+
+                if (!property_exists($lang, $destKey)) {
                     continue;
                 }
 
-                if ($lang->{$key} !== $value) {
+                if ($lang->{$destKey} !== $value) {
                     return false;
                 }
             }
