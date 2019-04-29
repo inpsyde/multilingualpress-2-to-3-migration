@@ -40,7 +40,10 @@ use Throwable;
  *
  * @package MultilingualPress2to3
  */
-class Json implements ArrayAccess, BaseContainerInterface, IteratorInterface
+class Json implements
+    ArrayAccess,
+    BaseContainerInterface,
+    IteratorInterface
 {
     use IteratorTrait;
 
