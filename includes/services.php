@@ -31,12 +31,14 @@ use Inpsyde\MultilingualPress2to3\Migration\LanguageMigrator;
 use Inpsyde\MultilingualPress2to3\Migration\LanguageRedirectMigrator;
 use Inpsyde\MultilingualPress2to3\Migration\ModulesMigrator;
 use Inpsyde\MultilingualPress2to3\Migration\RedirectMigrator;
+use Inpsyde\MultilingualPress2to3\Migration\SiteLanguageMigrator;
 use Inpsyde\MultilingualPress2to3\Migration\TranslatablePostTypesMigrator;
 use Inpsyde\MultilingualPress2to3\ModulesMigrationHandler;
 use Inpsyde\MultilingualPress2to3\RedirectMigrationHandler;
 use Inpsyde\MultilingualPress2to3\RelationshipsMigrationHandler;
 use Inpsyde\MultilingualPress2to3\RemoveTableHandler;
 use Inpsyde\MultilingualPress2to3\RenameTableHandler;
+use Inpsyde\MultilingualPress2to3\SiteLanguagesMigrationHandler;
 use Inpsyde\MultilingualPress2to3\TranslatablePostTypesMigrationHandler;
 use Psr\Container\ContainerInterface;
 use cli\progress\Bar;
@@ -324,6 +326,9 @@ return function ( array $defaults ) {
                 'languages'                 => function (ContainerInterface $c) {
                     return $c->get('handler_languages_migration_steps');
                 },
+                'site_languages'                 => function (ContainerInterface $c) {
+                    return $c->get('handler_site_languages_migration');
+                },
             ];
         },
 
@@ -434,6 +439,23 @@ return function ( array $defaults ) {
             );
         },
 
+        'handler_site_languages_migration' => function (ContainerInterface $c): HandlerInterface {
+            $siteSettingsOptionName = 'inpsyde_multilingual';
+            $migrator = $c->get('migrator_site_language');
+            $progress = $c->get('migration_modules_progress');
+            assert($progress instanceof Progress);
+            $handler = new SiteLanguagesMigrationHandler(
+                $migrator,
+                $c->get('wpdb'),
+                $progress,
+                0,
+                $c->get('main_site_id'),
+                $siteSettingsOptionName
+            );
+
+            return $handler;
+        },
+
         'migrator_language' => function (ContainerInterface $c): LanguageMigrator {
             return new LanguageMigrator(
                 $c->get('wpdb'),
@@ -442,6 +464,18 @@ return function ( array $defaults ) {
                 $c->get('embedded_languages'),
                 $c->get('table_name_temp_languages')
             );
+        },
+
+        'migrator_site_language' => function (ContainerInterface $c): SiteLanguageMigrator {
+            $siteSetingsOptionName = 'multilingualpress_site_settings';
+            $migrator = new SiteLanguageMigrator(
+                $c->get('wpdb'),
+                $c->get('translator'),
+                $c->get('main_site_id'),
+                $siteSetingsOptionName
+            );
+
+            return $migrator;
         },
 
         'handler_activate_languages_temp_table' => function (ContainerInterface $c) {
