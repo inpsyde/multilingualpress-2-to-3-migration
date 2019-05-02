@@ -37,4 +37,17 @@ In the root of your WP installation, run the following command to see all availa
 wp help mlp2to3
 ```
 
+## Known Limitations
+
+1. When migrating the language repository, most languages will be migrated.
+
+    Ideally, only the custom (modified) languages would be migrated. However,
+    in the current state it is not possible to determine which languages are
+    different from their defaults. Due to inconsistencies between language
+    defaults in MLP2 vs MLP3, the best possible comparison strategy determines
+    most MLP2 languages to be different from those in MLP3 defaults. This
+    results in the custom languages being migrated, but also over a hundred
+    others.
+
+
 [`inpsyde/multilingualpress@eebfc1b`]: https://bitbucket.org/inpsyde/multilingualpress/commits/eebfc1b9caba54e028afc491fd3005d722a89995
