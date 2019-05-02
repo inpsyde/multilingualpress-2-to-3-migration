@@ -43,6 +43,9 @@ function handler()
             'base_url'          => plugins_url('', MLP2TO3_BASE_PATH),
             'admin_url'         => get_admin_url(),
             'is_debug'          => WP_DEBUG,
+            'main_site_id'      => (defined('BLOG_ID_CURRENT_SITE')
+                    ? (int) BLOG_ID_CURRENT_SITE
+                    : 1),
         ]);
     }
 
