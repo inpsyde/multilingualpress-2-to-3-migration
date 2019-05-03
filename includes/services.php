@@ -10,16 +10,24 @@ use Dhii\Cache\SimpleCacheInterface;
 use Dhii\Di\ContainerAwareCachingContainer;
 use Dhii\I18n\FormatTranslatorInterface;
 use cli\Progress;
+use Dhii\Util\String\StringableInterface;
 use Dhii\Wp\I18n\FormatTranslator;
+use Inpsyde\MultilingualPress\Database\Table\LanguagesTable;
+use Inpsyde\MultilingualPress2to3\CreateTableHandler;
+use Inpsyde\MultilingualPress2to3\FileContents;
 use Inpsyde\MultilingualPress2to3\Handler\CompositeHandler;
 use Inpsyde\MultilingualPress2to3\Handler\CompositeProgressHandler;
 use Inpsyde\MultilingualPress2to3\Handler\HandlerInterface;
+use Inpsyde\MultilingualPress2to3\Index;
+use Inpsyde\MultilingualPress2to3\Json;
 use Inpsyde\MultilingualPress2to3\LanguageRedirectMigrationHandler;
+use Inpsyde\MultilingualPress2to3\LanguagesMigrationHandler;
 use Inpsyde\MultilingualPress2to3\Migration\ContentRelationshipMigrator;
 use Inpsyde\MultilingualPress2to3\IntegrationHandler;
 use Inpsyde\MultilingualPress2to3\MainHandler;
 use Inpsyde\MultilingualPress2to3\MigrateCliCommand;
 use Inpsyde\MultilingualPress2to3\MigrateCliCommandHandler;
+use Inpsyde\MultilingualPress2to3\Migration\LanguageMigrator;
 use Inpsyde\MultilingualPress2to3\Migration\LanguageRedirectMigrator;
 use Inpsyde\MultilingualPress2to3\Migration\ModulesMigrator;
 use Inpsyde\MultilingualPress2to3\Migration\RedirectMigrator;
@@ -27,25 +35,184 @@ use Inpsyde\MultilingualPress2to3\Migration\TranslatablePostTypesMigrator;
 use Inpsyde\MultilingualPress2to3\ModulesMigrationHandler;
 use Inpsyde\MultilingualPress2to3\RedirectMigrationHandler;
 use Inpsyde\MultilingualPress2to3\RelationshipsMigrationHandler;
+use Inpsyde\MultilingualPress2to3\RemoveTableHandler;
+use Inpsyde\MultilingualPress2to3\RenameTableHandler;
 use Inpsyde\MultilingualPress2to3\TranslatablePostTypesMigrationHandler;
 use Psr\Container\ContainerInterface;
 use cli\progress\Bar;
 
-return function ( $base_path, $base_url ) {
+return function ( $base_path, $base_url, bool $isDebug ) {
 	return [
 		'version'                 => '[*next-version*]',
 		'base_path'               => $base_path,
 		'base_dir'                => function ( ContainerInterface $c ) {
 			return dirname( $c->get( 'base_path' ) );
 		},
+        'plugins_dir'             => function (ContainerInterface $c) {
+	        $basePath = $c->get('base_path');
+	        $basename = plugin_basename($basePath);
+	        $baseDir = str_replace($basename, '', $basePath);
+
+	        return $baseDir;
+        },
 		'base_url'                => $base_url,
 		'js_path'                 => '/assets/js',
 		'templates_dir'           => '/templates',
 		'translations_dir'        => '/languages',
 		'text_domain'             => 'mlp2to3',
+        'is_debug'                => $isDebug,
 
         'wpcli_command_key_mlp2to3_migrate' => 'mlp2to3',
         'filter_is_check_legacy'  => 'multilingualpress.is_check_legacy',
+
+        'table_name_temp_languages' => 'mlp_languages_h7h2927fg2',
+        'table_name_languages' => 'mlp_languages',
+        'table_fields_languages' => function ():array  {
+            return [
+                LanguagesTable::COLUMN_ID => [
+                    'type' => 'bigint',
+                    'typemod' => 'unsigned',
+                    'size' => 20,
+                    'null' => false,
+                    'autoincrement' => true,
+                ],
+                LanguagesTable::COLUMN_ENGLISH_NAME => [
+                    'type' => 'tinytext',
+                ],
+                LanguagesTable::COLUMN_NATIVE_NAME => [
+                    'type' => 'tinytext',
+                ],
+                LanguagesTable::COLUMN_CUSTOM_NAME => [
+                    'type' => 'tinytext',
+                ],
+                LanguagesTable::COLUMN_ISO_639_1_CODE => [
+                    'type' => 'varchar',
+                    'size' => 8,
+                ],
+                LanguagesTable::COLUMN_ISO_639_2_CODE => [
+                    'type' => 'varchar',
+                    'size' => 8,
+                ],
+                LanguagesTable::COLUMN_ISO_639_3_CODE => [
+                    'type' => 'varchar',
+                    'size' => 8,
+                ],
+                LanguagesTable::COLUMN_LOCALE => [
+                    'type' => 'varchar',
+                    'size' => 20,
+                ],
+                LanguagesTable::COLUMN_BCP_47_TAG => [
+                    'type' => 'varchar',
+                    'size' => 20,
+                ],
+                LanguagesTable::COLUMN_RTL => [
+                    'type' => 'tinyint',
+                    'typemod' => 'unsigned',
+                    'size' => 1,
+                    'default' => 0,
+                ],
+            ];
+        },
+
+        'table_keys_languages'           => function ():array {
+            return [LanguagesTable::COLUMN_ID];
+        },
+
+        'mlp3_base_name' => 'multilingualpress/multilingualpress.php',
+
+        'mlp3_base_path' => function (ContainerInterface $c): string {
+            $baseName = $c->get('mlp3_base_name');
+            $pluginsDir = $c->get('plugins_dir');
+            $basePath = "$pluginsDir/$baseName";
+
+            return $basePath;
+        },
+
+        'mlp3_base_dir' => function (ContainerInterface $c): string {
+            $basePath = $c->get('mlp3_base_path');
+            $baseDir = dirname($basePath);
+
+            return $baseDir;
+        },
+
+        'embedded_languages_file_path' => function (ContainerInterface $c): string {
+	        $baseDir = $c->get('mlp3_base_dir');
+	        $path = "$baseDir/resources/json/languages-wp.json";
+
+	        return $path;
+        },
+
+        'embedded_languages_string' => function (ContainerInterface $c) {
+	        $path = $c->get('embedded_languages_file_path');
+	        $f = $c->get('file_content_factory');
+	        $string = $f($path);
+
+	        return $string;
+        },
+
+        'embedded_languages_json' => function (ContainerInterface $c) {
+	        $string = $c->get('embedded_languages_string');
+            $f = $c->get('json_factory');
+            $json = $f($string);
+
+            return $json;
+        },
+
+        'embedded_languages' => function (ContainerInterface $c) {
+            $list = $c->get('embedded_languages_json');
+            $key = 'iso-639-3';
+            $field = function ($item) use ($key) {
+                if ($item->type !== 'language' || !property_exists($item, $key)) {
+                    // Item does not have the identifying key
+                    return null;
+                }
+
+                return $item->{$key};
+            };
+            $f = $c->get('index_factory');
+            $map = $f($list, $field);
+
+            return $map;
+        },
+
+        'embedded_locales' => function (ContainerInterface $c) {
+            $list = $c->get('embedded_languages_json');
+            $key = 'bcp47';
+            $field = function ($item) use ($key) {
+                if ($item->type !== 'locale' || !property_exists($item, $key)) {
+                    // Item does not have the identifying key
+                    return null;
+                }
+
+                return $item->{$key};
+            };
+            $f = $c->get('index_factory');
+            $map = $f($list, $field);
+
+            return $map;
+        },
+
+        'index_factory' => function (ContainerInterface $c): callable {
+	        return function ($data, callable $field): ContainerInterface {
+	            return new Index($data, $field);
+            };
+        },
+
+        'json_factory' => function (ContainerInterface $c): callable {
+
+            return function ($json) use ($c) {
+                $isDebug = $c->get('is_debug');
+
+                return new Json($json, $isDebug);
+            };
+        },
+
+        'file_content_factory' => function (ContainerInterface $c): callable {
+	        return function (string $filePath) use ($c):StringableInterface {
+                $isDebug = $c->get('is_debug');
+                return new FileContents($filePath, $isDebug);
+            };
+        },
 
         /* The main handler */
         'handler_main' => function (ContainerInterface $c) {
@@ -139,6 +306,9 @@ return function ( $base_path, $base_url ) {
                 'translatable_post_types'      => function (ContainerInterface $c) {
                     return $c->get('handler_translatable_post_types_migration');
                 },
+                'languages'                 => function (ContainerInterface $c) {
+                    return $c->get('handler_languages_migration_steps');
+                },
             ];
         },
 
@@ -214,6 +384,70 @@ return function ( $base_path, $base_url ) {
                 $c->get('wpdb'),
                 $progress,
                 0 // Everything
+            );
+        },
+
+        'handler_languages_migration_steps' => function (ContainerInterface $c): HandlerInterface {
+            return new CompositeHandler([
+                $c->get('handler_create_languages_temp_table'),
+                $c->get('handler_languages_migration'),
+                $c->get('handler_activate_languages_temp_table')
+            ]);
+        },
+
+        'handler_create_languages_temp_table' => function (ContainerInterface $c): HandlerInterface {
+            return new CreateTableHandler(
+                $c->get('wpdb'),
+                $c->get('table_name_temp_languages'),
+                $c->get('table_fields_languages'),
+                $c->get('table_keys_languages')
+            );
+        },
+
+        'handler_languages_migration' => function (ContainerInterface $c): HandlerInterface {
+            $progress = $c->get('migration_modules_progress');
+            assert($progress instanceof Progress);
+
+            $t = $c->get('translator');
+            assert($t instanceof FormatTranslatorInterface);
+
+            return new LanguagesMigrationHandler(
+                $c->get('migrator_language'),
+                $c->get('wpdb'),
+                $progress,
+                10
+            );
+        },
+
+        'migrator_language' => function (ContainerInterface $c): LanguageMigrator {
+            return new LanguageMigrator(
+                $c->get('wpdb'),
+                $c->get('translator'),
+                $c->get('embedded_locales'),
+                $c->get('embedded_languages'),
+                $c->get('table_name_temp_languages')
+            );
+        },
+
+        'handler_activate_languages_temp_table' => function (ContainerInterface $c) {
+            return new CompositeHandler([
+                $c->get('handler_remove_languages_table'),
+                $c->get('handler_rename_languages_temp_table'),
+            ]);
+        },
+
+        'handler_remove_languages_table' => function (ContainerInterface $c) {
+            return new RemoveTableHandler(
+                $c->get('wpdb'),
+                $c->get('table_name_languages')
+            );
+        },
+
+        'handler_rename_languages_temp_table' => function (ContainerInterface $c) {
+            return new RenameTableHandler(
+                $c->get('wpdb'),
+                $c->get('table_name_temp_languages'),
+                $c->get('table_name_languages')
             );
         },
 
@@ -306,5 +540,5 @@ return function ( $base_path, $base_url ) {
                 $c
             );
         },
-	];
+    ];
 };

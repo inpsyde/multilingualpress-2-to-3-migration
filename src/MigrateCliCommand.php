@@ -82,7 +82,7 @@ class MigrateCliCommand
             $handler->run();
         } catch (Exception $e) {
             $this->_outputError($e->getMessage());
-            $this->_outputDebug($e->getTraceAsString());
+            $this->_outputDebug((string) $e);
             $this->_exit(1);
         }
 

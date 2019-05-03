@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "511302735f3f8210e6c2d6c8b1b3ce91",
+    "content-hash": "2a85da87a6bf5546c0796ddfc84776f7",
     "packages": [
         {
             "name": "dhii/args-list-validation",
@@ -2216,12 +2216,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Codeception/Codeception.git",
-                "reference": "40f7393ee1daa2588279b21accb5e2fe7340744f"
+                "reference": "6df9679eb540a155bae7951752c535cb18aea95a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Codeception/Codeception/zipball/40f7393ee1daa2588279b21accb5e2fe7340744f",
-                "reference": "40f7393ee1daa2588279b21accb5e2fe7340744f",
+                "url": "https://api.github.com/repos/Codeception/Codeception/zipball/6df9679eb540a155bae7951752c535cb18aea95a",
+                "reference": "6df9679eb540a155bae7951752c535cb18aea95a",
                 "shasum": ""
             },
             "require": {
@@ -2300,7 +2300,7 @@
                 "functional testing",
                 "unit testing"
             ],
-            "time": "2019-04-08T10:58:16+00:00"
+            "time": "2019-04-24T11:57:16+00:00"
         },
         {
             "name": "codeception/phpunit-wrapper",
@@ -2618,12 +2618,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/guzzle.git",
-                "reference": "fa745406c2f48210693ba05f11280a1473037b2f"
+                "reference": "bf595424e4d442a190582e088985dc835a789071"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/fa745406c2f48210693ba05f11280a1473037b2f",
-                "reference": "fa745406c2f48210693ba05f11280a1473037b2f",
+                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/bf595424e4d442a190582e088985dc835a789071",
+                "reference": "bf595424e4d442a190582e088985dc835a789071",
                 "shasum": ""
             },
             "require": {
@@ -2676,7 +2676,7 @@
                 "rest",
                 "web service"
             ],
-            "time": "2019-02-26T17:21:14+00:00"
+            "time": "2019-04-15T08:22:37+00:00"
         },
         {
             "name": "guzzlehttp/promises",
@@ -2806,12 +2806,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hamcrest/hamcrest-php.git",
-                "reference": "a8c1c7b982c989ad16c8f17f1834fa5df744b689"
+                "reference": "c0436bf63689fc334f67ccaa5e17458af9700b42"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hamcrest/hamcrest-php/zipball/a8c1c7b982c989ad16c8f17f1834fa5df744b689",
-                "reference": "a8c1c7b982c989ad16c8f17f1834fa5df744b689",
+                "url": "https://api.github.com/repos/hamcrest/hamcrest-php/zipball/c0436bf63689fc334f67ccaa5e17458af9700b42",
+                "reference": "c0436bf63689fc334f67ccaa5e17458af9700b42",
                 "shasum": ""
             },
             "require": {
@@ -2824,7 +2824,7 @@
             },
             "require-dev": {
                 "phpunit/php-file-iterator": "^1.4",
-                "phpunit/phpunit": ">=4.8.35 <5|>=5.4.3 <6",
+                "phpunit/phpunit": "^4.8.36 || ^5.7 || ^6.5 || ^7.0",
                 "satooshi/php-coveralls": "^1.0"
             },
             "type": "library",
@@ -2846,7 +2846,7 @@
             "keywords": [
                 "test"
             ],
-            "time": "2018-11-01T08:19:18+00:00"
+            "time": "2019-04-18T04:49:30+00:00"
         },
         {
             "name": "hoa/consistency",
@@ -5088,12 +5088,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/squizlabs/PHP_CodeSniffer.git",
-                "reference": "0137b38d21111766b90fff5dfe1f9561c2126d98"
+                "reference": "1d7c6576a578fb57723c8c0fbc716cb88dae4f13"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/0137b38d21111766b90fff5dfe1f9561c2126d98",
-                "reference": "0137b38d21111766b90fff5dfe1f9561c2126d98",
+                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/1d7c6576a578fb57723c8c0fbc716cb88dae4f13",
+                "reference": "1d7c6576a578fb57723c8c0fbc716cb88dae4f13",
                 "shasum": ""
             },
             "require": {
@@ -5131,7 +5131,7 @@
                 "phpcs",
                 "standards"
             ],
-            "time": "2019-04-11T00:34:24+00:00"
+            "time": "2019-04-16T03:35:30+00:00"
         },
         {
             "name": "symfony/browser-kit",
@@ -5271,12 +5271,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/contracts.git",
-                "reference": "2ae87c20fb85e5f71af65adfe39cde9e09a72ed2"
+                "reference": "c96781d350bcf402f3ee578c4d9c7f0d2e1e4605"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/contracts/zipball/2ae87c20fb85e5f71af65adfe39cde9e09a72ed2",
-                "reference": "2ae87c20fb85e5f71af65adfe39cde9e09a72ed2",
+                "url": "https://api.github.com/repos/symfony/contracts/zipball/c96781d350bcf402f3ee578c4d9c7f0d2e1e4605",
+                "reference": "c96781d350bcf402f3ee578c4d9c7f0d2e1e4605",
                 "shasum": ""
             },
             "require": {
@@ -5334,7 +5334,7 @@
                 "interoperability",
                 "standards"
             ],
-            "time": "2019-04-07T08:26:05+00:00"
+            "time": "2019-04-15T17:24:46+00:00"
         },
         {
             "name": "symfony/css-selector",
@@ -6042,22 +6042,22 @@
         },
         {
             "name": "wp-cli/wp-cli",
-            "version": "dev-master",
+            "version": "v2.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/wp-cli/wp-cli.git",
-                "reference": "5ef52c8f93d73d63233945310a73f6a6106da1fc"
+                "reference": "193f08f48585326bc1f1648349201531eeda2ee5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wp-cli/wp-cli/zipball/5ef52c8f93d73d63233945310a73f6a6106da1fc",
-                "reference": "5ef52c8f93d73d63233945310a73f6a6106da1fc",
+                "url": "https://api.github.com/repos/wp-cli/wp-cli/zipball/193f08f48585326bc1f1648349201531eeda2ee5",
+                "reference": "193f08f48585326bc1f1648349201531eeda2ee5",
                 "shasum": ""
             },
             "require": {
                 "ext-curl": "*",
                 "mustache/mustache": "~2.4",
-                "php": ">=5.4",
+                "php": "^5.4 || ^7.0",
                 "rmccue/requests": "~1.6",
                 "symfony/finder": ">2.7",
                 "wp-cli/mustangostang-spyc": "^0.6.3",
@@ -6069,7 +6069,7 @@
                 "wp-cli/entity-command": "^1.2 || ^2",
                 "wp-cli/extension-command": "^1.1 || ^2",
                 "wp-cli/package-command": "^1 || ^2",
-                "wp-cli/wp-cli-tests": "^2.0.8"
+                "wp-cli/wp-cli-tests": "^2.1"
             },
             "suggest": {
                 "ext-readline": "Include for a better --prompt implementation",
@@ -6100,7 +6100,7 @@
                 "cli",
                 "wordpress"
             ],
-            "time": "2019-04-11T12:29:48+00:00"
+            "time": "2019-04-25T05:38:33+00:00"
         },
         {
             "name": "wp-coding-standards/wpcs",
@@ -6151,7 +6151,8 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": "^7.0.33"
+        "php": "^7.0.33",
+        "ext-json": "*"
     },
     "platform-dev": []
 }

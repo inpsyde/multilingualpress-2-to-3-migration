@@ -55,11 +55,27 @@ class RedirectMigrator
     public function migrate($mlp2Redirect)
     {
         $optionName = 'multilingualpress_redirect';
-        $siteId = $mlp2Redirect->site_id;
+        $siteId = (int) $mlp2Redirect->site_id;
         $value = $mlp2Redirect->inpsyde_multilingual_redirect;
-        $result = update_blog_option($siteId, $optionName, $value);
+        $this->_updateBlogOption($siteId, $optionName, $value);
+    }
 
-        if (!$result) {
+    /**
+     * Updates an option for a particular blog.
+     *
+     * @param int $siteId The ID of the blog to update the option for.
+     * @param string $optionName The name of the option to update.
+     * @param mixed $value The value to update the option to.
+     *
+     * @throws UnexpectedValueException If option value could not be written.
+     * @throws Throwable If problem updating.
+     */
+    protected function _updateBlogOption(int $siteId, string $optionName, $value)
+    {
+        update_blog_option($siteId, $optionName, $value);
+        $newValue = get_blog_option($siteId, $optionName);
+
+        if (!($newValue === $value)) {
             throw new UnexpectedValueException(
                 $this->__(
                     'Blog option "%1$s" in site "%2$s" could not be updated to value "%3$s"',

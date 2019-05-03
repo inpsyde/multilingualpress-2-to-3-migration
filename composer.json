@@ -2,7 +2,7 @@
     "name": "inpsyde/multilingualpress2to3",
     "description": "A WP plugin that allows migrating data from MultilingualPress version 2 to version 3.",
     "type": "wordpress-plugin",
-    "license": "GPLv3",
+    "license": "GPL-2.0-or-later",
     "authors": [
         {
             "name": "Anton Ukhanev",
@@ -12,11 +12,13 @@
     "minimum-stability": "dev",
     "require": {
         "php": "^7.0.33",
+        "ext-json": "*",
         "psr/container": "^1.0",
         "dhii/di": "^0.2-alpha1",
         "dhii/memoize-memory": "^0.2-alpha1",
         "dhii/i18n-interface": "^0.2",
-        "dhii/wp-i18n": "dev-develop"
+        "dhii/wp-i18n": "dev-develop",
+        "dhii/stringable-interface": "^0.1"
     },
     "require-dev": {
         "inpsyde/php-coding-standards": "^0.13",
@@ -39,7 +41,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "0.1-alpha1"
+            "dev-task/mvp": "0.1.x-dev"
         }
     }
 }

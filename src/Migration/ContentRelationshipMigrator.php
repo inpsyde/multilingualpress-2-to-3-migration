@@ -54,11 +54,11 @@ class ContentRelationshipMigrator
     {
         $mlp2Relationship = (array) $mlp2Relationship;
 
-        $sourceBlogId = (int) $mlp2Relationship['ml_source_blogid'];
-        $sourceElementId = (int) $mlp2Relationship['ml_source_elementid'];
-        $destBlogId = (int) $mlp2Relationship['ml_blogid'];
-        $destElementId = (int) $mlp2Relationship['ml_elementid'];
-        $relationshipType = $mlp2Relationship['ml_type'];
+        $sourceBlogId = (int) $mlp2Relationship['source_blog_id'];
+        $sourceElementId = (int) $mlp2Relationship['source_element_id'];
+        $destBlogId = (int) $mlp2Relationship['target_blog_id'];
+        $destElementId = (int) $mlp2Relationship['target_element_id'];
+        $relationshipType = $mlp2Relationship['type'];
         $groupId = $this->_getGroupId(
             $sourceBlogId,
             $sourceElementId,
@@ -123,15 +123,33 @@ class ContentRelationshipMigrator
     {
         // SELECT `relationship_id` FROM `mlp_content_relations` WHERE `site_id` = :blogId AND `content_id` = :contentId
         $relationshipsTable = $this->_getTableName('mlp_content_relations');
+        $relationshipTableAlias = 'r';
+        $relationshipIdField = 'relationship_id';
         $groupsTable = $this->_getTableName('mlp_relationships');
-        $field = 'relationship_id';
-        $query = <<<EOF
-SELECT `r`.`{$field}`
-FROM `{$relationshipsTable}` `r`
-JOIN `{$groupsTable}` AS `g` ON `g`.`id` = `r`.`relationship_id`
-WHERE `r`.`site_id` = %d AND `r`.`content_id` = %d AND `g`.`type` = %s
-LIMIT 1
-EOF;
+        $groupsTableAlias = 'g';
+        $fields = $this->_getSelectFieldsString([
+            "r.$relationshipIdField",
+        ]);
+        $query = sprintf(
+            'SELECT %1$s
+FROM %2$s %3$s
+JOIN %4$s AS %5$s ON %6$s = %7$s
+WHERE %8$s = %9$s AND %10$s = %11$s AND %12$s = %13$s
+LIMIT 1',
+            $fields,
+            $this->_quoteIdentifier($relationshipsTable),
+            $this->_quoteIdentifier($relationshipTableAlias),
+            $this->_quoteIdentifier($groupsTable),
+            $this->_quoteIdentifier($groupsTableAlias),
+            $this->_quoteIdentifier("$groupsTableAlias.id"),
+            $this->_quoteIdentifier("$relationshipTableAlias.relationship_id"),
+            $this->_quoteIdentifier("$relationshipTableAlias.site_id"),
+            '%d',
+            $this->_quoteIdentifier("$relationshipTableAlias.content_id"),
+            '%d',
+            $this->_quoteIdentifier("$groupsTableAlias.type"),
+            '%s'
+        );
 
         $results = $this->_select(
             $query,
@@ -144,16 +162,16 @@ EOF;
 
         $relationship = reset($results);
 
-        if (!property_exists($relationship, $field)) {
+        if (!property_exists($relationship, $relationshipIdField)) {
             throw new UnexpectedValueException(
                 $this->__(
                     'Relationship for blog "%1$s" and entity "%2$s" does not have a "%3$s" field',
-                    [$blogId, $contentId, $field]
+                    [$blogId, $contentId, $relationshipIdField]
                 )
             );
         }
 
-        return (int) $relationship->{$field};
+        return (int) $relationship->{$relationshipIdField};
     }
 
     /**
@@ -233,8 +251,29 @@ EOF;
     protected function _ensureRelationship(int $groupId, int $siteId, int $contentId)
     {
         $table = $this->_getTableName('mlp_content_relations');
+        $tableAlias = 'cr';
+        $relationshipIdField = "$tableAlias.relationship_id";
+        $siteIdField = "$tableAlias.site_id";
+        $contentIdField = "$tableAlias.content_id";
+        $fields = $this->_getSelectFieldsString([
+            $relationshipIdField,
+            $siteIdField,
+            $contentIdField,
+        ]);
+        $query = sprintf(
+            'SELECT %1$s FROM %2$s %3$s WHERE %4$s = %5$s AND %6$s = %7$s AND %8$s = %9$s',
+            $fields,
+            $this->_quoteIdentifier($table),
+            $this->_quoteIdentifier($tableAlias),
+            $this->_quoteIdentifier($relationshipIdField),
+            '%d',
+            $this->_quoteIdentifier($siteIdField),
+            '%d',
+            $this->_quoteIdentifier($contentIdField),
+            '%d'
+        );
         $result = $this->_select(
-            "SELECT * FROM `{$table}` WHERE `relationship_id` = %d AND `site_id` = %d AND `content_id` = %d",
+            $query,
             [$groupId, $siteId, $contentId]
         );
 
