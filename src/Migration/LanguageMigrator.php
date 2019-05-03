@@ -171,17 +171,36 @@ class LanguageMigrator
         $languageCode = $language->{'iso-639-3'};
         $language = $this->_getLang($languageCode);
         $newLang = [
-            'locale'            => $locale->code,
-            'http_code'         => $locale->bcp47,
-            'english_name'      => $language->{'english-name'},
-            'native_name'       => $language->{'native-name'},
+            'locale'            => $locale->code ?? '',
+            'http_code'         => $locale->bcp47 ?? '',
+            'english_name'      => $language->{'english-name'} ?? '',
+            'native_name'       => $language->{'native-name'} ?? '',
             'custom_name'       => '',
-            'is_rtl'            => $language->rtl,
-            'iso_639_1'         => $language->{'iso-639-1'},
-            'iso_639_2'         => $language->{'iso-639-2'},
+            'is_rtl'            => $language->rtl ? '1' : '0',
+            'iso_639_1'         => $language->{'iso-639-1'} ?? '',
+            'iso_639_2'         => $language->{'iso-639-2'} ?? '',
         ];
 
         return (object) $newLang;
+    }
+
+    /**
+     * Retrieve a destination language key for a source language key.
+     *
+     * @param string $sourceLangKey The source language key.
+     * @return string The destination language key.
+     */
+    protected function _getDestinationLangKey(string $sourceLangKey): string
+    {
+        $map = [
+            'bcp47'             => 'http_code',
+        ];
+
+        if (array_key_exists($sourceLangKey, $map)) {
+            return $map[$sourceLangKey];
+        }
+
+        return $sourceLangKey;
     }
 
     /**
@@ -199,11 +218,13 @@ class LanguageMigrator
             $lang = $this->_getLanguageForSource($sourceLang->bcp47);
 
             foreach ($sourceLang as $key => $value) {
-                if (!property_exists($lang, '$key')) {
+                $destKey = $this->_getDestinationLangKey($key);
+
+                if (!property_exists($lang, $destKey)) {
                     continue;
                 }
 
-                if (!$lang->{$key} === $value) {
+                if ($lang->{$destKey} !== $value) {
                     return false;
                 }
             }

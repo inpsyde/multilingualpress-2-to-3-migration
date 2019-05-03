@@ -31,20 +31,32 @@ use Inpsyde\MultilingualPress2to3\Migration\LanguageMigrator;
 use Inpsyde\MultilingualPress2to3\Migration\LanguageRedirectMigrator;
 use Inpsyde\MultilingualPress2to3\Migration\ModulesMigrator;
 use Inpsyde\MultilingualPress2to3\Migration\RedirectMigrator;
+use Inpsyde\MultilingualPress2to3\Migration\SiteLanguageMigrator;
 use Inpsyde\MultilingualPress2to3\Migration\TranslatablePostTypesMigrator;
 use Inpsyde\MultilingualPress2to3\ModulesMigrationHandler;
 use Inpsyde\MultilingualPress2to3\RedirectMigrationHandler;
 use Inpsyde\MultilingualPress2to3\RelationshipsMigrationHandler;
 use Inpsyde\MultilingualPress2to3\RemoveTableHandler;
 use Inpsyde\MultilingualPress2to3\RenameTableHandler;
+use Inpsyde\MultilingualPress2to3\SiteLanguagesMigrationHandler;
 use Inpsyde\MultilingualPress2to3\TranslatablePostTypesMigrationHandler;
 use Psr\Container\ContainerInterface;
 use cli\progress\Bar;
 
-return function ( $base_path, $base_url, bool $isDebug ) {
-	return [
-		'version'                 => '[*next-version*]',
-		'base_path'               => $base_path,
+/**
+ * @param array $defaults Default values for services.
+ * Expecting the following defaults to be passed from outside
+ *
+ * - 'version'      - The module version number.
+ * - 'root_path'    - Path to the root of the application.
+ * - 'base_path'    - Path to the root of the module.
+ * - 'root_url'     - URL of the application.
+ * - 'base_url'     - URL of the module.
+ * - 'admin_url'    - URL of the admin panel.
+ * - 'is_debug'     - Whether or not in debug mode.
+ */
+return function ( array $defaults ) {
+	return array_merge($defaults, [
 		'base_dir'                => function ( ContainerInterface $c ) {
 			return dirname( $c->get( 'base_path' ) );
 		},
@@ -55,12 +67,17 @@ return function ( $base_path, $base_url, bool $isDebug ) {
 
 	        return $baseDir;
         },
-		'base_url'                => $base_url,
+        'admin_dir'               => function (ContainerInterface $c) {
+            return str_replace(
+                $c->get('root_url') . '/',
+                $c->get('root_path'),
+                $c->get('admin_url')
+            );
+        },
 		'js_path'                 => '/assets/js',
 		'templates_dir'           => '/templates',
 		'translations_dir'        => '/languages',
 		'text_domain'             => 'mlp2to3',
-        'is_debug'                => $isDebug,
 
         'wpcli_command_key_mlp2to3_migrate' => 'mlp2to3',
         'filter_is_check_legacy'  => 'multilingualpress.is_check_legacy',
@@ -309,6 +326,9 @@ return function ( $base_path, $base_url, bool $isDebug ) {
                 'languages'                 => function (ContainerInterface $c) {
                     return $c->get('handler_languages_migration_steps');
                 },
+                'site_languages'                 => function (ContainerInterface $c) {
+                    return $c->get('handler_site_languages_migration');
+                },
             ];
         },
 
@@ -415,8 +435,25 @@ return function ( $base_path, $base_url, bool $isDebug ) {
                 $c->get('migrator_language'),
                 $c->get('wpdb'),
                 $progress,
-                10
+                0
             );
+        },
+
+        'handler_site_languages_migration' => function (ContainerInterface $c): HandlerInterface {
+            $siteSettingsOptionName = 'inpsyde_multilingual';
+            $migrator = $c->get('migrator_site_language');
+            $progress = $c->get('migration_modules_progress');
+            assert($progress instanceof Progress);
+            $handler = new SiteLanguagesMigrationHandler(
+                $migrator,
+                $c->get('wpdb'),
+                $progress,
+                0,
+                $c->get('main_site_id'),
+                $siteSettingsOptionName
+            );
+
+            return $handler;
         },
 
         'migrator_language' => function (ContainerInterface $c): LanguageMigrator {
@@ -427,6 +464,18 @@ return function ( $base_path, $base_url, bool $isDebug ) {
                 $c->get('embedded_languages'),
                 $c->get('table_name_temp_languages')
             );
+        },
+
+        'migrator_site_language' => function (ContainerInterface $c): SiteLanguageMigrator {
+            $siteSetingsOptionName = 'multilingualpress_site_settings';
+            $migrator = new SiteLanguageMigrator(
+                $c->get('wpdb'),
+                $c->get('translator'),
+                $c->get('main_site_id'),
+                $siteSetingsOptionName
+            );
+
+            return $migrator;
         },
 
         'handler_activate_languages_temp_table' => function (ContainerInterface $c) {
@@ -541,4 +590,5 @@ return function ( $base_path, $base_url, bool $isDebug ) {
             );
         },
     ];
+    ]);
 };

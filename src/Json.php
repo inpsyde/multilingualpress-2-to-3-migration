@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Inpsyde\MultilingualPress2to3;
 
@@ -40,7 +40,11 @@ use Throwable;
  *
  * @package MultilingualPress2to3
  */
-class Json implements ArrayAccess, BaseContainerInterface, IteratorInterface
+class Json implements
+    ArrayAccess,
+    BaseContainerInterface,
+    IteratorInterface,
+    Stringable
 {
     use IteratorTrait;
 
@@ -119,13 +123,13 @@ class Json implements ArrayAccess, BaseContainerInterface, IteratorInterface
     /**
      * Retrieves a value for the specified key.
      *
-     * @param string $key The key to retrieve the value for.
+     * @param string|int $key The key to retrieve the value for.
      *
      * @return mixed The key's value.
      *
      * @throws Throwable If problem retrieving.
      */
-    protected function _getKey(string $key)
+    protected function _getKey($key)
     {
         $this->_ensureDecoded();
 
@@ -135,13 +139,13 @@ class Json implements ArrayAccess, BaseContainerInterface, IteratorInterface
     /**
      * Determines whether a value exists for a specified key.
      *
-     * @param string $key The key to check for.
+     * @param string|int $key The key to check for.
      *
      * @return bool True if a value for the specified key exists; false otherwise.
      *
      * @throws Throwable If problem checking.
      */
-    protected function _hasKey(string $key): bool
+    protected function _hasKey($key): bool
     {
         $this->_ensureDecoded();
 
@@ -167,11 +171,11 @@ class Json implements ArrayAccess, BaseContainerInterface, IteratorInterface
     /**
      * Removes the specified key.
      *
-     * @param string $key The key to remove.
+     * @param string|int $key The key to remove.
      *
      * @throws Throwable If problem removing.
      */
-    protected function _unsetKey(string $key)
+    protected function _unsetKey($key)
     {
         $this->_ensureDecoded();
 
@@ -188,7 +192,7 @@ class Json implements ArrayAccess, BaseContainerInterface, IteratorInterface
      */
     protected function _setString($string)
     {
-        if (!is_string($string) || !is_null($string)) {
+        if (!is_string($string) && !is_null($string)) {
             throw $this->_createInvalidArgumentException($this->__('String must be a valid string or null'), null, null, $string);
         }
 
@@ -242,7 +246,9 @@ class Json implements ArrayAccess, BaseContainerInterface, IteratorInterface
             $this->string = json_encode($this->object);
         }
 
-        return $this->string;
+        $string = $this->_normalizeString($this->string);
+
+        return $string;
     }
 
     /**
@@ -257,6 +263,16 @@ class Json implements ArrayAccess, BaseContainerInterface, IteratorInterface
                 ? (string) $e
                 : '';
         }
+    }
+
+    public function __get($name)
+    {
+        return $this->_getKey($name);
+    }
+
+    public function __set($name, $value)
+    {
+        $this->_setKey($name, $value);
     }
 
     /**
