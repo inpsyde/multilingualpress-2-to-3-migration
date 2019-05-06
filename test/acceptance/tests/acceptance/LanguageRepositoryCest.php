@@ -37,11 +37,6 @@ class LanguageRepositoryCest
         $I->seeInField(['name' => 'languages[1][native_name]'], 'Invented');
         $I->seeInField(['name' => 'languages[1][english_name]'], 'Inv');
         $I->seeInField(['name' => 'languages[1][iso_639_1]'], 'in');
-        $I->seeInField(['name' => 'languages[1][iso_639_2]'], 'inv');
-
-        // check that default language does not exist
-        $I->dontSeeInField(['name' => 'languages[55][english_name]'], 'Spanish (Spain)');
-        $I->dontSeeInField(['name' => 'languages[55][iso_639_1]'], 'es');
     }
 
     private function runTheTool(AcceptanceTester $I)

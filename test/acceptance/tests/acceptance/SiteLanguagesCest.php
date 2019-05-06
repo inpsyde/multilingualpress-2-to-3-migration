@@ -72,7 +72,7 @@ class SiteLanguagesCest
         $I->click('[data-plugin="multilingualpress/multilingualpress.php"] .activate a');
 
         // run the tool
-//        $I->runShellCommand('wp mlp2to3 unknown --path=wordpress-site');
-//        $I->seeInShellOutput('Success:');
+        $I->runShellCommand('wp mlp2to3 site_languages --path=wordpress-site');
+        $I->seeInShellOutput('Success:');
     }
 }
