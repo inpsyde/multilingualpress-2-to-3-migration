@@ -86,8 +86,7 @@ class SiteLanguageMigrator
         try {
             $siteSettings = $this->_getSiteSettings($siteId);
         } catch (UnexpectedValueException $e) {
-            $siteSettings = [];
-            $siteSettings[$siteId] = [
+            $siteSettings = [
                 'lang'              => $this->_transformLanguageCode($locale),
             ];
 
