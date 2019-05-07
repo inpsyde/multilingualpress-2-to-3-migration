@@ -9,7 +9,7 @@
  * Description: A WP plugin that allows migrating data from MultilingualPress version 2 to version 3.
  * Version: [*next-version*]
  * Author: Inpsyde
- * License: GNU General Public License v2.O or later.
+ * License: GPLv2+.
  * License URI: http://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: mlp2to3
  * Domain Path: /languages
