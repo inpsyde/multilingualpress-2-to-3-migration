@@ -304,6 +304,7 @@ return function ( array $defaults ) {
             return [
                 $c->get('handler_migrate_cli_command'),
                 $c->get('handler_integration'),
+//                $c->get('handler_log'),
             ];
         },
 
@@ -529,10 +530,21 @@ return function ( array $defaults ) {
 
         'migrator_site_language' => function (ContainerInterface $c): SiteLanguageMigrator {
             $siteSetingsOptionName = 'multilingualpress_site_settings';
+            $mainSiteId = $c->get('main_site_id');
+
+            $blogOptionsContainer = $c->get('blog_options_container');
+            assert($blogOptionsContainer instanceof ContainerInterface);
+
+            $siteMetaContainer = $c->get('site_meta_container');
+            assert($siteMetaContainer instanceof ContainerInterface);
+
+            $mainSiteMeta = $siteMetaContainer->get($mainSiteId);
+
             $migrator = new SiteLanguageMigrator(
                 $c->get('wpdb'),
                 $c->get('translator'),
-                $c->get('main_site_id'),
+                $blogOptionsContainer,
+                $mainSiteMeta,
                 $siteSetingsOptionName
             );
 
@@ -651,5 +663,30 @@ return function ( array $defaults ) {
             );
         },
 
+//        'handler_log' => function (ContainerInterface $c) {
+//            return new LogHandler($c);
+//        },
+//
+//        'log_controller' => function (ContainerInterface $c) {
+//            if (function_exists('Inpsyde\Wonolog\bootstrap')) {
+//                return \Inpsyde\Wonolog\bootstrap();
+//            }
+//
+//            return null;
+//        },
+//
+//        'log_listeners' => function (ContainerInterface $c) {
+//            return [
+//                $c->get('log_listener_relationships'),
+//            ];
+//        },
+//
+//        'log_listener_relationships' => function (ContainerInterface $c) {
+//            return new RelationshipListener();
+//        },
+//
+//        'data_hasher'               => function ( ContainerInterface $c ) {
+//          return new DataHasher($c->get('data_hash_glue'), $c->get('data_hash_separator'));
+//        }
     ]);
 };
