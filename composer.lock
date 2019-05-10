@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "cd51d44f22a102ccf04d5aa1ce6e0033",
+    "content-hash": "5b6f008a45aa74183d2395cdb5a78743",
     "packages": [
         {
             "name": "dhii/args-list-validation",
@@ -374,12 +374,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Dhii/data-container-interface.git",
-                "reference": "b9767d34214fa4d73f10989fca4ad54196a7b7f3"
+                "reference": "f3427d42b9ee6fc1ca2d2e9cad4a94a244f67728"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Dhii/data-container-interface/zipball/b9767d34214fa4d73f10989fca4ad54196a7b7f3",
-                "reference": "b9767d34214fa4d73f10989fca4ad54196a7b7f3",
+                "url": "https://api.github.com/repos/Dhii/data-container-interface/zipball/f3427d42b9ee6fc1ca2d2e9cad4a94a244f67728",
+                "reference": "f3427d42b9ee6fc1ca2d2e9cad4a94a244f67728",
                 "shasum": ""
             },
             "require": {
@@ -401,7 +401,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-develop": "0.2.x-dev"
+                    "dev-develop": "0.2.1-dev"
                 }
             },
             "autoload": {
@@ -420,7 +420,7 @@
                 }
             ],
             "description": "Interfaces for working with data containers",
-            "time": "2018-04-26 09:50:30"
+            "time": "2019-05-10 14:26:17"
         },
         {
             "name": "dhii/data-hierarchy-interface",
@@ -722,6 +722,7 @@
                 "dependency injection",
                 "di"
             ],
+            "abandoned": "dhii/containers",
             "time": "2018-04-11 12:44:04"
         },
         {
@@ -1905,6 +1906,61 @@
             "time": "2018-08-29T11:39:22+00:00"
         },
         {
+            "name": "dhii/wp-containers",
+            "version": "v0.1.0-alpha1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Dhii/wp-containers.git",
+                "reference": "e91a6f741622770ed724a2b594145fa917811f0c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Dhii/wp-containers/zipball/e91a6f741622770ed724a2b594145fa917811f0c",
+                "reference": "e91a6f741622770ed724a2b594145fa917811f0c",
+                "shasum": ""
+            },
+            "require": {
+                "dhii/data-container-interface": "^0.2.1-alpha1",
+                "php": "^7.0 | ^8.0",
+                "psr/container": "^1.0"
+            },
+            "require-dev": {
+                "brain/monkey": "^2",
+                "gmazzap/andrew": "^1.1",
+                "phpunit/phpunit": "^6",
+                "slevomat/coding-standard": "~4.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-develop": "0.1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Dhii\\Wp\\Containers\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dhii Team",
+                    "email": "development@dhii.co"
+                }
+            ],
+            "description": "PSR-11 container implementations that wrap some WP features, for convenience and interoperability.",
+            "keywords": [
+                "container",
+                "dependency injection",
+                "di",
+                "wordpress"
+            ],
+            "time": "2019-05-10T15:04:22+00:00"
+        },
+        {
             "name": "dhii/wp-i18n",
             "version": "dev-develop",
             "source": {
@@ -2377,12 +2433,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/inpsyde/php-coding-standards.git",
-                "reference": "1c6c12d585e5cee4aa2fa6e0a732166644b018b5"
+                "reference": "cab22614d04d1bf8ed140c41b465e3e9ee2ffd94"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/inpsyde/php-coding-standards/zipball/1c6c12d585e5cee4aa2fa6e0a732166644b018b5",
-                "reference": "1c6c12d585e5cee4aa2fa6e0a732166644b018b5",
+                "url": "https://api.github.com/repos/inpsyde/php-coding-standards/zipball/cab22614d04d1bf8ed140c41b465e3e9ee2ffd94",
+                "reference": "cab22614d04d1bf8ed140c41b465e3e9ee2ffd94",
                 "shasum": ""
             },
             "require": {
@@ -2429,7 +2485,7 @@
                 "standards",
                 "wordpress"
             ],
-            "time": "2019-02-19 10:23:48"
+            "time": "2019-04-29T14:24:38+00:00"
         },
         {
             "name": "mockery/mockery",
@@ -2803,16 +2859,16 @@
         },
         {
             "name": "phpdocumentor/reflection-docblock",
-            "version": "4.3.0",
+            "version": "4.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/ReflectionDocBlock.git",
-                "reference": "94fd0001232e47129dd3504189fa1c7225010d08"
+                "reference": "bdd9f737ebc2a01c06ea7ff4308ec6697db9b53c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/ReflectionDocBlock/zipball/94fd0001232e47129dd3504189fa1c7225010d08",
-                "reference": "94fd0001232e47129dd3504189fa1c7225010d08",
+                "url": "https://api.github.com/repos/phpDocumentor/ReflectionDocBlock/zipball/bdd9f737ebc2a01c06ea7ff4308ec6697db9b53c",
+                "reference": "bdd9f737ebc2a01c06ea7ff4308ec6697db9b53c",
                 "shasum": ""
             },
             "require": {
@@ -2850,7 +2906,7 @@
                 }
             ],
             "description": "With this component, a library can provide support for annotations via DocBlocks or otherwise retrieve information that is embedded in a DocBlock.",
-            "time": "2017-11-30T07:14:17+00:00"
+            "time": "2019-04-30T17:48:53+00:00"
         },
         {
             "name": "phpdocumentor/type-resolver",
@@ -3410,12 +3466,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/code-unit-reverse-lookup.git",
-                "reference": "383c44e104c1fd46ecc915f55145bd2831318747"
+                "reference": "98f24b1e5ffc7f5b390d2e23c2090270f2d53215"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/code-unit-reverse-lookup/zipball/383c44e104c1fd46ecc915f55145bd2831318747",
-                "reference": "383c44e104c1fd46ecc915f55145bd2831318747",
+                "url": "https://api.github.com/repos/sebastianbergmann/code-unit-reverse-lookup/zipball/98f24b1e5ffc7f5b390d2e23c2090270f2d53215",
+                "reference": "98f24b1e5ffc7f5b390d2e23c2090270f2d53215",
                 "shasum": ""
             },
             "require": {
@@ -3447,7 +3503,7 @@
             ],
             "description": "Looks up which function or method a line of code belongs to",
             "homepage": "https://github.com/sebastianbergmann/code-unit-reverse-lookup/",
-            "time": "2019-02-11 12:48:46"
+            "time": "2019-04-26T13:00:11+00:00"
         },
         {
             "name": "sebastian/comparator",
@@ -3621,12 +3677,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/exporter.git",
-                "reference": "8be786b3b65fbe706733d44a4b4a53d5391a4772"
+                "reference": "60907c7464f882649c1e9c66cc7db95382de196e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/exporter/zipball/8be786b3b65fbe706733d44a4b4a53d5391a4772",
-                "reference": "8be786b3b65fbe706733d44a4b4a53d5391a4772",
+                "url": "https://api.github.com/repos/sebastianbergmann/exporter/zipball/60907c7464f882649c1e9c66cc7db95382de196e",
+                "reference": "60907c7464f882649c1e9c66cc7db95382de196e",
                 "shasum": ""
             },
             "require": {
@@ -3680,7 +3736,7 @@
                 "export",
                 "exporter"
             ],
-            "time": "2019-02-11 12:49:46"
+            "time": "2019-04-26T13:00:28+00:00"
         },
         {
             "name": "sebastian/global-state",
@@ -3739,12 +3795,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/object-enumerator.git",
-                "reference": "41af86e2a7b06e7e364c81a705b1f7caf6110218"
+                "reference": "3b05f70a5fd28edaf34c1edbd9c3bba096991654"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/object-enumerator/zipball/41af86e2a7b06e7e364c81a705b1f7caf6110218",
-                "reference": "41af86e2a7b06e7e364c81a705b1f7caf6110218",
+                "url": "https://api.github.com/repos/sebastianbergmann/object-enumerator/zipball/3b05f70a5fd28edaf34c1edbd9c3bba096991654",
+                "reference": "3b05f70a5fd28edaf34c1edbd9c3bba096991654",
                 "shasum": ""
             },
             "require": {
@@ -3778,7 +3834,7 @@
             ],
             "description": "Traverses array structures and object graphs to enumerate all referenced objects",
             "homepage": "https://github.com/sebastianbergmann/object-enumerator/",
-            "time": "2019-02-11 12:50:05"
+            "time": "2019-04-26T12:51:10+00:00"
         },
         {
             "name": "sebastian/object-reflector",
@@ -3786,12 +3842,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/object-reflector.git",
-                "reference": "fae17b5d19ab523c9e821e5559d27e4c8a5bdee1"
+                "reference": "bcbaf4e179fde2d030cc7294c0047e36b95c98a5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/object-reflector/zipball/fae17b5d19ab523c9e821e5559d27e4c8a5bdee1",
-                "reference": "fae17b5d19ab523c9e821e5559d27e4c8a5bdee1",
+                "url": "https://api.github.com/repos/sebastianbergmann/object-reflector/zipball/bcbaf4e179fde2d030cc7294c0047e36b95c98a5",
+                "reference": "bcbaf4e179fde2d030cc7294c0047e36b95c98a5",
                 "shasum": ""
             },
             "require": {
@@ -3823,7 +3879,7 @@
             ],
             "description": "Allows reflection of object attributes, including inherited and non-public ones",
             "homepage": "https://github.com/sebastianbergmann/object-reflector/",
-            "time": "2019-02-11 12:48:12"
+            "time": "2019-04-26T13:00:41+00:00"
         },
         {
             "name": "sebastian/recursion-context",
@@ -3831,12 +3887,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/recursion-context.git",
-                "reference": "87b0893f697db6d75943e26d50bf91c82796a371"
+                "reference": "e1bad3c48a61b5e93e4d59ffd8b1d878606726a0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/recursion-context/zipball/87b0893f697db6d75943e26d50bf91c82796a371",
-                "reference": "87b0893f697db6d75943e26d50bf91c82796a371",
+                "url": "https://api.github.com/repos/sebastianbergmann/recursion-context/zipball/e1bad3c48a61b5e93e4d59ffd8b1d878606726a0",
+                "reference": "e1bad3c48a61b5e93e4d59ffd8b1d878606726a0",
                 "shasum": ""
             },
             "require": {
@@ -3876,7 +3932,7 @@
             ],
             "description": "Provides functionality to recursively process PHP variables",
             "homepage": "http://www.github.com/sebastianbergmann/recursion-context",
-            "time": "2019-02-11 12:48:28"
+            "time": "2019-04-26T13:00:07+00:00"
         },
         {
             "name": "sebastian/resource-operations",
@@ -4312,16 +4368,16 @@
         },
         {
             "name": "wp-cli/wp-cli",
-            "version": "dev-master",
+            "version": "v2.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/wp-cli/wp-cli.git",
-                "reference": "adce54265767aba054edbaa045d07c83610183b5"
+                "reference": "193f08f48585326bc1f1648349201531eeda2ee5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wp-cli/wp-cli/zipball/adce54265767aba054edbaa045d07c83610183b5",
-                "reference": "adce54265767aba054edbaa045d07c83610183b5",
+                "url": "https://api.github.com/repos/wp-cli/wp-cli/zipball/193f08f48585326bc1f1648349201531eeda2ee5",
+                "reference": "193f08f48585326bc1f1648349201531eeda2ee5",
                 "shasum": ""
             },
             "require": {
@@ -4339,7 +4395,7 @@
                 "wp-cli/entity-command": "^1.2 || ^2",
                 "wp-cli/extension-command": "^1.1 || ^2",
                 "wp-cli/package-command": "^1 || ^2",
-                "wp-cli/wp-cli-tests": "^2.0.8"
+                "wp-cli/wp-cli-tests": "^2.1"
             },
             "suggest": {
                 "ext-readline": "Include for a better --prompt implementation",
@@ -4370,7 +4426,7 @@
                 "cli",
                 "wordpress"
             ],
-            "time": "2019-04-18T10:22:16+00:00"
+            "time": "2019-04-25T05:38:33+00:00"
         },
         {
             "name": "wp-coding-standards/wpcs",

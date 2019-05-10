@@ -18,7 +18,8 @@
         "dhii/memoize-memory": "^0.2-alpha1",
         "dhii/i18n-interface": "^0.2",
         "dhii/wp-i18n": "dev-develop",
-        "dhii/stringable-interface": "^0.1"
+        "dhii/stringable-interface": "^0.1",
+        "dhii/wp-containers": "0.1.0-alpha1"
     },
     "require-dev": {
         "inpsyde/php-coding-standards": "^0.13",
@@ -39,6 +40,11 @@
     "extra": {
         "branch-alias": {
             "dev-task/mvp": "0.1.x-dev"
+        }
+    },
+    "config": {
+        "platform": {
+            "php": "7.0.33"
         }
     }
 }

@@ -7,10 +7,16 @@
 
 use Dhii\Cache\MemoryMemoizer;
 use Dhii\Cache\SimpleCacheInterface;
+use Dhii\Data\Container\WritableContainerInterface;
 use Dhii\Di\ContainerAwareCachingContainer;
 use Dhii\I18n\FormatTranslatorInterface;
 use cli\Progress;
 use Dhii\Util\String\StringableInterface;
+use Dhii\Wp\Containers\Options\BlogOptions;
+use Dhii\Wp\Containers\Options\BlogOptionsContainer;
+use Dhii\Wp\Containers\Options\SiteMeta;
+use Dhii\Wp\Containers\Options\SiteMetaContainer;
+use Dhii\Wp\Containers\Sites;
 use Dhii\Wp\I18n\FormatTranslator;
 use Inpsyde\MultilingualPress\Database\Table\LanguagesTable;
 use Inpsyde\MultilingualPress2to3\CreateTableHandler;
@@ -165,6 +171,61 @@ return function ( array $defaults ) {
 	        $string = $f($path);
 
 	        return $string;
+        },
+
+        'default_blog_option_value' => 'H=Kq^EQP5!G7E#dK',
+        'default_site_meta_value' => 'z?!s4JWN76_5E??!',
+
+        'sites' => function (ContainerInterface $c): ContainerInterface {
+	        return new Sites();
+        },
+
+        'blog_options_factory' => function (ContainerInterface $c): callable {
+	        $default = $c->get('default_blog_option_value');
+
+            return function (int $blogId) use ($default): WritableContainerInterface {
+                return new BlogOptions($blogId, $default);
+            };
+        },
+
+        'blog_options_container' => function (ContainerInterface $c): ContainerInterface {
+	        $sites = $c->get('sites');
+            $optionsFactory = $c->get('blog_options_factory');
+            $optionsContainer = new BlogOptionsContainer($optionsFactory, $sites);
+
+            return $optionsContainer;
+        },
+
+        'blog_options' => function (ContainerInterface $c): WritableContainerInterface {
+	        $container = $c->get('blog_options_container');
+	        $currentSiteId = get_current_blog_id();
+	        $options = $container->get($currentSiteId);
+
+            return $options;
+        },
+
+        'site_meta_factory' => function (ContainerInterface $c): callable {
+	        $default = $c->get('default_site_meta_value');
+
+	        return function (int $siteId) use ($default): WritableContainerInterface {
+                return new SiteMeta($siteId, $default);
+            };
+        },
+
+        'site_meta_container' => function (ContainerInterface $c): ContainerInterface {
+            $sites = $c->get('sites');
+	        $metaFactory = $c->get('site_meta_factory');
+	        $metaContainer = new SiteMetaContainer($metaFactory, $sites);
+
+	        return $metaContainer;
+        },
+
+        'site_meta' => function (ContainerInterface $c) {
+            $container = $c->get('site_meta_container');
+            $currentSiteId = get_current_blog_id();
+            $meta = $container->get($currentSiteId);
+
+            return $meta;
         },
 
         'embedded_languages_json' => function (ContainerInterface $c) {
