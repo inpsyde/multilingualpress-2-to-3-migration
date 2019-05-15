@@ -3,12 +3,16 @@ declare(strict_types=1);
 
 namespace Inpsyde\MultilingualPress2to3\Migration;
 
+use Dhii\Data\Container\WritableContainerInterface;
 use Dhii\I18n\FormatTranslatorInterface;
 use Dhii\I18n\StringTranslatingTrait;
 use Dhii\I18n\StringTranslatorAwareTrait;
 use Exception;
 use Inpsyde\MultilingualPress2to3\Db\DatabaseWpdbTrait;
 use Inpsyde\MultilingualPress2to3\Event\WpTriggerCapableTrait;
+use Psr\Container\ContainerExceptionInterface;
+use Psr\Container\ContainerInterface;
+use Psr\Container\NotFoundExceptionInterface;
 use Throwable;
 use UnexpectedValueException;
 use WP_CLI;
@@ -31,14 +35,19 @@ class SiteLanguageMigrator
 
     protected $db;
     protected $translator;
-    /**
-     * @var int
-     */
-    protected $mainSiteId;
+
     /**
      * @var string
      */
     protected $siteSettingsOptionName;
+    /**
+     * @var ContainerInterface
+     */
+    protected $optionsContainer;
+    /**
+     * @var WritableContainerInterface
+     */
+    protected $meta;
 
     /**
      * @param Wpdb $wpdb The database driver to use for DB operations.
@@ -47,13 +56,15 @@ class SiteLanguageMigrator
     public function __construct(
         Wpdb $wpdb,
         FormatTranslatorInterface $translator,
-        int $mainSiteId,
+        ContainerInterface $optionsContainer,
+        WritableContainerInterface $meta,
         string $siteSettingsOptionName
     )
     {
         $this->db = $wpdb;
         $this->translator = $translator;
-        $this->mainSiteId = $mainSiteId;
+        $this->optionsContainer = $optionsContainer;
+        $this->meta = $meta;
         $this->siteSettingsOptionName = $siteSettingsOptionName;
     }
 
@@ -69,7 +80,7 @@ class SiteLanguageMigrator
      */
     public function migrate($mlp2Language)
     {
-        $optinNameAltTitle = 'multilingualpress_alt_language_title';
+        $optionNameAltTitle = 'multilingualpress_alt_language_title';
 
         $siteId = $mlp2Language->site_id ? (int) $mlp2Language->site_id : null;
         $locale = $mlp2Language->locale ? (string) $mlp2Language->locale : null;
@@ -91,51 +102,39 @@ class SiteLanguageMigrator
             ];
 
             $this->_setSiteSettings($siteId, $siteSettings);
-            $this->_setSiteOption($siteId, $optinNameAltTitle, $altTitle);
+            $this->_setBlogOption($siteId, $optionNameAltTitle, $altTitle);
         }
     }
 
     /**
-     * Retrieves an option of a particular network.
+     * Retrieves a meta value of the target site.
      *
-     * @param int $networkId The ID of the network, to which the option belongs.
-     * @param string $optionName The name of the option to retrieve.
-     * @return mixed The option value.
+     * @param string $optionName The meta key to retrieve.
+     * @return mixed The meta value.
      *
-     * @throws UnexpectedValueException If option could not be retrieved.
+     * @throws NotFoundExceptionInterface If option not found.
+     * @throws ContainerExceptionInterface If option could not be retrieved.
      * @throws Exception If problem retrieving.
      * @throws Throwable If problem running.
      */
-    protected function _getSiteOption(int $networkId, string $optionName)
+    protected function _getSiteMeta(string $optionName)
     {
-        $default = uniqid('default-network-option-value-');
-        $value = get_network_option($networkId, $optionName, $default);
-
-        if ($value === $default) {
-            throw new UnexpectedValueException($this->__('Could not retrieve option "%1$s" for network #%2$d', [$optionName, $networkId]));
-        }
+        $value = $this->meta->get($optionName);
 
         return $value;
     }
 
     /**
-     * Assigns a value to a network option.
+     * Assigns a meta value to the site.
      *
-     * @param int $siteId The ID of the network to which the option belongs.
      * @param string $optionName Name of the option to set.
      * @param mixed $value The option value.
      *
-     * @throws UnexpectedValueException If option could not be set.
+     * @throws ContainerExceptionInterface If option could not be set.
      */
-    protected function _setSiteOption(int $siteId, string $optionName, $value)
+    protected function _setSiteMeta(string $optionName, $value)
     {
-        $result = update_network_option($siteId, $optionName, $value);
-        $default = uniqid('default-site-option-value-');
-        $newValue = get_network_option($siteId, $optionName, $default);
-
-        if ((!$result) && ($value !== $newValue)) {
-            throw new UnexpectedValueException($this->__('Could not update option "%1$s" for network #%2$d', [$optionName, $siteId]));
-        }
+        $this->meta->set($optionName, $value);
     }
 
     /**
@@ -173,7 +172,7 @@ class SiteLanguageMigrator
     {
         try {
             $allSettings = $this->_getAllSiteSettings();
-        } catch (UnexpectedValueException $e) {
+        } catch (NotFoundExceptionInterface $e) {
             $allSettings = [];
         }
 
@@ -187,16 +186,15 @@ class SiteLanguageMigrator
      *
      * @param array<int, array<string, mixed>> $settings A map of site ID to site settings.
      *
-     * @throws UnexpectedValueException If could not set settings.
+     * @throws ContainerExceptionInterface If could not set settings.
      * @throws Exception If problem setting.
      * @throws Throwable If problem running.
      */
     protected function _setAllSiteSettings(array $settings)
     {
-        $siteId = $this->mainSiteId;
         $optionName = $this->siteSettingsOptionName;
 
-        $this->_setSiteOption($siteId, $optionName, $settings);
+        $this->_setSiteMeta($optionName, $settings);
     }
 
     /**
@@ -204,17 +202,37 @@ class SiteLanguageMigrator
      *
      * @return array<int, array<string, mixed>> $settings A map of site ID to site settings.
      *
-     * @throws UnexpectedValueException If settings value could not be retrieved.
+     * @throws NotFoundExceptionInterface If settings not found.
+     * @throws ContainerExceptionInterface If settings value could not be retrieved.
      * @throws Exception If problem retrieving.
      * @throws Throwable If problem running.
      */
     protected function _getAllSiteSettings(): array
     {
-        $siteId = $this->mainSiteId;
         $optionName = $this->siteSettingsOptionName;
-        $siteSettings = $this->_getSiteOption($siteId, $optionName);
+
+        try {
+            $siteSettings = $this->_getSiteMeta($optionName);
+        } catch (NotFoundExceptionInterface $e) {
+            $siteSettings = [];
+        }
 
         return $siteSettings;
+    }
+
+    /**
+     * Assigns a value to an option of a blog.
+     *
+     * @param int $blogId ID of the blog to set the option for.
+     * @param string $optionName The name of the option to set.
+     * @param mixed $value The option value.
+     *
+     * @throws ContainerExceptionInterface If could not set.
+     */
+    public function _setBlogOption(int $blogId, string $optionName, $value)
+    {
+        var_dump(sprintf('%1$s (%2$s) = %3$s', $optionName, $blogId, $value));
+        $this->optionsContainer->get($blogId)->set($optionName, $value);
     }
 
     /**
