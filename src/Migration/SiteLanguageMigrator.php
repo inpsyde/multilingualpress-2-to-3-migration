@@ -231,7 +231,6 @@ class SiteLanguageMigrator
      */
     public function _setBlogOption(int $blogId, string $optionName, $value)
     {
-        var_dump(sprintf('%1$s (%2$s) = %3$s', $optionName, $blogId, $value));
         $this->optionsContainer->get($blogId)->set($optionName, $value);
     }
 
