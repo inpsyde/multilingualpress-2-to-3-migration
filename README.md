@@ -15,7 +15,7 @@ Install it as you would any other plugin, i.e. in any of the following ways:
 
     This is necessary in order to satisfy requirement *3*.
 
-1. MLP2 must contain the changes in inpsyde/MultilingualPress@7dccc9ce10b0f361369e4987371312d859a9d73c.
+1. MLP2 must contain the changes in [`7dccc9c`][`inpsyde/MultilingualPress@7dccc9c`].
 
     This is necessary in order to prevent automatic deletion of the `site_relations` table
     by MLP2 on uninstall. This table has the same name in MLP2 and MLP3, and therefore
@@ -57,3 +57,4 @@ wp help mlp2to3
 
 
 [`inpsyde/multilingualpress@eebfc1b`]: https://bitbucket.org/inpsyde/multilingualpress/commits/eebfc1b9caba54e028afc491fd3005d722a89995
+[`inpsyde/MultilingualPress@7dccc9c`]: https://github.com/inpsyde/MultilingualPress/commit/7dccc9ce10b0f361369e4987371312d859a9d73c
