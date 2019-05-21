@@ -13,7 +13,7 @@ Install it as you would any other plugin, i.e. in any of the following ways:
 
 1. MLP3 must contain the changes made in [`eebfc1b`][`inpsyde/multilingualpress@eebfc1b`].
 
-    This is necessary in order to satisfy requirement *3*.
+    This is necessary in order to satisfy requirement **4**.
 
 1. MLP2 must contain the changes in [`7dccc9c`][`inpsyde/MultilingualPress@7dccc9c`].
 
