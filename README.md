@@ -23,7 +23,7 @@ Install it as you would any other plugin, i.e. in any of the following ways:
 
 1. This plugin must be active.
 
-    It registers the WP CLI command, and is also necessary in order to satisfy requirement *3*.
+    It registers the WP CLI command, and is also necessary in order to satisfy requirement **4**.
 
 1. MLP3 must be active during migration.
 
