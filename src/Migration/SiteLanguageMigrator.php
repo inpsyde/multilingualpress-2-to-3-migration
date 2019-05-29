@@ -97,13 +97,12 @@ class SiteLanguageMigrator
         try {
             $siteSettings = $this->_getSiteSettings($siteId);
         } catch (UnexpectedValueException $e) {
-            $siteSettings = [
-                'lang'              => $this->_transformLanguageCode($locale),
-            ];
-
-            $this->_setSiteSettings($siteId, $siteSettings);
-            $this->_setBlogOption($siteId, $optionNameAltTitle, $altTitle);
+            $siteSettings = [];
         }
+
+        $siteSettings['lang'] = $this->_transformLanguageCode($locale);
+        $this->_setSiteSettings($siteId, $siteSettings);
+        $this->_setBlogOption($siteId, $optionNameAltTitle, $altTitle);
     }
 
     /**
