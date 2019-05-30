@@ -45,6 +45,17 @@ class IntegrationHandler implements HandlerInterface
      */
     protected function _hook()
     {
+        $this->_preventLegacyCheck();
+    }
+
+    /**
+     * Prevents the which blocks activation of MLP3 while MLP2 is present.
+     *
+     * Without this, it is not possible to activate MLP3 if MLP2 is installed,
+     * even if inactive.
+     */
+    protected function _preventLegacyCheck()
+    {
         $filter = $this->_getConfig('filter_is_check_legacy');
         assert(is_string($filter) && !empty($filter));
 
