@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6169ec2d9cab5417f193d0a76bf292d9",
+    "content-hash": "c092696873e9de72cee1dfed0f1e2ff4",
     "packages": [
         {
             "name": "dhii/args-list-validation",
@@ -18,7 +18,13 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/Dhii/args-list-validation/zipball/e9a07ee079bf38efd385e6dd3330642b64424792",
                 "reference": "e9a07ee079bf38efd385e6dd3330642b64424792",
-                "shasum": ""
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://repo.packagist.com/inpsyde/dists/%package%/%version%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
             },
             "require": {
                 "php": "^5.4 | ^7.0"
@@ -66,7 +72,13 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/Dhii/cache-abstract/zipball/fdc149b52c92365e68432d01c1b342208e030c91",
                 "reference": "fdc149b52c92365e68432d01c1b342208e030c91",
-                "shasum": ""
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://repo.packagist.com/inpsyde/dists/%package%/%version%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
             },
             "require": {
                 "php": "^5.4 | ^7.0"
@@ -122,7 +134,13 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/Dhii/callback-abstract/zipball/43ed4e99fc6ccdaf46a25d06da482a2fba8d9b19",
                 "reference": "43ed4e99fc6ccdaf46a25d06da482a2fba8d9b19",
-                "shasum": ""
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://repo.packagist.com/inpsyde/dists/%package%/%version%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
             },
             "require": {
                 "php": "^5.4 | ^7.0"
@@ -177,7 +195,13 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/Dhii/collections-interface/zipball/b5e58ba2fd43a11356387eebae0379209b769f2e",
                 "reference": "b5e58ba2fd43a11356387eebae0379209b769f2e",
-                "shasum": ""
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://repo.packagist.com/inpsyde/dists/%package%/%version%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
             },
             "require": {
                 "dhii/data-container-interface": "^0.2-alpha3",
@@ -226,7 +250,13 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/Dhii/container-helper-base/zipball/ccb2f56971d70cf203baa596cd14fdf91be6bfae",
                 "reference": "ccb2f56971d70cf203baa596cd14fdf91be6bfae",
-                "shasum": ""
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://repo.packagist.com/inpsyde/dists/%package%/%version%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
             },
             "require": {
                 "php": "^5.4 | ^7.0"
@@ -275,7 +305,13 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/Dhii/data-container-abstract/zipball/8b8220dc199d7b52dcea9b9496194716a4ffa737",
                 "reference": "8b8220dc199d7b52dcea9b9496194716a4ffa737",
-                "shasum": ""
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://repo.packagist.com/inpsyde/dists/%package%/%version%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
             },
             "require": {
                 "php": "^5.4 | ^7.0"
@@ -328,7 +364,13 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/Dhii/data-container-base/zipball/ed3289171827cdc910d74c5ef76aab5f5985dace",
                 "reference": "ed3289171827cdc910d74c5ef76aab5f5985dace",
-                "shasum": ""
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://repo.packagist.com/inpsyde/dists/%package%/%version%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
             },
             "require": {
                 "dhii/data-container-abstract": "^0.1",
@@ -380,7 +422,13 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/Dhii/data-container-interface/zipball/f3427d42b9ee6fc1ca2d2e9cad4a94a244f67728",
                 "reference": "f3427d42b9ee6fc1ca2d2e9cad4a94a244f67728",
-                "shasum": ""
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://repo.packagist.com/inpsyde/dists/%package%/%version%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
             },
             "require": {
                 "dhii/exception-interface": "^0.1 | ^0.2",
@@ -434,7 +482,13 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/Dhii/hierarchy-interface/zipball/b026362a9b7dc7e8e9473c96239b881c86536040",
                 "reference": "b026362a9b7dc7e8e9473c96239b881c86536040",
-                "shasum": ""
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://repo.packagist.com/inpsyde/dists/%package%/%version%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
             },
             "require": {
                 "php": "^5.3 | ^7.0"
@@ -476,7 +530,13 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/Dhii/data-key-value-aware-abstract/zipball/a32b4938c92f06739e22fa23396b130c363f7d3a",
                 "reference": "a32b4938c92f06739e22fa23396b130c363f7d3a",
-                "shasum": ""
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://repo.packagist.com/inpsyde/dists/%package%/%version%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
             },
             "require": {
                 "php": "^5.4 | ^7.0"
@@ -524,7 +584,13 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/Dhii/data-key-value-aware-interface/zipball/220232bc9040fab78a6c039f5a4a5f9542317bdc",
                 "reference": "220232bc9040fab78a6c039f5a4a5f9542317bdc",
-                "shasum": ""
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://repo.packagist.com/inpsyde/dists/%package%/%version%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
             },
             "require": {
                 "php": "^5.3 | ^7.0"
@@ -566,7 +632,13 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/Dhii/data-object-abstract/zipball/6ab979adc2d0c01777af6076dfb66f55bf4fbfe3",
                 "reference": "6ab979adc2d0c01777af6076dfb66f55bf4fbfe3",
-                "shasum": ""
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://repo.packagist.com/inpsyde/dists/%package%/%version%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
             },
             "require": {
                 "php": "^5.4 | ^7.0"
@@ -619,7 +691,13 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/Dhii/data-path-aware-interface/zipball/c004106cfc3e363b880a14bb27ef530501097d12",
                 "reference": "c004106cfc3e363b880a14bb27ef530501097d12",
-                "shasum": ""
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://repo.packagist.com/inpsyde/dists/%package%/%version%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
             },
             "require": {
                 "dhii/stringable-interface": "^0.1",
@@ -662,7 +740,13 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/Dhii/di/zipball/293bd78c665c88464137dea467ea3b05de962fcc",
                 "reference": "293bd78c665c88464137dea467ea3b05de962fcc",
-                "shasum": ""
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://repo.packagist.com/inpsyde/dists/%package%/%version%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
             },
             "require": {
                 "dhii/args-list-validation": "^0.1",
@@ -737,7 +821,13 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/Dhii/di-abstract/zipball/badfa20def27e5c6883f1c1078c98603b7bee319",
                 "reference": "badfa20def27e5c6883f1c1078c98603b7bee319",
-                "shasum": ""
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://repo.packagist.com/inpsyde/dists/%package%/%version%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
             },
             "require": {
                 "php": "^5.4 | ^7.0"
@@ -790,7 +880,13 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/Dhii/exception/zipball/d42828984c85a509af3f7fde709561a1e520b9e4",
                 "reference": "d42828984c85a509af3f7fde709561a1e520b9e4",
-                "shasum": ""
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://repo.packagist.com/inpsyde/dists/%package%/%version%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
             },
             "require": {
                 "dhii/exception-interface": "^0.2",
@@ -844,7 +940,13 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/Dhii/exception-interface/zipball/b69feebf7cb2879cd43977a03342e2393b73f7fb",
                 "reference": "b69feebf7cb2879cd43977a03342e2393b73f7fb",
-                "shasum": ""
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://repo.packagist.com/inpsyde/dists/%package%/%version%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
             },
             "require": {
                 "dhii/stringable-interface": "^0.1",
@@ -892,7 +994,13 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/Dhii/factory-base/zipball/eb6694178068ec58e0f2de9243f0eb98844511de",
                 "reference": "eb6694178068ec58e0f2de9243f0eb98844511de",
-                "shasum": ""
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://repo.packagist.com/inpsyde/dists/%package%/%version%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
             },
             "require": {
                 "dhii/args-list-validation": "^0.1-alpha1",
@@ -952,7 +1060,13 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/Dhii/factory-interface/zipball/b8d217aec8838e64ccaa770cb03dc164bf6f0515",
                 "reference": "b8d217aec8838e64ccaa770cb03dc164bf6f0515",
-                "shasum": ""
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://repo.packagist.com/inpsyde/dists/%package%/%version%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
             },
             "require": {
                 "dhii/exception-interface": "^0.1|^0.2",
@@ -1002,7 +1116,13 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/Dhii/i18n-abstract/zipball/90d36bc19f76ff9c618b9ae7631deaa05e7352bc",
                 "reference": "90d36bc19f76ff9c618b9ae7631deaa05e7352bc",
-                "shasum": ""
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://repo.packagist.com/inpsyde/dists/%package%/%version%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
             },
             "require": {
                 "php": "^5.3 | ^7.0"
@@ -1047,7 +1167,13 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/Dhii/i18n-base/zipball/57ccb0472efd24fc9267096991e3db3281f728d4",
                 "reference": "57ccb0472efd24fc9267096991e3db3281f728d4",
-                "shasum": ""
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://repo.packagist.com/inpsyde/dists/%package%/%version%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
             },
             "require": {
                 "dhii/i18n-abstract": "^0.1",
@@ -1093,7 +1219,13 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/Dhii/i18n-helper-base/zipball/fc4c881f3e528ea918588831ebeffb92738f8dd5",
                 "reference": "fc4c881f3e528ea918588831ebeffb92738f8dd5",
-                "shasum": ""
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://repo.packagist.com/inpsyde/dists/%package%/%version%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
             },
             "require": {
                 "dhii/i18n-interface": "^0.1|^0.2",
@@ -1141,7 +1273,13 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/Dhii/i18n-interface/zipball/7eaf0731ba80eea37a5deea6d894a0326e10be67",
                 "reference": "7eaf0731ba80eea37a5deea6d894a0326e10be67",
-                "shasum": ""
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://repo.packagist.com/inpsyde/dists/%package%/%version%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
             },
             "require": {
                 "php": "^5.3 | ^7.0"
@@ -1185,7 +1323,13 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/Dhii/invocable-base/zipball/f8edf350653f1041388addb918a1478e46c3a83f",
                 "reference": "f8edf350653f1041388addb918a1478e46c3a83f",
-                "shasum": ""
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://repo.packagist.com/inpsyde/dists/%package%/%version%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
             },
             "require": {
                 "dhii/callback-abstract": "^0.1-alpha2",
@@ -1233,7 +1377,13 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/Dhii/invocable-interface/zipball/85f9fae9ae6bb53213c2a2354edf78bb364b705f",
                 "reference": "85f9fae9ae6bb53213c2a2354edf78bb364b705f",
-                "shasum": ""
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://repo.packagist.com/inpsyde/dists/%package%/%version%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
             },
             "require": {
                 "dhii/exception-interface": "^0.1 | ^0.2",
@@ -1281,7 +1431,13 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/Dhii/iterator-abstract/zipball/576484183865575ffc2a0d586132741329626fb8",
                 "reference": "576484183865575ffc2a0d586132741329626fb8",
-                "shasum": ""
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://repo.packagist.com/inpsyde/dists/%package%/%version%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
             },
             "require": {
                 "dhii/stringable-interface": "^0.1",
@@ -1336,7 +1492,13 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/Dhii/iterator-base/zipball/093438953cb2c83309b412f9fe09211fb1d0abed",
                 "reference": "093438953cb2c83309b412f9fe09211fb1d0abed",
-                "shasum": ""
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://repo.packagist.com/inpsyde/dists/%package%/%version%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
             },
             "require": {
                 "dhii/data-key-value-aware-abstract": "^0.1-alpha2",
@@ -1391,7 +1553,13 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/Dhii/iterator-helper-base/zipball/cf62fb9f8b658a82815f15a2d906d8d1ff5c52ce",
                 "reference": "cf62fb9f8b658a82815f15a2d906d8d1ff5c52ce",
-                "shasum": ""
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://repo.packagist.com/inpsyde/dists/%package%/%version%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
             },
             "require": {
                 "dhii/exception": "^0.1-alpha4",
@@ -1444,7 +1612,13 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/Dhii/iterator-interface/zipball/5e881465b9be8dcd7e8b97342150998f1dfa527c",
                 "reference": "5e881465b9be8dcd7e8b97342150998f1dfa527c",
-                "shasum": ""
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://repo.packagist.com/inpsyde/dists/%package%/%version%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
             },
             "require": {
                 "dhii/data-hierarchy-interface": "^0.1",
@@ -1495,7 +1669,13 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/Dhii/map/zipball/9ec82af42b7cb33d3b0b70d753e8a2bc7451cedf",
                 "reference": "9ec82af42b7cb33d3b0b70d753e8a2bc7451cedf",
-                "shasum": ""
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://repo.packagist.com/inpsyde/dists/%package%/%version%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
             },
             "require": {
                 "dhii/collections-interface": "^0.2-alpha5",
@@ -1558,7 +1738,13 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/Dhii/memoize-memory/zipball/4e93d600dfb464ab5b6d51bffe772adbfd9b94fa",
                 "reference": "4e93d600dfb464ab5b6d51bffe772adbfd9b94fa",
-                "shasum": ""
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://repo.packagist.com/inpsyde/dists/%package%/%version%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
             },
             "require": {
                 "dhii/args-list-validation": "^0.1-alpha1",
@@ -1618,7 +1804,13 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/Dhii/normalization-helper-base/zipball/1b64f0ea6b3e32f9478f854f6049500795b51da7",
                 "reference": "1b64f0ea6b3e32f9478f854f6049500795b51da7",
-                "shasum": ""
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://repo.packagist.com/inpsyde/dists/%package%/%version%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
             },
             "require": {
                 "php": "^5.4 | ^7.0"
@@ -1666,7 +1858,13 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/Dhii/simple-cache-interface/zipball/62659e4d9526e1b9854017e5d2f1e24db12f6b92",
                 "reference": "62659e4d9526e1b9854017e5d2f1e24db12f6b92",
-                "shasum": ""
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://repo.packagist.com/inpsyde/dists/%package%/%version%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
             },
             "require": {
                 "dhii/data-container-interface": "^0.2-alpha2",
@@ -1716,7 +1914,13 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/Dhii/stringable-interface/zipball/b6653905eef2ebf377749feb80a6d18abbe913ef",
                 "reference": "b6653905eef2ebf377749feb80a6d18abbe913ef",
-                "shasum": ""
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://repo.packagist.com/inpsyde/dists/%package%/%version%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
             },
             "require": {
                 "php": "^5.3 | ^7.0"
@@ -1758,7 +1962,13 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/Dhii/validation-abstract/zipball/dff998ba3476927a0fc6d10bb022425de8f1c844",
                 "reference": "dff998ba3476927a0fc6d10bb022425de8f1c844",
-                "shasum": ""
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://repo.packagist.com/inpsyde/dists/%package%/%version%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
             },
             "require": {
                 "dhii/validation-interface": "^0.2",
@@ -1814,7 +2024,13 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/Dhii/validation-base/zipball/9e75c5f886a2403c6989c36c2d4ffcfae158172e",
                 "reference": "9e75c5f886a2403c6989c36c2d4ffcfae158172e",
-                "shasum": ""
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://repo.packagist.com/inpsyde/dists/%package%/%version%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
             },
             "require": {
                 "dhii/exception": "^0.1-alpha4",
@@ -1867,7 +2083,13 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/Dhii/validation-interface/zipball/a26026ae5cdf0a650b3511a22dbcb9329073b82c",
                 "reference": "a26026ae5cdf0a650b3511a22dbcb9329073b82c",
-                "shasum": ""
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://repo.packagist.com/inpsyde/dists/%package%/%version%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
             },
             "require": {
                 "dhii/exception-interface": "^0.1|^0.2",
@@ -1917,7 +2139,13 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/Dhii/wp-containers/zipball/e91a6f741622770ed724a2b594145fa917811f0c",
                 "reference": "e91a6f741622770ed724a2b594145fa917811f0c",
-                "shasum": ""
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://repo.packagist.com/inpsyde/dists/%package%/%version%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
             },
             "require": {
                 "dhii/data-container-interface": "^0.2.1-alpha1",
@@ -1972,7 +2200,13 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/Dhii/wp-i18n/zipball/3418c35bda59364521039fd43b370d45982cb561",
                 "reference": "3418c35bda59364521039fd43b370d45982cb561",
-                "shasum": ""
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://repo.packagist.com/inpsyde/dists/%package%/%version%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
             },
             "require": {
                 "dhii/i18n-abstract": "^0.1",
@@ -2020,7 +2254,13 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/php-fig/container/zipball/014d250daebff39eba15ba990eeb2a140798e77c",
                 "reference": "014d250daebff39eba15ba990eeb2a140798e77c",
-                "shasum": ""
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://repo.packagist.com/inpsyde/dists/%package%/%version%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
             },
             "require": {
                 "php": ">=5.3.0"
@@ -2433,6 +2673,132 @@
             ],
             "description": "Flexible Stub wrapper for PHPUnit's Mock Builder",
             "time": "2019-03-02T15:35:10+00:00"
+        },
+        {
+            "name": "composer/installers",
+            "version": "v1.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/composer/installers.git",
+                "reference": "cfcca6b1b60bc4974324efb5783c13dca6932b5b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/composer/installers/zipball/cfcca6b1b60bc4974324efb5783c13dca6932b5b",
+                "reference": "cfcca6b1b60bc4974324efb5783c13dca6932b5b",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://repo.packagist.com/inpsyde/dists/%package%/%version%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "composer-plugin-api": "^1.0"
+            },
+            "replace": {
+                "roundcube/plugin-installer": "*",
+                "shama/baton": "*"
+            },
+            "require-dev": {
+                "composer/composer": "1.0.*@dev",
+                "phpunit/phpunit": "^4.8.36"
+            },
+            "type": "composer-plugin",
+            "extra": {
+                "class": "Composer\\Installers\\Plugin",
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Composer\\Installers\\": "src/Composer/Installers"
+                }
+            },
+            "notification-url": "https://repo.packagist.com/inpsyde/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Kyle Robinson Young",
+                    "email": "kyle@dontkry.com",
+                    "homepage": "https://github.com/shama"
+                }
+            ],
+            "description": "A multi-framework Composer library installer",
+            "homepage": "https://composer.github.io/installers/",
+            "keywords": [
+                "Craft",
+                "Dolibarr",
+                "Eliasis",
+                "Hurad",
+                "ImageCMS",
+                "Kanboard",
+                "Lan Management System",
+                "MODX Evo",
+                "Mautic",
+                "Maya",
+                "OXID",
+                "Plentymarkets",
+                "Porto",
+                "RadPHP",
+                "SMF",
+                "Thelia",
+                "WolfCMS",
+                "agl",
+                "aimeos",
+                "annotatecms",
+                "attogram",
+                "bitrix",
+                "cakephp",
+                "chef",
+                "cockpit",
+                "codeigniter",
+                "concrete5",
+                "croogo",
+                "dokuwiki",
+                "drupal",
+                "eZ Platform",
+                "elgg",
+                "expressionengine",
+                "fuelphp",
+                "grav",
+                "installer",
+                "itop",
+                "joomla",
+                "kohana",
+                "laravel",
+                "lavalite",
+                "lithium",
+                "magento",
+                "majima",
+                "mako",
+                "mediawiki",
+                "modulework",
+                "modx",
+                "moodle",
+                "osclass",
+                "phpbb",
+                "piwik",
+                "ppi",
+                "puppet",
+                "pxcms",
+                "reindex",
+                "roundcube",
+                "shopware",
+                "silverstripe",
+                "sydes",
+                "symfony",
+                "typo3",
+                "wordpress",
+                "yawik",
+                "zend",
+                "zikula"
+            ],
+            "time": "2018-08-27T06:10:37+00:00"
         },
         {
             "name": "dealerdirect/phpcodesniffer-composer-installer",
@@ -3452,6 +3818,189 @@
             "time": "2017-01-16T07:08:25+00:00"
         },
         {
+            "name": "inpsyde/multilingual-press",
+            "version": "2.11.x-dev",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/inpsyde/MultilingualPress.git",
+                "reference": "938d2bdde9db22087b19317d84b0aef1e10c126f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/inpsyde/MultilingualPress/zipball/938d2bdde9db22087b19317d84b0aef1e10c126f",
+                "reference": "938d2bdde9db22087b19317d84b0aef1e10c126f",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://repo.packagist.com/inpsyde/dists/%package%/%version%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "php": ">=5.2.4"
+            },
+            "require-dev": {
+                "dealerdirect/phpcodesniffer-composer-installer": "^0.4.2",
+                "php": ">=5.3.3",
+                "phpunit/phpunit": "~4.8|~5.1",
+                "squizlabs/php_codesniffer": "^2.0|^3.0",
+                "wimg/php-compatibility": "^8.0",
+                "wp-coding-standards/wpcs": "^0.13.1"
+            },
+            "type": "wordpress-plugin",
+            "extra": {
+                "branch-alias": {
+                    "dev-2.10": "2.10.x-dev"
+                }
+            },
+            "notification-url": "https://repo.packagist.com/inpsyde/downloads/",
+            "license": [
+                "GPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Inpsyde GmbH",
+                    "email": "hello@inpsyde.com",
+                    "homepage": "http://inpsyde.com",
+                    "role": "Company"
+                }
+            ],
+            "description": "Simply THE multisite-based free open source plugin for your multilingual websites.",
+            "keywords": [
+                "bilingual",
+                "i18n",
+                "international",
+                "internationalization",
+                "l10n",
+                "lang",
+                "language",
+                "localization",
+                "multi",
+                "multilanguage",
+                "multilingual",
+                "multisite",
+                "network",
+                "translation"
+            ],
+            "time": "2017-12-19T09:58:47+00:00"
+        },
+        {
+            "name": "inpsyde/multilingualpress",
+            "version": "3.2.0",
+            "source": {
+                "type": "git",
+                "url": "git@bitbucket.org:inpsyde/multilingualpress.git",
+                "reference": "9f4176d400f7c50a1339e111a425d8931a430f3d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://bitbucket.org/inpsyde/multilingualpress/get/9f4176d400f7c50a1339e111a425d8931a430f3d.zip",
+                "reference": "9f4176d400f7c50a1339e111a425d8931a430f3d",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://repo.packagist.com/inpsyde/dists/%package%/%version%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "composer/installers": "^1",
+                "oomphinc/composer-installers-extender": "^1",
+                "php": "^7.0.33"
+            },
+            "require-dev": {
+                "brain/monkey": "2.2.*",
+                "consolidation/robo": "1.3.*",
+                "gmazzap/andrew": "2.1.*",
+                "inpsyde/php-coding-standards": "^0.13",
+                "johnpbloch/wordpress-core": "4.9.*",
+                "leafo/scssphp": "^0.7",
+                "mikey179/vfsstream": "^1.6.4",
+                "mockery/mockery": "^0.9",
+                "patchwork/jsqueeze": "2.0.*",
+                "phpunit/phpunit": "6.5.*",
+                "ptrofimov/xpmock": "^1.1",
+                "sclable/xml-lint": "^0.2",
+                "seld/jsonlint": "1.7.*",
+                "squizlabs/php_codesniffer": "3.2.*",
+                "symfony/process": "^3.3.0 | <4.2",
+                "vlucas/phpdotenv": "2.5.*",
+                "wp-cli/i18n-command": "2.0.*"
+            },
+            "type": "wordpress-plugin",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.0.x-dev"
+                },
+                "installer-types": [
+                    "mlp-mod"
+                ],
+                "installer-paths": {
+                    "modules/{$name}/": [
+                        "type:mlp-mod"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Inpsyde\\MultilingualPress\\": "src/multilingualpress/",
+                    "Inpsyde\\MultilingualPress\\Framework\\": "src/framework/",
+                    "Inpsyde\\MultilingualPress\\Module\\": "src/modules/"
+                },
+                "files": [
+                    "src/inc/functions.php"
+                ]
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Inpsyde\\MultilingualPress\\Tests\\Unit\\": "tests/php/unit"
+                }
+            },
+            "notification-url": "https://repo.packagist.com/inpsyde/downloads/",
+            "scripts": {
+                "phpcs": [
+                    "phpcs --standard=phpcs.xml.dist"
+                ]
+            },
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Inpsyde GmbH",
+                    "email": "hello@inpsyde.com",
+                    "homepage": "https://inpsyde.com",
+                    "role": "Company"
+                }
+            ],
+            "description": "The multisite-based plugin for your multilingual WordPress websites.",
+            "homepage": "https://bitbucket.org/inpsyde/multilingualpress",
+            "keywords": [
+                "bilingual",
+                "i18n",
+                "international",
+                "internationalization",
+                "l10n",
+                "lang",
+                "language",
+                "localization",
+                "multi",
+                "multilanguage",
+                "multilingual",
+                "multisite",
+                "network",
+                "translation",
+                "wordpress",
+                "wp"
+            ],
+            "support": {
+                "source": "https://bitbucket.org/inpsyde/multilingualpress/src/9f4176d400f7c50a1339e111a425d8931a430f3d/?at=3.2.0"
+            },
+            "time": "2019-05-23T08:59:08+00:00"
+        },
+        {
             "name": "inpsyde/php-coding-standards",
             "version": "dev-master",
             "source": {
@@ -3666,6 +4215,54 @@
                 "object graph"
             ],
             "time": "2017-10-19T19:58:43+00:00"
+        },
+        {
+            "name": "oomphinc/composer-installers-extender",
+            "version": "v1.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/oomphinc/composer-installers-extender.git",
+                "reference": "ca1c4b16b0905c81d1e77e608f36a2eff1a56f56"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/oomphinc/composer-installers-extender/zipball/ca1c4b16b0905c81d1e77e608f36a2eff1a56f56",
+                "reference": "ca1c4b16b0905c81d1e77e608f36a2eff1a56f56",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://repo.packagist.com/inpsyde/dists/%package%/%version%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "composer-plugin-api": "^1.0",
+                "composer/installers": "^1.0"
+            },
+            "type": "composer-plugin",
+            "extra": {
+                "class": "OomphInc\\ComposerInstallersExtender\\Plugin"
+            },
+            "autoload": {
+                "psr-4": {
+                    "OomphInc\\ComposerInstallersExtender\\": "src/"
+                }
+            },
+            "notification-url": "https://repo.packagist.com/inpsyde/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Stephen Beemsterboer",
+                    "email": "stephen@oomphinc.com",
+                    "homepage": "https://github.com/balbuf"
+                }
+            ],
+            "description": "Extend the composer/installers plugin to accept any arbitrary package type.",
+            "homepage": "http://www.oomphinc.com/",
+            "time": "2017-03-31T16:57:39+00:00"
         },
         {
             "name": "phar-io/manifest",

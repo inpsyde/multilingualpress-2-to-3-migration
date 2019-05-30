@@ -29,7 +29,9 @@
         "gmazzap/andrew": "^2",
         "codeception/codeception": "^2.5",
         "symfony/browser-kit": ">=2.7 <=4.2.4",
-        "hoa/consistency": "^1.17.05.02"
+        "hoa/consistency": "^1.17.05.02",
+        "inpsyde/multilingual-press": "^2.11.3",
+        "inpsyde/multilingualpress": "^3.2.0"
     },
     "autoload": {
         "psr-4": {
@@ -43,6 +45,12 @@
     "extra": {
         "branch-alias": {
             "dev-task/mvp": "0.1.x-dev"
+        },
+        "installer-types": [
+            "wordpress-plugin"
+        ],
+        "installer-paths": {
+            "wordpress-site/wp-content/plugins/{$name}/": ["type:wordpress-plugin"]
         }
     },
     "config": {
