@@ -49,5 +49,9 @@
         "platform": {
             "php": "7.0.33"
         }
-    }
+    },
+    "repositories": [
+        {"type": "composer", "url": "https://repo.packagist.com/inpsyde/"},
+        {"packagist.org": false}
+    ]
 }

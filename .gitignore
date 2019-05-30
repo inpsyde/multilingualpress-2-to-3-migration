@@ -4,3 +4,4 @@
 /wordpress-site/
 /mysql-data/
 /.env
+/auth.json
