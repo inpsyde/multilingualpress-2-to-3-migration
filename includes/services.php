@@ -87,6 +87,7 @@ return function ( array $defaults ) {
 
         'wpcli_command_key_mlp2to3_migrate' => 'mlp2to3',
         'filter_is_check_legacy'  => 'multilingualpress.is_check_legacy',
+        'filter_deleted_tables'   => 'multilingualpress.deleted_tables',
 
         'table_name_temp_languages' => 'mlp_languages_h7h2927fg2',
         'table_name_languages' => 'mlp_languages',
@@ -136,6 +137,10 @@ return function ( array $defaults ) {
                 ],
             ];
         },
+
+        'shared_table_names'             => [
+            'mlp_site_relations'
+        ],
 
         'table_keys_languages'           => function ():array {
             return [LanguagesTable::COLUMN_ID];
