@@ -40,6 +40,8 @@ services:
       - ${BASE_DIR}:/opt/project
     depends_on:
       - wordpress
+    environment:
+      COMPOSER_ALLOW_SUPERUSER: 1
   codecept:
     build:
       context: ./docker/
