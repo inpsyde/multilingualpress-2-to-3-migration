@@ -45,9 +45,49 @@ class IntegrationHandler implements HandlerInterface
      */
     protected function _hook()
     {
+        $this->_preventLegacyCheck();
+        $this->_preventSharedTableDeletion();
+    }
+
+    /**
+     * Prevents the which blocks activation of MLP3 while MLP2 is present.
+     *
+     * Without this, it is not possible to activate MLP3 if MLP2 is installed,
+     * even if inactive.
+     */
+    protected function _preventLegacyCheck()
+    {
         $filter = $this->_getConfig('filter_is_check_legacy');
         assert(is_string($filter) && !empty($filter));
 
         $this->_addFilter($filter, '__return_false');
+    }
+
+    /**
+     * Prevents the deletion of tables that re shared between MLP2 and MLP3.
+     */
+    protected function _preventSharedTableDeletion()
+    {
+        // Prevents deletion of tables that have the same name in MLP2 and MLP3
+        $filter = $this->_getConfig('table_fields_languages');
+        assert(is_string($filter) && !empty($filter));
+
+        $this->_addFilter($filter, function ($tableNames) {
+            return $this->_removeSharedTableNames($tableNames);
+        });
+    }
+
+    /**
+     * Removes names of tables that are shared between MLP2 and MLP3.
+     *
+     * @param string[] $allNames A list of table names.
+     * @return string[] A list of table names, none of which are shared between MLP2 and MLP3.
+     */
+    protected function _removeSharedTableNames($allNames)
+    {
+        $sharedNames = $this->_getConfig('shared_table_names');
+        $nonSharedNames = array_diff($allNames, $sharedNames);
+
+        return $nonSharedNames;
     }
 }

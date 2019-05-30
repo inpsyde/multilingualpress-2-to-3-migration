@@ -1,0 +1,18 @@
+actor: AcceptanceTester
+modules:
+    enabled:
+        - PhpBrowser:
+            url: http://wordpress
+        - \Helper\Acceptance
+        - Cli
+        - Db
+        - Asserts
+    config:
+        Db:
+            dsn: 'mysql:host=mysql;dbname=wordpress'
+            user: 'wordpress'
+            password: 'wordpress'
+            dump: 'test/acceptance/tests/_data/dump.sql'
+            populate: true
+            cleanup: true
+            reconnect: true

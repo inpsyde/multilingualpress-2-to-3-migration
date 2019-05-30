@@ -1,3 +1,7 @@
 /vendor/
 /test/log/
 /.idea/workspace.xml
+/wordpress-site/
+/mysql-data/
+/.env
+/auth.json

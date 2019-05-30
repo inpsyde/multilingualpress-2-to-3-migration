@@ -299,6 +299,7 @@ trait DatabaseWpdbTrait
     protected function _alterDb(string $query)
     {
         $db = $this->_getDb();
+        require_once ABSPATH . 'wp-admin/includes/upgrade.php';
         dbDelta($query);
 
         $error = $db->last_error;

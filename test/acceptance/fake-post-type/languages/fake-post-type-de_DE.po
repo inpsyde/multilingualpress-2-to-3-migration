@@ -1,0 +1,32 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2018-06-29 18:46+0200\n"
+"PO-Revision-Date: 2018-06-29 18:47+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.0.8\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-KeywordsList: esc_html__;esc_html_x\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: index.php:9
+msgid "Fake Post Type"
+msgstr ""
+
+#: index.php:13
+msgid "fake-post-type-slug"
+msgstr "falschung-post-type-slug"
+
+#: index.php:18
+msgid "Fakes Taxonomy"
+msgstr ""
+
+#: index.php:20
+msgid "fakes-taxonomy-slug"
+msgstr "falschungen-taxonomy-slug"
