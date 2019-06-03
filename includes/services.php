@@ -139,7 +139,8 @@ return function ( array $defaults ) {
         },
 
         'shared_table_names'             => [
-            'mlp_languages'
+            'mlp_languages',
+            'mlp_site_relations',
         ],
 
         'table_keys_languages'           => function ():array {
