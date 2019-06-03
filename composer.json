@@ -38,6 +38,13 @@
             "Inpsyde\\MultilingualPress2to3\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Inpsyde\\MultilingualPress2to3\\Test\\Unit\\": "test/unit",
+            "Inpsyde\\MultilingualPress2to3\\Test\\\\Functional\\": "test/functional",
+            "Inpsyde\\MultilingualPress2to3\\Test\\Helper\\": "test/helper"
+        }
+    },
     "scripts": {
         "cscheck": "phpcs -s -n",
         "csfix": "phpcbf --standard=phpcs.xml.dist"
