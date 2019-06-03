@@ -118,10 +118,6 @@
         <exclude name="phpmd.xml"/>
         <exclude name="phpunit.xml"/>
         <exclude name="webpack.config.js"/>
-        <!-- Exclude package meta files -->
-        <exclude name="LICENSE"/>
-        <exclude name="CHANGELOG.md"/>
-        <exclude name="README.md"/>
         <!-- Exclude package manager files -->
         <exclude name="composer.json"/>
         <exclude name="composer.lock"/>
