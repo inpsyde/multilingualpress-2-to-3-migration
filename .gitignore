@@ -5,3 +5,4 @@
 /mysql-data/
 /.env
 /auth.json
+/build/

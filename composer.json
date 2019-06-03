@@ -31,7 +31,8 @@
         "symfony/browser-kit": ">=2.7 <=4.2.4",
         "hoa/consistency": "^1.17.05.02",
         "inpsyde/multilingual-press": "^2.11.3",
-        "inpsyde/multilingualpress": "^3.2.0"
+        "inpsyde/multilingualpress": "^3.2.0",
+        "phing/phing": "^2"
     },
     "autoload": {
         "psr-4": {
