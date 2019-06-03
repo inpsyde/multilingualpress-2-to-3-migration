@@ -69,7 +69,7 @@ class IntegrationHandler implements HandlerInterface
     protected function _preventSharedTableDeletion()
     {
         // Prevents deletion of tables that have the same name in MLP2 and MLP3
-        $filter = $this->_getConfig('table_name_languages');
+        $filter = $this->_getConfig('filter_deleted_tables');
         assert(is_string($filter) && !empty($filter));
 
         $this->_addFilter($filter, function ($tableNames) {
