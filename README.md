@@ -128,9 +128,27 @@ Use the below command to run the `acceptance` suite in the `codecept` service:
 docker-compose run codecept run acceptance
 ```
 
+### Building
+This project uses [Phing][] to run tasks related to the build process. The `test`
+service has all environmental dependencies fulfilled. Therefore, to create a
+release simply run `phing` in the `test` container, e.g. to release this package as
+`mlp2to3` at version `0.1.0-alpha1` run the following:
+
+```
+docker-compose run test vendor/bin/phing release -Dversion=0.1.0-alpha1 -Dbuild_name=mlp2to3
+```
+
+This will create a timestamped archive in the `build/release` directory, containing
+the built version of the current state of the checked-out branch. The timestamp
+allows multiple builds of the same version to not collide. The archive will be named
+the same as the build name, plus the version, plus timestamp, e.g.
+`mlp2to3-0.1.0-alpha1-2019.06.03-14.31.zip`. The files will be additionally placed
+into a directory named after the build, in order to satisfy the requirement for WordPress plugins.
+
 
 [Docker Toolbox]: https://docs.docker.com/toolbox/
 [Docker Desktop]: https://www.docker.com/products/docker-desktop
+[Phing]: https://www.phing.info/
 
 [`inpsyde/multilingualpress@eebfc1b`]: https://bitbucket.org/inpsyde/multilingualpress/commits/eebfc1b9caba54e028afc491fd3005d722a89995
 [`inpsyde/MultilingualPress@7dccc9c`]: https://github.com/inpsyde/MultilingualPress/commit/7dccc9ce10b0f361369e4987371312d859a9d73c
