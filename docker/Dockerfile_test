@@ -1,13 +1,14 @@
-FROM php:7.0.0
+FROM php:7.0.33
 
 VOLUME /opt/project
 
 RUN printf "deb http://archive.debian.org/debian/ jessie main\ndeb-src http://archive.debian.org/debian/ jessie main\ndeb http://security.debian.org jessie/updates main\ndeb-src http://security.debian.org jessie/updates main" > /etc/apt/sources.list
 RUN apt-get update && apt-get install -y git
 
-RUN apt-get install -y \
+RUN apt-get install -y --allow-downgrades \
     git \
     libzip-dev \
+    zlib1g=1:1.2.8.dfsg-2+b1 \
     zip \
     && docker-php-ext-configure zip --with-libzip \
     && docker-php-ext-install zip mbstring pdo_mysql
