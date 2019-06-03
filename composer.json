@@ -2,7 +2,7 @@
     "name": "inpsyde/multilingualpress2to3",
     "description": "A WP plugin that allows migrating data from MultilingualPress version 2 to version 3.",
     "type": "wordpress-plugin",
-    "license": "GPLv3",
+    "license": "GPL-2.0-or-later",
     "authors": [
         {
             "name": "Anton Ukhanev",
@@ -11,14 +11,39 @@
     ],
     "minimum-stability": "dev",
     "require": {
-        "php": "^7.0.33"
+        "php": "^7.0.33",
+        "ext-json": "*",
+        "psr/container": "^1.0",
+        "dhii/di": "^0.2-alpha1",
+        "dhii/memoize-memory": "^0.2-alpha1",
+        "dhii/i18n-interface": "^0.2",
+        "dhii/wp-i18n": "dev-develop",
+        "dhii/stringable-interface": "^0.1",
+        "dhii/wp-containers": "0.1.0-alpha1"
     },
     "require-dev": {
-        "inpsyde/php-coding-standards": "^0.13"
+        "inpsyde/php-coding-standards": "^0.13",
+        "wp-cli/wp-cli": "^2",
+        "phpunit/phpunit": "^6",
+        "brain/monkey": "^2",
+        "gmazzap/andrew": "^2",
+        "codeception/codeception": "^2.5",
+        "symfony/browser-kit": ">=2.7 <=4.2.4",
+        "hoa/consistency": "^1.17.05.02",
+        "inpsyde/multilingual-press": "^2.11.3",
+        "inpsyde/multilingualpress": "^3.2.0",
+        "phing/phing": "^2"
     },
     "autoload": {
         "psr-4": {
             "Inpsyde\\MultilingualPress2to3\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Inpsyde\\MultilingualPress2to3\\Test\\Unit\\": "test/unit",
+            "Inpsyde\\MultilingualPress2to3\\Test\\\\Functional\\": "test/functional",
+            "Inpsyde\\MultilingualPress2to3\\Test\\Helper\\": "test/helper"
         }
     },
     "scripts": {
@@ -27,7 +52,22 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "0.1-alpha1"
+            "dev-task/mvp": "0.1.x-dev"
+        },
+        "installer-types": [
+            "wordpress-plugin"
+        ],
+        "installer-paths": {
+            "wordpress-site/wp-content/plugins/{$name}/": ["type:wordpress-plugin"]
         }
-    }
+    },
+    "config": {
+        "platform": {
+            "php": "7.0.33"
+        }
+    },
+    "repositories": [
+        {"type": "composer", "url": "https://repo.packagist.com/inpsyde/"},
+        {"packagist.org": false}
+    ]
 }

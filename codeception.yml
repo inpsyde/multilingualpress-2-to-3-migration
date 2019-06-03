@@ -1,0 +1,19 @@
+paths:
+    # where the tests stored
+    tests: test/acceptance/tests
+
+    # directory for fixture data
+    data: test/acceptance/tests/_data
+
+    # directory for support code
+    support: test/acceptance/tests/_support
+
+    # directory for output
+    output: test/acceptance/tests/_output
+
+    # directory for environment configuration
+    envs: test/acceptance/tests/_envs
+actor_suffix: Tester
+extensions:
+    enabled:
+        - Codeception\Extension\RunFailed

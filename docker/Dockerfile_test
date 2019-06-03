@@ -1,0 +1,25 @@
+FROM php:7.0.33
+
+VOLUME /opt/project
+
+RUN printf "deb http://archive.debian.org/debian/ jessie main\ndeb-src http://archive.debian.org/debian/ jessie main\ndeb http://security.debian.org jessie/updates main\ndeb-src http://security.debian.org jessie/updates main" > /etc/apt/sources.list
+RUN apt-get update && apt-get install -y git
+
+RUN apt-get install -y --allow-downgrades \
+    git \
+    libzip-dev \
+    zlib1g=1:1.2.8.dfsg-2+b1 \
+    zip \
+    && docker-php-ext-configure zip --with-libzip \
+    && docker-php-ext-install zip mbstring pdo_mysql
+
+RUN curl -sS https://getcomposer.org/installer | php \
+        && mv composer.phar /usr/local/bin/ \
+        && ln -s /usr/local/bin/composer.phar /usr/local/bin/composer
+
+# Add WP-CLI
+RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
+        && chmod +x wp-cli.phar \
+        && mv wp-cli.phar /usr/local/bin/wp
+
+WORKDIR /opt/project
