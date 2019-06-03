@@ -16,7 +16,7 @@ use Brain\Monkey\Filters;
  *
  * @package MultilingualPress2to3
  */
-class HandlerTraitTest extends TestCase
+class WpHookingTraitTest extends TestCase
 {
     use MockeryPHPUnitIntegration;
 
