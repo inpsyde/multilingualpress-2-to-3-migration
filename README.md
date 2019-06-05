@@ -39,11 +39,20 @@ Install it as you would any other plugin, i.e. in any of the following ways:
     migrating redirections.
 
 ## Usage
-In the root of your WP installation, run the following command to see all available arguments and flags:
+0. Back up your database!
+0. Make sure that **all 3** plugins are **installed but inactive**: [MLP2][], [MLP3][],
+Migration (this plugin).
+0. Activate the Migration plugin.
+0. Activate MLP3.
+0. Run the migration, i.e. `wp mlp2to3 all`, and make sure it completes all migrations successfully.
+0. Deactivate and then **uninstall** MLP2 by clicking the "Delete" button.
+0. Deactivate and then uninstall the Migration plugin.
 
-```
-wp help mlp2to3
-```
+You can also run `wp help mlp2to3` to see all available arguments and flags.
+
+Please consult the [documentation][migration-documentation] for a more verbose
+explanation.
+
 
 ## Known Limitations
 
@@ -151,6 +160,9 @@ into a directory named after the build, in order to satisfy the requirement for 
 [Docker Toolbox]: https://docs.docker.com/toolbox/
 [Docker Desktop]: https://www.docker.com/products/docker-desktop
 [Phing]: https://www.phing.info/
+[MLP2]: https://wordpress.org/plugins/multilingual-press/
+[MLP3]: https://multilingualpress.org
+[migration-documentation]: https://multilingualpress.org/docs/multilingualpress-2-3-migration-tool/
 
 [`inpsyde/multilingualpress@eebfc1b`]: https://bitbucket.org/inpsyde/multilingualpress/commits/eebfc1b9caba54e028afc491fd3005d722a89995
 [`inpsyde/multilingualpress@3.2.0`]: https://bitbucket.org/inpsyde/multilingualpress/src/3.2.0/
