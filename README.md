@@ -11,11 +11,13 @@ Install it as you would any other plugin, i.e. in any of the following ways:
 
 ## Requirements
 
-1. MLP3 must contain the changes made in [`eebfc1b`][`inpsyde/multilingualpress@eebfc1b`].
+1. MLP3 must contain the changes made in [`eebfc1b`][`inpsyde/multilingualpress@eebfc1b`]
+([`v2.11.3`][`inpsyde/MultilingualPress@v2.11.3]).
 
     This is necessary in order to satisfy requirement **4**.
 
-1. MLP2 must contain the changes in [`7dccc9c`][`inpsyde/MultilingualPress@7dccc9c`].
+1. MLP2 must contain the changes in [`7dccc9c`][`inpsyde/MultilingualPress@7dccc9c`]
+([`3.2.0`][`inpsyde/multilingualpress@3.2.0`]).
 
     This is necessary in order to prevent automatic deletion of the `site_relations` table
     by MLP2 on uninstall. This table has the same name in MLP2 and MLP3, and therefore
@@ -151,4 +153,6 @@ into a directory named after the build, in order to satisfy the requirement for 
 [Phing]: https://www.phing.info/
 
 [`inpsyde/multilingualpress@eebfc1b`]: https://bitbucket.org/inpsyde/multilingualpress/commits/eebfc1b9caba54e028afc491fd3005d722a89995
+[`inpsyde/multilingualpress@3.2.0`]: https://bitbucket.org/inpsyde/multilingualpress/src/3.2.0/
 [`inpsyde/MultilingualPress@7dccc9c`]: https://github.com/inpsyde/MultilingualPress/commit/7dccc9ce10b0f361369e4987371312d859a9d73c
+[`inpsyde/MultilingualPress@v2.11.3]: https://github.com/inpsyde/MultilingualPress/releases/tag/v2.11.3
