@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d8382c19da05ea5d33076d93e5edf0c2",
+    "content-hash": "a1602547996a308e6e1907f730f41ff5",
     "packages": [
         {
             "name": "dhii/args-list-validation",
@@ -3044,16 +3044,16 @@
         },
         {
             "name": "gmazzap/andrew",
-            "version": "dev-master",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/gmazzap/Andrew.git",
-                "reference": "a4ff4f2fedf85fd66a25f93bd560b83b6ec16ebf"
+                "url": "https://github.com/Giuseppe-Mazzapica/Andrew.git",
+                "reference": "5ab634023e275464ff919278b84b9389f2ec012f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/gmazzap/Andrew/zipball/a4ff4f2fedf85fd66a25f93bd560b83b6ec16ebf",
-                "reference": "a4ff4f2fedf85fd66a25f93bd560b83b6ec16ebf",
+                "url": "https://api.github.com/repos/Giuseppe-Mazzapica/Andrew/zipball/5ab634023e275464ff919278b84b9389f2ec012f",
+                "reference": "5ab634023e275464ff919278b84b9389f2ec012f",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -3063,15 +3063,15 @@
                 ]
             },
             "require": {
-                "php": ">=5.6"
+                "php": ">=5.4"
             },
             "require-dev": {
-                "phpunit/phpunit": "5.7.*"
+                "phpunit/phpunit": "~4.4"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.x-dev"
+                    "dev-master": "1.x-dev"
                 }
             },
             "autoload": {
@@ -3087,6 +3087,7 @@
                 {
                     "name": "Giuseppe Mazzapica",
                     "email": "giuseppe.mazzapica@gmail.com",
+                    "homepage": "http://gm.zoomlab.it",
                     "role": "Developer"
                 }
             ],
@@ -3096,7 +3097,7 @@
                 "proxy objects",
                 "unit tests"
             ],
-            "time": "2017-03-12T15:28:38+00:00"
+            "time": "2016-09-15T17:29:10+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -3233,12 +3234,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/psr7.git",
-                "reference": "dd1ba1de1234e5e8939809bbd9e103e7aeebf0d5"
+                "reference": "5ce1cec1a26c5d2ccd259157f58a32b7facd545a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/psr7/zipball/dd1ba1de1234e5e8939809bbd9e103e7aeebf0d5",
-                "reference": "dd1ba1de1234e5e8939809bbd9e103e7aeebf0d5",
+                "url": "https://api.github.com/repos/guzzle/psr7/zipball/5ce1cec1a26c5d2ccd259157f58a32b7facd545a",
+                "reference": "5ce1cec1a26c5d2ccd259157f58a32b7facd545a",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -3302,7 +3303,7 @@
                 "uri",
                 "url"
             ],
-            "time": "2019-05-26T12:43:51+00:00"
+            "time": "2019-06-06T09:22:35+00:00"
         },
         {
             "name": "hamcrest/hamcrest-php",
@@ -6291,12 +6292,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "6eec58df09322477a010d93cbfe66f936aeed00c"
+                "reference": "c4d2f3529755ffc0be9fb823583b28d8744eeb3d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/6eec58df09322477a010d93cbfe66f936aeed00c",
-                "reference": "6eec58df09322477a010d93cbfe66f936aeed00c",
+                "url": "https://api.github.com/repos/symfony/console/zipball/c4d2f3529755ffc0be9fb823583b28d8744eeb3d",
+                "reference": "c4d2f3529755ffc0be9fb823583b28d8744eeb3d",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -6361,7 +6362,7 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2019-06-04T18:52:06+00:00"
+            "time": "2019-06-05T11:33:52+00:00"
         },
         {
             "name": "symfony/css-selector",
