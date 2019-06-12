@@ -62,7 +62,7 @@ class IntegrationHandlerTest extends TestCase
         }
 
         {
-            $_subject->_preventLegacyCheck();
+            $_subject->_preventSharedTableDeletion();
             $expected = $names;
             array_splice($expected, $removedIndex, 1);
 
