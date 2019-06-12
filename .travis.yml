@@ -16,7 +16,7 @@ matrix:
 before_install:
   - composer config --auth http-basic.repo.packagist.com token $PACKAGIST_TOKEN
 before_script:
-  - composer update --prefer-dist
+  - composer install --prefer-dist
 script:
   - vendor/bin/phpunit
 after_script:
