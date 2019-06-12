@@ -14,6 +14,7 @@ matrix:
   fast_finish: true
 
 before_install:
+  - echo $PACKAGIST_TOKEN
   - composer config --auth http-basic.repo.packagist.com token $PACKAGIST_TOKEN
 before_script:
   - composer update --prefer-dist
