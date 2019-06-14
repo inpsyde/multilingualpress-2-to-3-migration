@@ -136,7 +136,11 @@ We use Codeception to run acceptance tests, and this is what the `codecept` serv
 Use the below command to run the `acceptance` suite in the `codecept` service:
 
 ```
-docker-compose run codecept run acceptance
+docker-compose run --rm test vendor/bin/codecept run acceptance
+```
+The above command will run all acceptance tests, to run a single test:
+```
+docker-compose run --rm test vendor/bin/codecept run acceptance SomeClassCest:someMethod
 ```
 
 ### Building
