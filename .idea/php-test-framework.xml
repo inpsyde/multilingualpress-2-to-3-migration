@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PhpTestFrameworkSettings">
-    <test_tools>
-      <tool tool_name="Codeception">
-        <settings>
-          <configurations>
-            <local_configuration executable_path="$PROJECT_DIR$/vendor/codeception/codeception/codecept" />
-          </configurations>
-        </settings>
+  <component name="PhpTestFrameworkVersionCache">
+    <tools_cache>
+      <tool tool_name="PHPUnit">
+        <cache>
+          <versions>
+            <info id="interpreter-e80da168-5f0e-40f3-9540-26e867f2c16e" version="6.5.14" />
+          </versions>
+        </cache>
       </tool>
-    </test_tools>
+    </tools_cache>
   </component>
 </project>
