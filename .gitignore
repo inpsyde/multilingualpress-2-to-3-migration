@@ -1,5 +1,6 @@
 /vendor/
 /test/log/
+/test/coverage/
 /.idea/workspace.xml
 /wordpress-site/
 /mysql-data/
