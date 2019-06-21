@@ -10,6 +10,7 @@ use PHPUnit\Framework\MockObject\MockObject;
 use function Brain\Monkey\setUp;
 use function Brain\Monkey\tearDown;
 use Throwable;
+use Brain\Monkey\Filters;
 
 class IntegrationHandlerTest extends TestCase
 {
@@ -61,11 +62,18 @@ class IntegrationHandlerTest extends TestCase
         }
 
         {
+            Filters\expectAdded($filter);
+            Filters\expectApplied($filter)
+                ->times(1)
+                ->with($names)
+                ->andReturnUsing(function ($tableNames) use ($_subject) {
+                    return $_subject->_removeSharedTableNames($tableNames);
+                });
             $_subject->_preventSharedTableDeletion();
             $expected = $names;
             array_splice($expected, $removedIndex, 1);
 
-            $this->assertEquals($expected, apply_filters($filter, $names));
+            $this->assertEquals($expected, apply_filters($filter, $names), '', 0.0, 10, true);
         }
     }
 }
