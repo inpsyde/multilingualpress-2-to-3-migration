@@ -3,6 +3,7 @@
 namespace Inpsyde\MultilingualPress2to3\Test\Unit\Event;
 
 use Inpsyde\MultilingualPress2to3\Event\WpHookingTrait as TestSubject;
+use Inpsyde\MultilingualPress2to3\Test\Helper\ComponentMockeryTrait;
 use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
 use PHPUnit\Framework\MockObject\MockObject;
 use Andrew\Proxy;
@@ -19,6 +20,7 @@ use Brain\Monkey\Filters;
 class WpHookingTraitTest extends TestCase
 {
     use MockeryPHPUnitIntegration;
+    use ComponentMockeryTrait;
 
     protected function setUp()
     {
@@ -63,7 +65,7 @@ class WpHookingTraitTest extends TestCase
     public function testAddAction()
     {
         $subject = $this->_createSubject();
-        $proxy = $this->_getProxy($subject);
+        $proxy = $this->proxy($subject);
         /* @var $proxy TestSubject */
         $name = uniqid('action');
         $handler = function () {};
@@ -85,7 +87,7 @@ class WpHookingTraitTest extends TestCase
     public function testAddFilter()
     {
         $subject = $this->_createSubject();
-        $proxy = $this->_getProxy($subject);
+        $proxy = $this->proxy($subject);
         /* @var $proxy TestSubject */
         $name = uniqid('action');
         $handler = function () {};
@@ -97,17 +99,5 @@ class WpHookingTraitTest extends TestCase
             ->with($handler, $priority, $acceptedArgs);
 
         $proxy->_addFilter($name, $handler, $priority, $acceptedArgs);
-    }
-
-    /**
-     * Creates a proxy for the given object.
-     *
-     * This allows access to that object's protected members as if they were public.
-     *
-     * @param object $object The object to create a proxy for.
-     * @return Proxy The proxy.
-     */
-    protected function _getProxy($object) {
-        return new Proxy($object);
     }
 }

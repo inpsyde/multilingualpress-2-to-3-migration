@@ -4,6 +4,7 @@ namespace Inpsyde\MultilingualPress2to3\Test\Unit\Handler;
 
 use Inpsyde\MultilingualPress2to3\Handler\HandlerInterface;
 use Inpsyde\MultilingualPress2to3\Handler\RunHandlerListCapableTrait as TestSubject;
+use Inpsyde\MultilingualPress2to3\Test\Helper\ComponentMockeryTrait;
 use PHPUnit\Framework\MockObject\MockObject;
 use Andrew\Proxy;
 use PHPUnit\Framework\TestCase;
@@ -15,6 +16,8 @@ use PHPUnit\Framework\TestCase;
  */
 class RunHandlerListCapableTraitTest extends TestCase
 {
+    use ComponentMockeryTrait;
+
     /**
      * Creates a new instance of the test subject.
      *
@@ -48,7 +51,7 @@ class RunHandlerListCapableTraitTest extends TestCase
         $subject = $this->_createSubject();
         $handlerAmount = rand(2, 9);
         $handlers = $this->_createHandlers($handlerAmount);
-        $proxy = $this->_getProxy($subject);
+        $proxy = $this->proxy($subject);
         /* @var $proxy TestSubject */
 
         foreach ($handlers as $handler) {
@@ -57,18 +60,6 @@ class RunHandlerListCapableTraitTest extends TestCase
         }
 
         $proxy->_runHandlerList($handlers);
-    }
-
-    /**
-     * Creates a proxy for the given object.
-     *
-     * This allows access to that object's protected members as if they were public.
-     *
-     * @param object $object The object to create a proxy for.
-     * @return Proxy The proxy.
-     */
-    protected function _getProxy($object) {
-        return new Proxy($object);
     }
 
     /**

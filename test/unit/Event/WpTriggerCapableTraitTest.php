@@ -3,6 +3,7 @@
 namespace Inpsyde\MultilingualPress2to3\Test\Unit\Event;
 
 use Inpsyde\MultilingualPress2to3\Event\WpTriggerCapableTrait as TestSubject;
+use Inpsyde\MultilingualPress2to3\Test\Helper\ComponentMockeryTrait;
 use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
 use PHPUnit\Framework\MockObject\MockObject;
 use Andrew\Proxy;
@@ -18,6 +19,7 @@ use Brain\Monkey\Actions;
 class WpTriggerCapableTraitTest extends TestCase
 {
     use MockeryPHPUnitIntegration;
+    use ComponentMockeryTrait;
 
     protected function setUp()
     {
@@ -62,7 +64,7 @@ class WpTriggerCapableTraitTest extends TestCase
     public function testTrigger()
     {
         $subject = $this->_createSubject();
-        $_subject = $this->_getProxy($subject);
+        $_subject = $this->proxy($subject);
         /* @var $_subject TestSubject */
         $name = uniqid('action');
         $data = [uniqid('key') => uniqid('value')];
@@ -76,17 +78,5 @@ class WpTriggerCapableTraitTest extends TestCase
 
         $result = $_subject->_trigger($name, $data);
         $this->assertEquals((array) $expectedData, $result);
-    }
-
-    /**
-     * Creates a proxy for the given object.
-     *
-     * This allows access to that object's protected members as if they were public.
-     *
-     * @param object $object The object to create a proxy for.
-     * @return Proxy The proxy.
-     */
-    protected function _getProxy($object) {
-        return new Proxy($object);
     }
 }

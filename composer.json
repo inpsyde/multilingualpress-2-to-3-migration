@@ -26,7 +26,7 @@
         "wp-cli/wp-cli": "^2",
         "phpunit/phpunit": "^6",
         "brain/monkey": "^2",
-        "gmazzap/andrew": "^1.1",
+        "ptrofimov/xpmock": "^1.1.5",
         "codeception/codeception": "^2.5",
         "symfony/browser-kit": ">=2.7 <=4.2.4",
         "hoa/consistency": "^1.17.05.02",

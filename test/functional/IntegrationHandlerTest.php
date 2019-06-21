@@ -7,7 +7,6 @@ use Inpsyde\MultilingualPress2to3\IntegrationHandler as TestSubject;
 use Inpsyde\MultilingualPress2to3\Test\Helper\ComponentMockeryTrait;
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\MockObject\MockObject;
-use Andrew\Proxy;
 use function Brain\Monkey\setUp;
 use function Brain\Monkey\tearDown;
 use Throwable;

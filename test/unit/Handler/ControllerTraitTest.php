@@ -4,6 +4,7 @@ namespace Inpsyde\MultilingualPress2to3\Test\Unit\Handler;
 
 use Dhii\I18n\FormatTranslatorInterface;
 use Inpsyde\MultilingualPress2to3\Handler\ControllerTrait as TestSubject;
+use Inpsyde\MultilingualPress2to3\Test\Helper\ComponentMockeryTrait;
 use Mockery\Container;
 use PHPUnit\Framework\MockObject\MockObject;
 use Andrew\Proxy;
@@ -17,6 +18,8 @@ use Psr\Container\ContainerInterface;
  */
 class ControllerTraitTest extends TestCase
 {
+    use ComponentMockeryTrait;
+
     /**
      * Creates a new instance of the test subject.
      *
@@ -51,7 +54,7 @@ class ControllerTraitTest extends TestCase
         $key = 'base_url';
         $value = uniqid('_base_url-');
         $path = uniqid('_path-');
-        $_subject = $this->_getProxy($subject);
+        $_subject = $this->proxy($subject);
         /* @var $_subject TestSubject */
 
         $subject->expects($this->exactly(1))
@@ -75,7 +78,7 @@ class ControllerTraitTest extends TestCase
         $key = 'base_url';
         $value = uniqid('_base_url-');
         $path = uniqid('_path-');
-        $_subject = $this->_getProxy($subject);
+        $_subject = $this->proxy($subject);
         /* @var $_subject TestSubject */
 
         $subject->expects($this->exactly(1))
@@ -98,7 +101,7 @@ class ControllerTraitTest extends TestCase
         $subject = $this->_createSubject(['_getConfig']);
         $key = 'translator';
         $value = $this->_createTranslator();
-        $_subject = $this->_getProxy($subject);
+        $_subject = $this->proxy($subject);
         /* @var $_subject TestSubject */
 
         $subject->expects($this->exactly(1))
@@ -108,18 +111,6 @@ class ControllerTraitTest extends TestCase
 
         $result = $_subject->_getTranslator();
         $this->assertSame($value, $result, 'Wrong translator returned');
-    }
-
-    /**
-     * Creates a proxy for the given object.
-     *
-     * This allows access to that object's protected members as if they were public.
-     *
-     * @param object $object The object to create a proxy for.
-     * @return Proxy The proxy.
-     */
-    protected function _getProxy($object) {
-        return new Proxy($object);
     }
 
     /**

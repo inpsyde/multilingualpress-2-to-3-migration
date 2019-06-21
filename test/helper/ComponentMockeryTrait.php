@@ -11,6 +11,7 @@ use PHPUnit\Framework\MockObject\MockBuilder;
 use PHPUnit\Framework\MockObject\MockObject;
 use Psr\Container\ContainerInterface;
 use Throwable;
+use Xpmock\Reflection;
 
 trait ComponentMockeryTrait
 {
@@ -241,11 +242,11 @@ EOL;
      *
      * @param object $object The object to proxy.
      *
-     * @return Proxy the new proxy.
+     * @return Reflection the new proxy.
      */
-    protected function proxy($object): Proxy
+    protected function proxy($object): Reflection
     {
-        return new Proxy($object);
+        return new Reflection($object);
     }
 
     /**

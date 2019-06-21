@@ -23,7 +23,6 @@
       <path value="$PROJECT_DIR$/vendor/dealerdirect/phpcodesniffer-composer-installer" />
       <path value="$PROJECT_DIR$/vendor/squizlabs/php_codesniffer" />
       <path value="$PROJECT_DIR$/vendor/oomphinc/composer-installers-extender" />
-      <path value="$PROJECT_DIR$/vendor/gmazzap/andrew" />
       <path value="$PROJECT_DIR$/vendor/dhii/container-helper-base" />
       <path value="$PROJECT_DIR$/vendor/dhii/data-container-base" />
       <path value="$PROJECT_DIR$/vendor/dhii/wp-containers" />
