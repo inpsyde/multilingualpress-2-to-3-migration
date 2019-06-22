@@ -20,16 +20,4 @@
             <directory suffix=".php">src</directory>
         </whitelist>
     </filter>
-    <logging>
-        <log type="coverage-html" target="./test/coverage/html" lowUpperBound="35"
-             highLowerBound="80"/>
-        <log type="coverage-clover" target="./test/coverage/clover.xml"/>
-        <log type="coverage-php" target="./test/coverage/serialized"/>
-        <log type="coverage-text" target="php://stdout" showUncoveredFiles="false"/>
-        <log type="json" target="./test/log/logfile.json"/>
-        <log type="tap" target="./test/log/logfile.tap"/>
-        <log type="junit" target="./test/log/logfile.xml" logIncompleteSkipped="false"/>
-        <log type="testdox-html" target="./test/log/testdox.html"/>
-        <log type="testdox-text" target="./test/log/testdox.txt"/>
-    </logging>
 </phpunit>
