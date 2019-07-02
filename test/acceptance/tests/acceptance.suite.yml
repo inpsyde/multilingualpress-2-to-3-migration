@@ -2,7 +2,7 @@ actor: AcceptanceTester
 modules:
     enabled:
         - PhpBrowser:
-            url: http://wordpress
+            url: '%URL%'
         - \Helper\Acceptance
         - Cli
         - Db

@@ -42,18 +42,3 @@ services:
       - wordpress
     environment:
       COMPOSER_ALLOW_SUPERUSER: 1
-  codecept:
-    build:
-      context: ./docker/
-      dockerfile: "Dockerfile_codecept"
-    depends_on:
-      - chrome
-      - wordpress
-      - mysql
-    volumes:
-      - ${BASE_DIR}:/project
-    links:
-      - mysql
-      - wordpress
-  chrome:
-    image: selenium/standalone-chrome
