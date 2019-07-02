@@ -32,7 +32,8 @@
         "hoa/consistency": "^1.17.05.02",
         "inpsyde/multilingual-press": "^2.11.3",
         "inpsyde/multilingualpress": "^3.2.0",
-        "phing/phing": "^2"
+        "phing/phing": "^2",
+        "vlucas/phpdotenv": "^3.4@dev"
     },
     "autoload": {
         "psr-4": {
