@@ -43,7 +43,7 @@ class ModulesCest
         $I->click('[data-plugin="multilingualpress/multilingualpress.php"] .activate a');
 
         // run the tool
-        $I->runShellCommand('wp mlp2to3 modules --path=wordpress-site');
+        $I->runShellCommand('wp mlp2to3 modules --allow-root --path=wordpress-site');
         $I->seeInShellOutput('Success:');
     }
 }

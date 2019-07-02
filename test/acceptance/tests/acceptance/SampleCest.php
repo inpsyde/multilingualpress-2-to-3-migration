@@ -3,6 +3,17 @@ declare(strict_types=1);
 
 class SampleCest
 {
+    public function seeWordpressSite(AcceptanceTester $I)
+    {
+        $I->amOnPage('/');
+        $I->see('Just another WordPress site');
+    }
+
+    public function seeInDatabase(AcceptanceTester $I)
+    {
+        $I->seeInDatabase('wp_options', ['option_name' => 'siteurl']);
+    }
+
     public function seeWpCli(AcceptanceTester $I)
     {
         $I->runShellCommand('wp --allow-root --version');

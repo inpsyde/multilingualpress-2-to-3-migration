@@ -40,7 +40,7 @@ class UserMetaCest
         $I->click('[data-plugin="multilingualpress/multilingualpress.php"] .activate a');
 
         // run the tool
-        $I->runShellCommand('wp mlp2to3 lang_redirects --path=wordpress-site');
+        $I->runShellCommand('wp mlp2to3 lang_redirects --allow-root --path=wordpress-site');
         $I->seeInShellOutput('Success:');
     }
 }

@@ -14,13 +14,13 @@ class SiteLanguagesCest
     public function migrateSiteLanguages(AcceptanceTester $I)
     {
         // MLP2 check site selected languages
-        $I->amOnPage('/wp-admin/network/site-settings.php?id=1&extra=mlp-site-settings');
+        $I->amOnPage('/wp-admin/network/sites.php?page=mlp-site-settings&id=1');
         $language = $I->grabValueFrom('#inpsyde_multilingual_lang');
         $I->assertSame(trim($language), 'en_US');
-        $I->amOnPage('/wp-admin/network/site-settings.php?id=2&extra=mlp-site-settings');
+        $I->amOnPage('/wp-admin/network/sites.php?page=mlp-site-settings&id=2');
         $language = $I->grabValueFrom('#inpsyde_multilingual_lang');
         $I->assertSame(trim($language), 'es_ES');
-        $I->amOnPage('/wp-admin/network/site-settings.php?id=3&extra=mlp-site-settings');
+        $I->amOnPage('/wp-admin/network/sites.php?page=mlp-site-settings&id=3');
         $language = $I->grabValueFrom('#inpsyde_multilingual_lang');
         $I->assertSame(trim($language), 'it_IT');
 
@@ -42,10 +42,10 @@ class SiteLanguagesCest
     public function migrateAlternativeLanguageTitle(AcceptanceTester $I)
     {
         // add alternative language title in sites 1 and 3
-        $I->amOnPage('/wp-admin/network/site-settings.php?id=1&extra=mlp-site-settings');
+        $I->amOnPage('/wp-admin/network/sites.php?page=mlp-site-settings&id=1');
         $I->fillField('#inpsyde_multilingual_text', 'This is alternate title for site 1');
         $I->click('#submit');
-        $I->amOnPage('/wp-admin/network/site-settings.php?id=3&extra=mlp-site-settings');
+        $I->amOnPage('/wp-admin/network/sites.php?page=mlp-site-settings&id=3');
         $I->fillField('#inpsyde_multilingual_text', 'This is alternate title for site 3');
         $I->click('#submit');
 
@@ -72,7 +72,7 @@ class SiteLanguagesCest
         $I->click('[data-plugin="multilingualpress/multilingualpress.php"] .activate a');
 
         // run the tool
-        $I->runShellCommand('wp mlp2to3 site_languages --path=wordpress-site');
+        $I->runShellCommand('wp mlp2to3 site_languages --allow-root --path=wordpress-site');
         $I->seeInShellOutput('Success:');
     }
 }

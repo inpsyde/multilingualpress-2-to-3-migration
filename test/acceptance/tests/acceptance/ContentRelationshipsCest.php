@@ -96,10 +96,10 @@ class ContentRelationshipsCest
     public function postConnectedIn3SitesInATwoSiteRelationship(AcceptanceTester $I)
     {
         // 3 sites connected in this way: 1 -> 2 and 3 -> 1
-        $I->amOnPage('/wp-admin/network/site-settings.php?id=1&extra=mlp-site-settings');
+        $I->amOnPage('/wp-admin/network/sites.php?page=mlp-site-settings&id=1');
         $I->checkOption('#related_blog_2');
         $I->click('Save Changes');
-        $I->amOnPage('/wp-admin/network/site-settings.php?id=3&extra=mlp-site-settings');
+        $I->amOnPage('/wp-admin/network/sites.php?page=mlp-site-settings&id=3');
         $I->checkOption('#related_blog_1');
         $I->click('Save Changes');
 
@@ -121,7 +121,7 @@ class ContentRelationshipsCest
         $I->seeInDatabase('wp_mlp_content_relations', [
             'relationship_id' => '1',
             'site_id' => '2',
-            'content_id' => '3',
+            'content_id' => '4',
         ]);
         $I->seeInDatabase('wp_mlp_content_relations', [
             'relationship_id' => '1',
@@ -139,11 +139,11 @@ class ContentRelationshipsCest
     public function multiplePostAndTermRelationships(AcceptanceTester $I)
     {
         // connect 3 sites together
-        $I->amOnPage('/wp-admin/network/site-settings.php?id=1&extra=mlp-site-settings');
+        $I->amOnPage('/wp-admin/network/sites.php?page=mlp-site-settings&id=1');
         $I->checkOption('#related_blog_2');
         $I->checkOption('#related_blog_3');
         $I->click('Save Changes');
-        $I->amOnPage('/wp-admin/network/site-settings.php?id=2&extra=mlp-site-settings');
+        $I->amOnPage('/wp-admin/network/sites.php?page=mlp-site-settings&id=2');
         $I->checkOption('#related_blog_3');
         $I->click('Save Changes');
 
@@ -227,123 +227,44 @@ class ContentRelationshipsCest
         // run the tool
         $this->runTheTool($I);
 
-        // check mlp3 wp_mlp_relationships table
-        $I->seeInDatabase('wp_mlp_relationships', [
-            'id' => '1',
-            'type' => 'term',
-        ]);
-        $I->seeInDatabase('wp_mlp_relationships', [
-            'id' => '2',
-            'type' => 'post',
-        ]);
-        $I->seeInDatabase('wp_mlp_relationships', [
-            'id' => '3',
-            'type' => 'post',
-        ]);
-        $I->seeInDatabase('wp_mlp_relationships', [
-            'id' => '4',
-            'type' => 'term',
-        ]);
-        $I->seeInDatabase('wp_mlp_relationships', [
-            'id' => '5',
-            'type' => 'post',
-        ]);
-        $I->seeInDatabase('wp_mlp_relationships', [
-            'id' => '6',
-            'type' => 'term',
-        ]);
+        $I->amOnPage('/wp-admin/edit.php');
+        $I->click('A');
+        $I->see('Currently connected with "D"');
+        $I->see('Currently connected with "G"');
+        $I->amOnPage('/wp-admin/edit.php');
+        $I->click('B');
+        $I->see('Currently connected with "E"');
+        $I->see('Currently connected with "H"');
+        $I->amOnPage('/wp-admin/edit.php');
+        $I->click('C');
+        $I->see('Currently connected with "F"');
+        $I->see('Currently connected with "I"');
 
-        // check mlp3 wp_mlp_content_relations table
-        $I->seeInDatabase('wp_mlp_content_relations', [
-            'relationship_id' => '1',
-            'site_id' => '1',
-            'content_id' => '2',
-        ]);
-        $I->seeInDatabase('wp_mlp_content_relations', [
-            'relationship_id' => '1',
-            'site_id' => '2',
-            'content_id' => '2',
-        ]);
-        $I->seeInDatabase('wp_mlp_content_relations', [
-            'relationship_id' => '1',
-            'site_id' => '3',
-            'content_id' => '2',
-        ]);
-        $I->seeInDatabase('wp_mlp_content_relations', [
-            'relationship_id' => '2',
-            'site_id' => '1',
-            'content_id' => '6',
-        ]);
-        $I->seeInDatabase('wp_mlp_content_relations', [
-            'relationship_id' => '2',
-            'site_id' => '2',
-            'content_id' => '3',
-        ]);
-        $I->seeInDatabase('wp_mlp_content_relations', [
-            'relationship_id' => '2',
-            'site_id' => '3',
-            'content_id' => '3',
-        ]);
-        $I->seeInDatabase('wp_mlp_content_relations', [
-            'relationship_id' => '3',
-            'site_id' => '1',
-            'content_id' => '8',
-        ]);
-        $I->seeInDatabase('wp_mlp_content_relations', [
-            'relationship_id' => '3',
-            'site_id' => '2',
-            'content_id' => '4',
-        ]);
-        $I->seeInDatabase('wp_mlp_content_relations', [
-            'relationship_id' => '3',
-            'site_id' => '3',
-            'content_id' => '4',
-        ]);
-        $I->seeInDatabase('wp_mlp_content_relations', [
-            'relationship_id' => '4',
-            'site_id' => '1',
-            'content_id' => '3',
-        ]);
-        $I->seeInDatabase('wp_mlp_content_relations', [
-            'relationship_id' => '4',
-            'site_id' => '2',
-            'content_id' => '3',
-        ]);
-        $I->seeInDatabase('wp_mlp_content_relations', [
-            'relationship_id' => '4',
-            'site_id' => '3',
-            'content_id' => '3',
-        ]);
-        $I->seeInDatabase('wp_mlp_content_relations', [
-            'relationship_id' => '5',
-            'site_id' => '1',
-            'content_id' => '10',
-        ]);
-        $I->seeInDatabase('wp_mlp_content_relations', [
-            'relationship_id' => '5',
-            'site_id' => '2',
-            'content_id' => '5',
-        ]);
-        $I->seeInDatabase('wp_mlp_content_relations', [
-            'relationship_id' => '5',
-            'site_id' => '3',
-            'content_id' => '5',
-        ]);
-        $I->seeInDatabase('wp_mlp_content_relations', [
-            'relationship_id' => '6',
-            'site_id' => '1',
-            'content_id' => '4',
-        ]);
-        $I->seeInDatabase('wp_mlp_content_relations', [
-            'relationship_id' => '6',
-            'site_id' => '2',
-            'content_id' => '4',
-        ]);
-        $I->seeInDatabase('wp_mlp_content_relations', [
-            'relationship_id' => '6',
-            'site_id' => '3',
-            'content_id' => '4',
-        ]);
+        $I->amOnPage('/es/wp-admin/edit.php');
+        $I->click('D');
+        $I->see('Currently connected with "A"');
+        $I->see('Currently connected with "G"');
+        $I->amOnPage('/es/wp-admin/edit.php');
+        $I->click('E');
+        $I->see('Currently connected with "B"');
+        $I->see('Currently connected with "H"');
+        $I->amOnPage('/es/wp-admin/edit.php');
+        $I->click('F');
+        $I->see('Currently connected with "C"');
+        $I->see('Currently connected with "I"');
+
+        $I->amOnPage('/it/wp-admin/edit.php');
+        $I->click('G');
+        $I->see('Currently connected with "D"');
+        $I->see('Currently connected with "A"');
+        $I->amOnPage('/it/wp-admin/edit.php');
+        $I->click('H');
+        $I->see('Currently connected with "E"');
+        $I->see('Currently connected with "B"');
+        $I->amOnPage('/it/wp-admin/edit.php');
+        $I->click('I');
+        $I->see('Currently connected with "F"');
+        $I->see('Currently connected with "C"');
     }
 
     private function runTheTool(AcceptanceTester $I)
@@ -354,7 +275,7 @@ class ContentRelationshipsCest
         $I->click('[data-plugin="multilingualpress/multilingualpress.php"] .activate a');
 
         // run the tool
-        $I->runShellCommand('wp mlp2to3 relationships --path=wordpress-site');
+        $I->runShellCommand('wp mlp2to3 relationships --allow-root --path=wordpress-site');
         $I->seeInShellOutput('Success:');
     }
 }

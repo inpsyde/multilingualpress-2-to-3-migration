@@ -43,7 +43,7 @@ class TranslatablePostTypesCest
         $I->click('[data-plugin="multilingualpress/multilingualpress.php"] .activate a');
 
         // run the tool
-        $I->runShellCommand('wp mlp2to3 translatable_post_types --path=wordpress-site');
+        $I->runShellCommand('wp mlp2to3 translatable_post_types --allow-root --path=wordpress-site');
         $I->seeInShellOutput('Success:');
     }
 }

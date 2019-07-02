@@ -14,10 +14,10 @@ class RedirectsCest
     public function migrateRedirects(AcceptanceTester $I)
     {
         // MLP2 enable redirection in sites 1 and 3
-        $I->amOnPage('/wp-admin/network/site-settings.php?id=1&extra=mlp-site-settings');
+        $I->amOnPage('/wp-admin/network/sites.php?page=mlp-site-settings&id=1');
         $I->checkOption('#inpsyde_multilingual_redirect_id');
         $I->click('Save Changes');
-        $I->amOnPage('/wp-admin/network/site-settings.php?id=3&extra=mlp-site-settings');
+        $I->amOnPage('/wp-admin/network/sites.php?page=mlp-site-settings&id=3');
         $I->checkOption('#inpsyde_multilingual_redirect_id');
         $I->click('Save Changes');
 
@@ -44,7 +44,7 @@ class RedirectsCest
         $I->click('[data-plugin="multilingualpress/multilingualpress.php"] .activate a');
 
         // run the tool
-        $I->runShellCommand('wp mlp2to3 redirects --path=wordpress-site');
+        $I->runShellCommand('wp mlp2to3 redirects --allow-root --path=wordpress-site');
         $I->seeInShellOutput('Success:');
     }
 }
