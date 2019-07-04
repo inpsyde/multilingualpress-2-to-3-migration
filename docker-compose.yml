@@ -11,11 +11,12 @@ services:
       WORDPRESS_DB_USER: wordpress
       WORDPRESS_DB_PASSWORD: wordpress
     volumes:
-      #- ${BASE_DIR}/wordpress-site:/var/www/html
       - wordpress:/var/www/html
+      - ${BASE_DIR}/wordpress-site:/var/www/html
       - ${BASE_DIR}:/var/www/html/wp-content/plugins/multilingualpress-2-to-3-migration
       - ${BASE_DIR}/wordpress-site/wp-content/plugins/multilingualpress:/var/www/html/wp-content/plugins/multilingualpress
       - ${BASE_DIR}/wordpress-site/wp-content/plugins/multilingual-press:/var/www/html/wp-content/plugins/multilingual-press
+      - ${BASE_DIR}/test/acceptance/fake-post-type:/var/www/html/wp-content/plugins/fake-post-type
     depends_on:
       - mysql
   mysql:
@@ -48,8 +49,10 @@ services:
   cli:
     image: wordpress:cli
     volumes:
-      #- ${BASE_DIR}/wordpress-site:/var/www/html
       - wordpress:/var/www/html
       - ${BASE_DIR}:/var/www/html/wp-content/plugins/multilingualpress-2-to-3-migration
+      - ${BASE_DIR}/wordpress-site/wp-content/plugins/multilingualpress:/var/www/html/wp-content/plugins/multilingualpress
+      - ${BASE_DIR}/wordpress-site/wp-content/plugins/multilingual-press:/var/www/html/wp-content/plugins/multilingual-press
+      - ${BASE_DIR}/test/acceptance/fake-post-type:/var/www/html/wp-content/plugins/fake-post-type
 volumes:
   wordpress:
