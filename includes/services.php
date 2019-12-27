@@ -166,7 +166,7 @@ return function ( array $defaults ) {
 
         'embedded_languages_file_path' => function (ContainerInterface $c): string {
 	        $baseDir = $c->get('mlp3_base_dir');
-	        $path = "$baseDir/resources/json/languages-wp.json";
+	        $path = "$baseDir/public/json/languages-wp.json";
 
 	        return $path;
         },
