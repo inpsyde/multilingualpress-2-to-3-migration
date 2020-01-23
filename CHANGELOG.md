@@ -6,7 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [[*next-version*]] - YYYY-MM-DD
 ### Added
-- Plugin header `Network`, which prevents the plugin from being activated on site level.
+- Plugin header `Network`, which prevents the plugin from being activated on site level (#6).
+
+### Fixed
+- Wrong path to languages JSON file (#4).
 
 ## [0.1.0-alpha1] - 2019-06-03
 Initial release.
