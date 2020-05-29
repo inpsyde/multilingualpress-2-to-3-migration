@@ -17,6 +17,7 @@ jobs:
                 with:
                     php-version: ${{ matrix.php-versions }}
                     coverage: none
+                    extensions: zip
 
             -   name: Validate composer.json and composer.lock
                 run: composer validate
