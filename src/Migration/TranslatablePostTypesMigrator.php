@@ -38,8 +38,7 @@ class TranslatablePostTypesMigrator
     public function __construct(
         Wpdb $wpdb,
         FormatTranslatorInterface $translator
-    )
-    {
+    ) {
 
         $this->db = $wpdb;
         $this->translator = $translator;
@@ -73,8 +72,8 @@ class TranslatablePostTypesMigrator
         }
 
         $typesSettings[$typeName] = [
-            'active'        => (bool) $typeIsActive,
-            'permalink'     => (bool) $typeIsPermalink,
+            'active' => (bool) $typeIsActive,
+            'permalink' => (bool) $typeIsPermalink,
         ];
 
         $this->_setNetworkOption($optionName, $typesSettings);

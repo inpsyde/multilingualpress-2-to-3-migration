@@ -61,37 +61,37 @@ use cli\progress\Bar;
  * - 'admin_url'    - URL of the admin panel.
  * - 'is_debug'     - Whether or not in debug mode.
  */
-return function ( array $defaults ) {
-	return array_merge($defaults, [
-		'base_dir'                => function ( ContainerInterface $c ) {
-			return dirname( $c->get( 'base_path' ) );
-		},
-        'plugins_dir'             => function (ContainerInterface $c) {
-	        $basePath = $c->get('base_path');
-	        $basename = plugin_basename($basePath);
-	        $baseDir = str_replace($basename, '', $basePath);
-
-	        return $baseDir;
+return function (array $defaults) {
+    return array_merge($defaults, [
+        'base_dir' => function (ContainerInterface $c) {
+            return dirname($c->get('base_path'));
         },
-        'admin_dir'               => function (ContainerInterface $c) {
+        'plugins_dir' => function (ContainerInterface $c) {
+            $basePath = $c->get('base_path');
+            $basename = plugin_basename($basePath);
+            $baseDir = str_replace($basename, '', $basePath);
+
+            return $baseDir;
+        },
+        'admin_dir' => function (ContainerInterface $c) {
             return str_replace(
                 $c->get('root_url') . '/',
                 $c->get('root_path'),
                 $c->get('admin_url')
             );
         },
-		'js_path'                 => '/assets/js',
-		'templates_dir'           => '/templates',
-		'translations_dir'        => '/languages',
-		'text_domain'             => 'mlp2to3',
+        'js_path' => '/assets/js',
+        'templates_dir' => '/templates',
+        'translations_dir' => '/languages',
+        'text_domain' => 'mlp2to3',
 
         'wpcli_command_key_mlp2to3_migrate' => 'mlp2to3',
-        'filter_is_check_legacy'  => 'multilingualpress.is_check_legacy',
-        'filter_deleted_tables'   => 'multilingualpress.deleted_tables',
+        'filter_is_check_legacy' => 'multilingualpress.is_check_legacy',
+        'filter_deleted_tables' => 'multilingualpress.deleted_tables',
 
         'table_name_temp_languages' => 'mlp_languages_h7h2927fg2',
         'table_name_languages' => 'mlp_languages',
-        'table_fields_languages' => function ():array  {
+        'table_fields_languages' => function ():array {
             return [
                 LanguagesTable::COLUMN_ID => [
                     'type' => 'bigint',
@@ -138,12 +138,12 @@ return function ( array $defaults ) {
             ];
         },
 
-        'shared_table_names'             => [
+        'shared_table_names' => [
             'mlp_languages',
             'mlp_site_relations',
         ],
 
-        'table_keys_languages'           => function ():array {
+        'table_keys_languages' => function ():array {
             return [LanguagesTable::COLUMN_ID];
         },
 
@@ -151,7 +151,7 @@ return function ( array $defaults ) {
 
         'mlp3_base_path' => function (ContainerInterface $c): string {
             $baseName = $c->get('mlp3_base_name');
-            $pluginsDir = $c->get('plugins_dir');
+            $pluginsDir = rtrim($c->get('plugins_dir'), '/');
             $basePath = "$pluginsDir/$baseName";
 
             return $basePath;
@@ -165,29 +165,29 @@ return function ( array $defaults ) {
         },
 
         'embedded_languages_file_path' => function (ContainerInterface $c): string {
-	        $baseDir = $c->get('mlp3_base_dir');
-	        $path = "$baseDir/public/json/languages-wp.json";
+            $baseDir = $c->get('mlp3_base_dir');
+            $path = "$baseDir/public/json/languages-wp.json";
 
-	        return $path;
+            return $path;
         },
 
         'embedded_languages_string' => function (ContainerInterface $c) {
-	        $path = $c->get('embedded_languages_file_path');
-	        $f = $c->get('file_content_factory');
-	        $string = $f($path);
+            $path = $c->get('embedded_languages_file_path');
+            $f = $c->get('file_content_factory');
+            $string = $f($path);
 
-	        return $string;
+            return $string;
         },
 
         'default_blog_option_value' => 'H=Kq^EQP5!G7E#dK',
         'default_site_meta_value' => 'z?!s4JWN76_5E??!',
 
         'sites' => function (ContainerInterface $c): ContainerInterface {
-	        return new Sites();
+            return new Sites();
         },
 
         'blog_options_factory' => function (ContainerInterface $c): callable {
-	        $default = $c->get('default_blog_option_value');
+            $default = $c->get('default_blog_option_value');
 
             return function (int $blogId) use ($default): WritableContainerInterface {
                 return new BlogOptions($blogId, $default);
@@ -195,7 +195,7 @@ return function ( array $defaults ) {
         },
 
         'blog_options_container' => function (ContainerInterface $c): ContainerInterface {
-	        $sites = $c->get('sites');
+            $sites = $c->get('sites');
             $optionsFactory = $c->get('blog_options_factory');
             $optionsContainer = new BlogOptionsContainer($optionsFactory, $sites);
 
@@ -203,27 +203,27 @@ return function ( array $defaults ) {
         },
 
         'blog_options' => function (ContainerInterface $c): WritableContainerInterface {
-	        $container = $c->get('blog_options_container');
-	        $currentSiteId = get_current_blog_id();
-	        $options = $container->get($currentSiteId);
+            $container = $c->get('blog_options_container');
+            $currentSiteId = get_current_blog_id();
+            $options = $container->get($currentSiteId);
 
             return $options;
         },
 
         'site_meta_factory' => function (ContainerInterface $c): callable {
-	        $default = $c->get('default_site_meta_value');
+            $default = $c->get('default_site_meta_value');
 
-	        return function (int $siteId) use ($default): WritableContainerInterface {
+            return function (int $siteId) use ($default): WritableContainerInterface {
                 return new SiteMeta($siteId, $default);
             };
         },
 
         'site_meta_container' => function (ContainerInterface $c): ContainerInterface {
             $sites = $c->get('sites');
-	        $metaFactory = $c->get('site_meta_factory');
-	        $metaContainer = new SiteMetaContainer($metaFactory, $sites);
+            $metaFactory = $c->get('site_meta_factory');
+            $metaContainer = new SiteMetaContainer($metaFactory, $sites);
 
-	        return $metaContainer;
+            return $metaContainer;
         },
 
         'site_meta' => function (ContainerInterface $c) {
@@ -235,7 +235,7 @@ return function ( array $defaults ) {
         },
 
         'embedded_languages_json' => function (ContainerInterface $c) {
-	        $string = $c->get('embedded_languages_string');
+            $string = $c->get('embedded_languages_string');
             $f = $c->get('json_factory');
             $json = $f($string);
 
@@ -277,8 +277,8 @@ return function ( array $defaults ) {
         },
 
         'index_factory' => function (ContainerInterface $c): callable {
-	        return function ($data, callable $field): ContainerInterface {
-	            return new Index($data, $field);
+            return function ($data, callable $field): ContainerInterface {
+                return new Index($data, $field);
             };
         },
 
@@ -292,7 +292,7 @@ return function ( array $defaults ) {
         },
 
         'file_content_factory' => function (ContainerInterface $c): callable {
-	        return function (string $filePath) use ($c):StringableInterface {
+            return function (string $filePath) use ($c):StringableInterface {
                 $isDebug = $c->get('is_debug');
                 return new FileContents($filePath, $isDebug);
             };
@@ -319,7 +319,7 @@ return function ( array $defaults ) {
         },
 
         'memory_cache_factory' => function (ContainerInterface $c): callable {
-            return function () use($c): SimpleCacheInterface {
+            return function () use ($c): SimpleCacheInterface {
                 return new MemoryMemoizer();
             };
         },
@@ -376,25 +376,25 @@ return function ( array $defaults ) {
 
         'migration_module_definitions' => function (ContainerInterface $c) {
             return [
-                'relationships'         => function (ContainerInterface $c) {
+                'relationships' => function (ContainerInterface $c) {
                     return $c->get('handler_relationships_migration');
                 },
-                'redirects'             => function (ContainerInterface $c) {
+                'redirects' => function (ContainerInterface $c) {
                     return $c->get('handler_redirect_migration');
                 },
-                'modules'               => function (ContainerInterface $c) {
+                'modules' => function (ContainerInterface $c) {
                     return $c->get('handler_modules_migration');
                 },
-                'lang_redirects'               => function (ContainerInterface $c) {
+                'lang_redirects' => function (ContainerInterface $c) {
                     return $c->get('handler_language_redirect_migration');
                 },
-                'translatable_post_types'      => function (ContainerInterface $c) {
+                'translatable_post_types' => function (ContainerInterface $c) {
                     return $c->get('handler_translatable_post_types_migration');
                 },
-                'languages'                 => function (ContainerInterface $c) {
+                'languages' => function (ContainerInterface $c) {
                     return $c->get('handler_languages_migration_steps');
                 },
-                'site_languages'                 => function (ContainerInterface $c) {
+                'site_languages' => function (ContainerInterface $c) {
                     return $c->get('handler_site_languages_migration');
                 },
             ];
@@ -479,7 +479,7 @@ return function ( array $defaults ) {
             return new CompositeHandler([
                 $c->get('handler_create_languages_temp_table'),
                 $c->get('handler_languages_migration'),
-                $c->get('handler_activate_languages_temp_table')
+                $c->get('handler_activate_languages_temp_table'),
             ]);
         },
 
@@ -580,7 +580,7 @@ return function ( array $defaults ) {
         },
 
         'progress_bar_factory' => function (ContainerInterface $c) {
-            return function (int $total = 1, string $message = '' ): Bar {
+            return function (int $total = 1, string $message = ''): Bar {
                 return new Bar($message, $total);
             };
         },

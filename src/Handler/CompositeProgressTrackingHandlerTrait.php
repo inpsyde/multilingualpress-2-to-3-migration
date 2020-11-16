@@ -2,7 +2,6 @@
 
 namespace Inpsyde\MultilingualPress2to3\Handler;
 
-
 use cli\progress\Bar;
 use Throwable;
 

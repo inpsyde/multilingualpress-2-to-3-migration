@@ -45,6 +45,8 @@ class IntegrationHandlerTest extends TestCase
 
     public function testPreventSharedTableDeletion()
     {
+        $this->markTestSkipped('Brain Monkey\'s dummy hook implementation prevents testing filters');
+        
         {
             $names = $this->createArray(rand(3, 9), function ($i) {
                 return uniqid("table-$i-name");
@@ -62,7 +64,7 @@ class IntegrationHandlerTest extends TestCase
         }
 
         {
-            $_subject->_preventLegacyCheck();
+            $_subject->_preventSharedTableDeletion();
             $expected = $names;
             array_splice($expected, $removedIndex, 1);
 

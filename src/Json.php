@@ -110,7 +110,7 @@ class Json implements
         try {
             $this->string = $this->_normalizeStringable($json);
         } catch (InvalidArgumentException $e) {
-            if (!(is_object($json) || is_array($json) || is_scalar($json) || is_null($json))){
+            if (!(is_object($json) || is_array($json) || is_scalar($json) || is_null($json))) {
                 throw new InvalidArgumentException($this->__('The JSON must be a string, a stringable object, or a valid JSON value: map, list, scalar, null'));
             }
 
@@ -226,7 +226,7 @@ class Json implements
         $result = json_decode($json);
         $error = json_last_error();
 
-        if($result === null && $error !== JSON_ERROR_NONE) {
+        if ($result === null && $error !== JSON_ERROR_NONE) {
             throw new DomainException(json_last_error_msg());
         }
 

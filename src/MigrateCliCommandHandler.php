@@ -64,18 +64,18 @@ class MigrateCliCommandHandler implements HandlerInterface
         $moduleNames = array_keys($moduleDefinitions);
 
         $commandDoc = [
-            'shortdesc'             => $this->__('Migrates data from MLP2 to MLP3'),
-            'synopsis'              => [
+            'shortdesc' => $this->__('Migrates data from MLP2 to MLP3'),
+            'synopsis' => [
                 [
-                    'type'                  => 'positional',
-                    'name'                  => 'modules',
-                    'description'           => $this->__('Comma-separated list of the module names to migrate, or "all" to migrate all modules') . PHP_EOL .
+                    'type' => 'positional',
+                    'name' => 'modules',
+                    'description' => $this->__('Comma-separated list of the module names to migrate, or "all" to migrate all modules') . PHP_EOL .
                                                 PHP_EOL .
                                                 $this->__('Available modules:') . PHP_EOL .
                                                 str_repeat('-', 20) . PHP_EOL .
                                                 implode(PHP_EOL, $moduleNames),
-                    'optional'              => true,
-                ]
+                    'optional' => true,
+                ],
             ],
         ];
 

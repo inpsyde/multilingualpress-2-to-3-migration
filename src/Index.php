@@ -2,7 +2,6 @@
 
 namespace Inpsyde\MultilingualPress2to3;
 
-
 use ArrayIterator;
 use Countable;
 use Dhii\Data\Container\ContainerGetCapableTrait;

@@ -28,7 +28,6 @@ class FileContents implements StringableInterface
      */
     protected $isDebug;
 
-
     /**
      * @param string $filePath Absolute path to the file, the contents of which are represented by this instance.
      * @param bool $isDebug If true, the `__toString()` method will return error text in case there's a problem reading.

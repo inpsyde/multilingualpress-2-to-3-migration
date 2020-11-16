@@ -59,8 +59,8 @@ class SiteLanguageMigrator
         ContainerInterface $optionsContainer,
         WritableContainerInterface $meta,
         string $siteSettingsOptionName
-    )
-    {
+    ) {
+
         $this->db = $wpdb;
         $this->translator = $translator;
         $this->optionsContainer = $optionsContainer;

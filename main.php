@@ -13,6 +13,7 @@
  * License URI: http://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: mlp2to3
  * Domain Path: /languages
+ * Network: true
  */
 
 namespace Inpsyde\MultilingualPress2to3;
@@ -36,14 +37,14 @@ function handler()
         $bootstrap = require MLP2TO3_BASE_DIR . '/bootstrap.php';
 
         $instance = $bootstrap([
-            'version'           => '[*next-version*]',
-            'root_path'         => ABSPATH,
-            'base_path'         => MLP2TO3_BASE_PATH,
-            'root_url'          => get_bloginfo('url'),
-            'base_url'          => plugins_url('', MLP2TO3_BASE_PATH),
-            'admin_url'         => get_admin_url(),
-            'is_debug'          => WP_DEBUG,
-            'main_site_id'      => (defined('BLOG_ID_CURRENT_SITE')
+            'version' => '[*next-version*]',
+            'root_path' => ABSPATH,
+            'base_path' => MLP2TO3_BASE_PATH,
+            'root_url' => get_bloginfo('url'),
+            'base_url' => plugins_url('', MLP2TO3_BASE_PATH),
+            'admin_url' => get_admin_url(),
+            'is_debug' => WP_DEBUG,
+            'main_site_id' => (defined('BLOG_ID_CURRENT_SITE')
                     ? (int) BLOG_ID_CURRENT_SITE
                     : 1),
         ]);

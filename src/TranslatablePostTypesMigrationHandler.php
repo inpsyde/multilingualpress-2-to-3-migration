@@ -48,6 +48,7 @@ class TranslatablePostTypesMigrationHandler implements HandlerInterface
         Progress $progress,
         int $limit
     ) {
+
         $this->migrator = $migrator;
         $this->progress = $progress;
         $this->db = $db;
@@ -62,7 +63,7 @@ class TranslatablePostTypesMigrationHandler implements HandlerInterface
     public function run()
     {
         $modules = $this->_getPostTypesToMigrate();
-        $count = count ($modules);
+        $count = count($modules);
         $progress = $this->_getProgress($count);
 
         foreach ($modules as $redirect) {
@@ -97,9 +98,9 @@ class TranslatablePostTypesMigrationHandler implements HandlerInterface
         foreach ($typeNames as $name) {
             $type = $typeSettings[$name] ?? 0;
             $postTypes[] = (object) [
-                'name'          => $name,
-                'is_active'     => (bool) $type,
-                'is_permalink'  => intval($type) === 2,
+                'name' => $name,
+                'is_active' => (bool) $type,
+                'is_permalink' => intval($type) === 2,
             ];
         }
 
