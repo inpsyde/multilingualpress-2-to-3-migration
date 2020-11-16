@@ -33,4 +33,4 @@ jobs:
                 run: vendor/bin/phpunit
 
             -   name: Run PHPCS
-                run: vendor/bin/phpcs
+                run: vendor/bin/phpcs --ignore_warnings_on_exit
