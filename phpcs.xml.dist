@@ -4,7 +4,6 @@
     <file>./bootstrap.php</file>
     <file>./src</file>
     <file>./includes</file>
-    <file>./templates</file>
 
     <rule ref="Inpsyde"/>
 </ruleset>
