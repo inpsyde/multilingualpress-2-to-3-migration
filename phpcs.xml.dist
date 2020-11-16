@@ -5,5 +5,7 @@
     <file>./src</file>
     <file>./includes</file>
 
-    <rule ref="Inpsyde"/>
+    <rule ref="Inpsyde">
+        <exclude name="Inpsyde.CodeQuality.ElementNameMinimalLength" />
+    </rule>
 </ruleset>
