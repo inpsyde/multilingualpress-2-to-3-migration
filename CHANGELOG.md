@@ -8,7 +8,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Fixed
 - Docker build error related to `zlib1g` Linux package.
 - Lockfile not having dependencies at required version.
-- Wrong path to languages JSON file (#4).
 
 ### Added
 - The `wordpress` Docker service now has WP-CLI.
