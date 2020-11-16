@@ -45,7 +45,7 @@ class IntegrationHandlerTest extends TestCase
 
     public function testPreventSharedTableDeletion()
     {
-        $this->markTestSkipped('Brain Monkey\'s dummy hook implementation prevents testing filters')
+        $this->markTestSkipped('Brain Monkey\'s dummy hook implementation prevents testing filters');
         
         {
             $names = $this->createArray(rand(3, 9), function ($i) {
