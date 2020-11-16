@@ -54,6 +54,7 @@ class CreateTableHandler implements HandlerInterface
         array $fields,
         array $primaryKeys
     ) {
+
         $this->db = $db;
         $this->tableName = $tableName;
         $this->fields = $fields;

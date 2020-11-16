@@ -171,14 +171,14 @@ class LanguageMigrator
         $languageCode = $language->{'iso-639-3'};
         $language = $this->_getLang($languageCode);
         $newLang = [
-            'locale'            => $locale->code ?? '',
-            'http_code'         => $locale->bcp47 ?? '',
-            'english_name'      => $language->{'english-name'} ?? '',
-            'native_name'       => $language->{'native-name'} ?? '',
-            'custom_name'       => '',
-            'is_rtl'            => $language->rtl ? '1' : '0',
-            'iso_639_1'         => $language->{'iso-639-1'} ?? '',
-            'iso_639_2'         => $language->{'iso-639-2'} ?? '',
+            'locale' => $locale->code ?? '',
+            'http_code' => $locale->bcp47 ?? '',
+            'english_name' => $language->{'english-name'} ?? '',
+            'native_name' => $language->{'native-name'} ?? '',
+            'custom_name' => '',
+            'is_rtl' => $language->rtl ? '1' : '0',
+            'iso_639_1' => $language->{'iso-639-1'} ?? '',
+            'iso_639_2' => $language->{'iso-639-2'} ?? '',
         ];
 
         return (object) $newLang;
@@ -193,7 +193,7 @@ class LanguageMigrator
     protected function _getDestinationLangKey(string $sourceLangKey): string
     {
         $map = [
-            'bcp47'             => 'http_code',
+            'bcp47' => 'http_code',
         ];
 
         if (array_key_exists($sourceLangKey, $map)) {

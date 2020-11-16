@@ -38,8 +38,8 @@ class ModulesMigrator
     public function __construct(
         Wpdb $wpdb,
         FormatTranslatorInterface $translator
-    )
-    {
+    ) {
+
         $this->db = $wpdb;
         $this->translator = $translator;
     }
@@ -175,7 +175,7 @@ class ModulesMigrator
     protected function _getModuleNameMap(): array
     {
         return [
-            'class-Mlp_Redirect_Registration'       => 'redirect',
+            'class-Mlp_Redirect_Registration' => 'redirect',
         ];
     }
 
@@ -229,7 +229,6 @@ class ModulesMigrator
 
         return substr($string, $length);
     }
-
 
     /**
      * Removes a suffix from the specified string, if it is found.

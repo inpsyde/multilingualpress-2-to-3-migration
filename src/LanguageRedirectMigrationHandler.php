@@ -47,6 +47,7 @@ class LanguageRedirectMigrationHandler implements HandlerInterface
         Progress $progress,
         int $limit
     ) {
+
         $this->migrator = $migrator;
         $this->progress = $progress;
         $this->db = $db;
@@ -61,7 +62,7 @@ class LanguageRedirectMigrationHandler implements HandlerInterface
     public function run()
     {
         $redirects = $this->_getRedirectsToMigrate();
-        $count = count ($redirects);
+        $count = count($redirects);
         $progress = $this->_getProgress($count);
 
         foreach ($redirects as $redirect) {
@@ -90,7 +91,7 @@ class LanguageRedirectMigrationHandler implements HandlerInterface
 
         $fields = [
             'user_id',
-            'meta_value'         => 'is_redirect',
+            'meta_value' => 'is_redirect',
         ];
         $fieldsString = $this->_getSelectFieldsString($fields);
         $query = 'SELECT %1$s FROM %2$s WHERE %3$s = "%4$s"';
@@ -98,7 +99,7 @@ class LanguageRedirectMigrationHandler implements HandlerInterface
             $fieldsString,
             $this->_quoteIdentifier($userOptionsTable),
             $this->_quoteIdentifier('meta_key'),
-            $optionName
+            $optionName,
         ];
 
         if ($limit) {

@@ -59,6 +59,7 @@ class MigrateCliCommand
         array $allMigrationModuleNames,
         callable $compositeHandlerFactory
     ) {
+
         $this->translator = $translator;
         $this->migrationModules = $migrationModules;
         $this->allMigrationModuleNames = $allMigrationModuleNames;

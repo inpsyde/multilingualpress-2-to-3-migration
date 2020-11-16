@@ -46,6 +46,7 @@ class RedirectMigrationHandler implements HandlerInterface
         Progress $progress,
         int $limit
     ) {
+
         $this->migrator = $migrator;
         $this->progress = $progress;
         $this->db = $db;
@@ -60,7 +61,7 @@ class RedirectMigrationHandler implements HandlerInterface
     public function run()
     {
         $redirects = $this->_getRedirectsToMigrate();
-        $count = count ($redirects);
+        $count = count($redirects);
         $progress = $this->_getProgress($count);
 
         foreach ($redirects as $redirect) {
@@ -104,7 +105,7 @@ class RedirectMigrationHandler implements HandlerInterface
 
         array_walk($siteOptionTables, function ($value, $key) use (&$selects, $optionName) {
             $fields = (object) [
-                'option_value'  => $optionName,
+                'option_value' => $optionName,
             ];
             $fields->{(string) $key} = 'site_id'; // Otherwise numeric string keys are turned into integers
             $fieldsString = $this->_getSelectFieldsString($fields, false);

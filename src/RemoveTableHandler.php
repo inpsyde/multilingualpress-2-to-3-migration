@@ -50,6 +50,7 @@ class RemoveTableHandler implements HandlerInterface
         Wpdb $db,
         string $tableName
     ) {
+
         $this->db = $db;
         $this->tableName = $tableName;
     }

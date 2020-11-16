@@ -44,6 +44,7 @@ class ModulesMigrationHandler implements HandlerInterface
         Progress $progress,
         int $limit
     ) {
+
         $this->migrator = $migrator;
         $this->progress = $progress;
         $this->db = $db;
@@ -58,7 +59,7 @@ class ModulesMigrationHandler implements HandlerInterface
     public function run()
     {
         $modules = $this->_getModulesToMigrate();
-        $count = count ($modules);
+        $count = count($modules);
         $progress = $this->_getProgress($count);
 
         foreach ($modules as $redirect) {
@@ -89,8 +90,8 @@ class ModulesMigrationHandler implements HandlerInterface
 
         foreach ($modulesMap as $key => $value) {
             $modules[] = (object) [
-                'name'      => $key,
-                'status'    => $value,
+                'name' => $key,
+                'status' => $value,
             ];
         }
 

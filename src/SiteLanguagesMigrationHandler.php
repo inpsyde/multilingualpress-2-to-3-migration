@@ -69,6 +69,7 @@ class SiteLanguagesMigrationHandler implements HandlerInterface
         int $mainSiteId,
         string $siteLanguagesOptionName
     ) {
+
         $this->migrator = $migrator;
         $this->progress = $progress;
         $this->db = $db;
@@ -85,7 +86,7 @@ class SiteLanguagesMigrationHandler implements HandlerInterface
     public function run()
     {
         $langs = $this->_getLanguagesToMigrate();
-        $count = count ($langs);
+        $count = count($langs);
         $progress = $this->_getProgress($count);
 
         foreach ($langs as $redirect) {
@@ -110,9 +111,9 @@ class SiteLanguagesMigrationHandler implements HandlerInterface
 
         foreach ($sourceLangs as $siteId => $info) {
             $lang = (object) [
-                'site_id'           => $siteId,
-                'locale'            => $info['lang'] ?? '',
-                'title'             => $info['text'] ?? '',
+                'site_id' => $siteId,
+                'locale' => $info['lang'] ?? '',
+                'title' => $info['text'] ?? '',
             ];
             $result[] = $lang;
         }

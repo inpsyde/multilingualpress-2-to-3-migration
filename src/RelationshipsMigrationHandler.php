@@ -44,6 +44,7 @@ class RelationshipsMigrationHandler implements HandlerInterface
         Progress $progress,
         int $limit
     ) {
+
         $this->migrator = $migrator;
         $this->progress = $progress;
         $this->db = $db;
@@ -58,7 +59,7 @@ class RelationshipsMigrationHandler implements HandlerInterface
     public function run()
     {
         $relationships = $this->_getRelationshipsToMigrate();
-        $count = count ($relationships);
+        $count = count($relationships);
         $progress = $this->_getProgress($count);
 
         foreach ($relationships as $relationship) {
@@ -82,12 +83,12 @@ class RelationshipsMigrationHandler implements HandlerInterface
         $table = $this->_getTableName('multilingual_linked');
         $limit = $this->_getLimit();
         $fields = $this->_getSelectFieldsString([
-            'ml_id'                 => 'id',
-            'ml_source_blogid'      => 'source_blog_id',
-            'ml_source_elementid'   => 'source_element_id',
-            'ml_blogid'             => 'target_blog_id',
-            'ml_elementid'          => 'target_element_id',
-            'ml_type'               => 'type',
+            'ml_id' => 'id',
+            'ml_source_blogid' => 'source_blog_id',
+            'ml_source_elementid' => 'source_element_id',
+            'ml_blogid' => 'target_blog_id',
+            'ml_elementid' => 'target_element_id',
+            'ml_type' => 'type',
         ]);
         $query = "SELECT {$fields} FROM {$table}";
         $query .= ($limit > 0 ? sprintf(' LIMIT %1$d', abs($limit)) : '');

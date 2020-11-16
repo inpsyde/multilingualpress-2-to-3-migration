@@ -57,6 +57,7 @@ class LanguagesMigrationHandler implements HandlerInterface
         Progress $progress,
         int $limit
     ) {
+
         $this->migrator = $migrator;
         $this->progress = $progress;
         $this->db = $db;
@@ -71,7 +72,7 @@ class LanguagesMigrationHandler implements HandlerInterface
     public function run()
     {
         $langs = $this->_getLanguagesToMigrate();
-        $count = count ($langs);
+        $count = count($langs);
         $progress = $this->_getProgress($count);
 
         foreach ($langs as $redirect) {
@@ -116,8 +117,8 @@ class LanguagesMigrationHandler implements HandlerInterface
             'iso_639_1',
             'iso_639_2',
             'priority',
-            'wp_locale'         => 'locale',
-            'http_name'         => 'bcp47',
+            'wp_locale' => 'locale',
+            'http_name' => 'bcp47',
         ];
         $fieldsString = $this->_getSelectFieldsString($fields);
 

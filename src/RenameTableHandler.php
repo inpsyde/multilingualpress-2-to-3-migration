@@ -56,6 +56,7 @@ class RenameTableHandler implements HandlerInterface
         string $sourceName,
         string $targetName
     ) {
+
         $this->db = $db;
         $this->sourceName = $sourceName;
         $this->targetName = $targetName;

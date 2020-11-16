@@ -8,7 +8,6 @@
 
 namespace Inpsyde\MultilingualPress2to3\Handler;
 
-
 use cli\Progress;
 
 class CompositeProgressHandler extends CompositeHandler
