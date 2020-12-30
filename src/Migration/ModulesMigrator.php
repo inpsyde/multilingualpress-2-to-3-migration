@@ -58,7 +58,16 @@ class ModulesMigrator
         $optionName = 'multilingualpress_modules';
         $obsoleteModules = $this->_getObsoleteModuleNames();
         $moduleName = $this->_getModuleName($mlp2Module->name);
-        $moduleStatus = $this->_getModuleStatus($mlp2Module->status);
+
+        if (is_string( $mlp2Module->status)) {
+            $mlp2ModuleStatus = $mlp2Module->status;
+        } elseif (is_array($mlp2Module->status) && array_key_exists('state', $mlp2Module->status)) {
+            $mlp2ModuleStatus = $mlp2Module->status['state'];
+        } else {
+            return;
+        }
+
+        $moduleStatus = $this->_getModuleStatus($mlp2ModuleStatus);
 
         // If obsolete, ignore
         if (in_array($moduleName, $obsoleteModules)) {
