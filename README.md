@@ -1,6 +1,10 @@
 # MultilingualPress 2 to 3 Migration
 A WP plugin that allows migrating data from MultilingualPress version 2 to version 3.
 
+## UNMAINTAINED
+
+_NOTE:_ This repository is no longer maintained.
+
 ## Installation
 The migration tool is a WP CLI command, shipped as a regular WP plugin.
 Install it as you would any other plugin, i.e. in any of the following ways:
